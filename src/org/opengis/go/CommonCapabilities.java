@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 
@@ -24,6 +23,14 @@ import org.opengis.go.spatial.PathType;
  * @version $Revision$, $Date$
  */
 public interface CommonCapabilities {
+
+    /**
+     * Returns an array of <code>Class</code> objects for the
+     * <code>Bounds</code> interfaces that are supported by a given
+     * implementation. These Class objects can be used in a call to
+     * <code>BoundsFactory.getBounds(Class)</code>.
+     */
+    Class[] getSupportedBounds();
 
     /**
      * Returns an array of <code>Class</code> objects for the directposition

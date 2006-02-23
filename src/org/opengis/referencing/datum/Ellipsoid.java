@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.datum;
@@ -14,52 +13,32 @@ package org.opengis.referencing.datum;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.IdentifiedObject;
-
-// Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.referencing.Info;
 
 
 /**
  * Geometric figure that can be used to describe the approximate shape of the earth.
  * In mathematical terms, it is a surface formed by the rotation of an ellipse about
  * its minor axis. An ellipsoid requires two defining parameters:
- * <p>
  * <ul>
  *   <li>{@linkplain #getSemiMajorAxis semi-major axis} and
  *       {@linkplain #getInverseFlattening inverse flattening}, or</li>
  *   <li>{@linkplain #getSemiMajorAxis semi-major axis} and
  *       {@linkplain #getSemiMinorAxis semi-minor axis}.</li>
  * </ul>
- * <p>
- * There is not just one ellipsoid. An ellipsoid is a matter of choice, and therefore many
- * choices are possible. The size and shape of an ellipsoid was traditionally chosen such
- * that the surface of the geoid is matched as closely as possible locally, e.g. in a country.
- * A number of global best-fit ellipsoids are now available. An association of an ellipsoid with
- * the earth is made through the definition of the size and shape of the ellipsoid and the position
- * and orientation of this ellipsoid with respect to the earth. Collectively this choice is captured
- * by the concept of “{@linkplain GeodeticDatum geodetic datum}”. A change of size, shape, position
- * or orientation of an ellipsoid will result in a change of geographic coordinates of a point and
- * be described as a different geodetic datum. Conversely geographic coordinates are unambiguous
- * only when associated with a geodetic datum.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract CD_Ellipsoid
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-@UML(identifier="CD_Ellipsoid", specification=ISO_19111)
-public interface Ellipsoid extends IdentifiedObject {
+public interface Ellipsoid extends Info {
     /**
      * Returns the linear unit of the {@linkplain #getSemiMajorAxis semi-major}
      * and {@linkplain #getSemiMinorAxis semi-minor} axis values.
      *
      * @return The axis linear unit.
      */
-    @UML(identifier="getAxisUnit", specification=OGC_01009)
     Unit getAxisUnit();
 
     /**
@@ -68,8 +47,8 @@ public interface Ellipsoid extends IdentifiedObject {
      *
      * @return Length of semi-major axis.
      * @unitof Length
+     * @UML mandatory semiMajorAxis
      */
-    @UML(identifier="semiMajorAxis", obligation=MANDATORY, specification=ISO_19111)
     double getSemiMajorAxis();
 
     /**
@@ -78,8 +57,8 @@ public interface Ellipsoid extends IdentifiedObject {
      *
      * @return Length of semi-minor axis.
      * @unitof Length
+     * @UML conditional secondDefiningParameter.semiMinorAxis
      */
-    @UML(identifier="secondDefiningParameter.semiMinorAxis", obligation=CONDITIONAL, specification=ISO_19111)
     double getSemiMinorAxis();
 
     /**
@@ -88,13 +67,13 @@ public interface Ellipsoid extends IdentifiedObject {
      *
      * <var>ivf</var>&nbsp;=&nbsp;<var>r</var><sub>e</sub>/(<var>r</var><sub>e</sub>-<var>r</var><sub>p</sub>).
      *
-     * For perfect spheres (i.e. if {@link #isSphere} returns {@code true}),
+     * For perfect spheres (i.e. if {@link #isSphere} returns <code>true</code>),
      * the {@link Double#POSITIVE_INFINITY} value is used.
      *
      * @return The inverse flattening value.
      * @unitof Scale
+     * @UML conditional secondDefiningParameter.inverseFlattening
      */
-    @UML(identifier="secondDefiningParameter.inverseFlattening", obligation=CONDITIONAL, specification=ISO_19111)
     double getInverseFlattening();
 
     /**
@@ -103,20 +82,19 @@ public interface Ellipsoid extends IdentifiedObject {
      * radius whenever asked. Other ellipsoids use the polar radius to calculate the IVF whenever
      * asked. This distinction can be important to avoid floating-point rounding errors.
      *
-     * @return {@code true} if the {@linkplain #getInverseFlattening inverse flattening} is
-     *         definitive, or {@code false} if the {@linkplain #getSemiMinorAxis polar radius}
+     * @return <code>true</code> if the {@linkplain #getInverseFlattening inverse flattening} is
+     *         definitive, or <code>false</code> if the {@linkplain #getSemiMinorAxis polar radius}
      *         is definitive.
      */
-    @UML(identifier="CS_Ellipsoid.isIvfDefinitive", obligation=CONDITIONAL, specification=OGC_01009)
     boolean isIvfDefinitive();
 
     /**
-     * {@code true} if the ellipsoid is degenerate and is actually a sphere. The sphere is
+     * <code>true</code> if the ellipsoid is degenerate and is actually a sphere. The sphere is
      * completely defined by the {@linkplain #getSemiMajorAxis semi-major axis}, which is the
      * radius of the sphere.
      *
-     * @return {@code true} if the ellipsoid is degenerate and is actually a sphere.
+     * @return <code>true</code> if the ellipsoid is degenerate and is actually a sphere.
+     * @UML conditional secondDefiningParameter.isSphere
      */
-    @UML(identifier="secondDefiningParameter.isSphere", obligation=CONDITIONAL, specification=ISO_19111)
     boolean isSphere();
 }

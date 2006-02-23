@@ -4,13 +4,10 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.go.display.event;
-
-import org.opengis.go.display.primitive.Graphic;
 
 /**
  * Provides a mechanism for notification of additions, removals, and
@@ -34,21 +31,14 @@ public interface AggregationChangeEvent {
     /**
      * Flag for the case of the element order changing within the aggregation.
      */
-    public static final int ELEMENTS_REORDERED = 2;
+    public static final int ELEMENTS_REORDERD = 2;
 
     /**
      * Get the ID flag for this event.
      *
      * @return The event type. One of the {@link #ELEMENT_ADDED},
-     *         {@link #ELEMENT_REMOVED} or {@link #ELEMENTS_REORDERED}
+     *         {@link #ELEMENT_REMOVED} or {@link #ELEMENTS_REORDERD}
      *         constants.
      */
     public int getID();
-    
-    /**
-     * Gets the <code>Graphic</code> elements pertinent to the event.
-     * @return an array of <code>Graphic</code>s that were affected by the event,
-     *         or an empty array.
-     */
-    public Graphic[] getElements();
 }

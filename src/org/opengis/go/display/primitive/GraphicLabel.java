@@ -4,15 +4,13 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
 
 import javax.units.Unit;
 
-import org.opengis.go.display.style.TextSymbolizer;
 import org.opengis.go.display.style.XAnchor;
 import org.opengis.go.display.style.YAnchor;
 import org.opengis.spatialschema.geometry.DirectPosition;
@@ -97,13 +95,6 @@ public interface GraphicLabel extends Graphic {
      * @return the rotation orientation.
      */
     public double getRotation(Unit unit);
-    
-    /**
-     * Returns the <code>GraphicStyle</code> for this <code>GraphicLabel</code>,
-     * which is required to be a <code>TextSymbolizer</code>.
-     * @return the GraphicLabel's <code>GraphicStyle</code>.
-     */
-    public TextSymbolizer getTextSymbolizer();
 
     /**
      * Indicates whether this primitive is displaying anchor handles that allow the

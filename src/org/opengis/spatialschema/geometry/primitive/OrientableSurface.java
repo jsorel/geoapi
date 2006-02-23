@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.primitive;
@@ -13,30 +12,25 @@ package org.opengis.spatialschema.geometry.primitive;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.complex.CompositeSurface;
 
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
  * A surface and an orientation inherited from {@link OrientablePrimitive}. If the orientation is
- * positive, then the {@code OrientableSurface} is a {@linkplain Surface surface}. If the
- * orientation is negative, then the {@code OrientableSurface} is a reference to a
+ * positive, then the <code>OrientableSurface</code> is a {@linkplain Surface surface}. If the
+ * orientation is negative, then the <code>OrientableSurface</code> is a reference to a
  * {@linkplain Surface surface} with an upNormal that reverses the direction for this
- * {@code OrientableSurface}, the sense of "the top of the surface".
+ * <code>OrientableSurface</code>, the sense of "the top of the surface".
  *  
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML type GM_OrientableSurface
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  */
-@UML(identifier="GM_OrientableSurface", specification=ISO_19107)
 public interface OrientableSurface extends OrientablePrimitive {
     /**
      * Returns the set of circular sequences of {@linkplain OrientableCurve orientable curve} that
-     * limit the extent of this {@code OrientableSurface}. These curves shall be organized
+     * limit the extent of this <code>OrientableSurface</code>. These curves shall be organized
      * into one circular sequence of curves for each boundary component of the
-     * {@code OrientableSurface}. In cases where "exterior" boundary is not
+     * <code>OrientableSurface</code>. In cases where "exterior" boundary is not
      * well defined, all the rings of the {@linkplain SurfaceBoundary surface boundary}
      * shall be listed as "interior".
      *
@@ -48,18 +42,18 @@ public interface OrientableSurface extends OrientablePrimitive {
      * </font></blockquote>
      *
      * @return The sets of positions on the boundary.
+     * @UML operation boundary
      */
-/// @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
 /// public SurfaceBoundary getBoundary();
 
     /**
-     * Returns the owner of this orientable surface, or {@code null} if none.
+     * Returns the owner of this orientable surface, or <code>null</code> if none.
      *
-     * @return The owner of this orientable surface, or {@code null} if none.
+     * @return The owner of this orientable surface, or <code>null</code> if none.
+     * @UML association composite
      *
-     * @todo I'm not sure to interpret correctly the ISO specification.
-     *       Sound like ISO returns an array (or a sequence) here.
+     * @revisit I'm not sure to interpret correctly the ISO specification.
+     *          Sound like ISO returns an array (or a sequence) here.
      */
-    @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
     public CompositeSurface getComposite();
 }

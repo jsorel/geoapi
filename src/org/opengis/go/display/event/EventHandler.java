@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.go.display.event;
@@ -22,6 +21,7 @@ import java.util.EventListener;
  * @see EventManager
  */
 public interface EventHandler extends EventListener {
+
     /**
      * Invoked when the handler is first enabled, or reenabled after
      * being temporarily disabled.
@@ -40,8 +40,9 @@ public interface EventHandler extends EventListener {
     /**
      * Invoked when the handler is permanently removed.
      *
-     * @todo According <code>EventManagerSupport</code> implementation, a handler
-     *       is disabled before to be removed. The specification should said that.
+     * @revisit According {@link EventManagerSupport} implementation, a handler
+     *          is disabled before to be removed. The specification should said
+     *          that.
      */
     public abstract void handlerRemoved();
 

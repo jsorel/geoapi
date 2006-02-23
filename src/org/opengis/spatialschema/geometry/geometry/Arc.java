@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.geometry;
@@ -13,11 +12,6 @@ package org.opengis.spatialschema.geometry.geometry;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.primitive.Bearing;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -27,10 +21,10 @@ import static org.opengis.annotation.Specification.*;
  * angle.
  *
  * <blockquote><font size=2>
- * <strong>NOTE:</strong> In the model, an  {@code Arc} is a subclass of {@link ArcString},
+ * <strong>NOTE:</strong> In the model, an  <code>Arc</code> is a subclass of {@link ArcString},
  * being a trivial arc string consisting of only one arc. This may be counter-intuitive in the
  * sense that subclasses are often thought of as more complex than their superclass (with
- * additional methods and attributes). An {@code Arc} is simpler than a {@linkplain ArcString
+ * additional methods and attributes). An <code>Arc</code> is simpler than a {@linkplain ArcString
  * arc string} in that it has less data, but it is more complex in that it can return geometric
  * information such as "center", "start angle", and "end angle". This additional computational
  * complexity forces the subclassing to be the way it is. In addition the "is type of" semantics
@@ -38,8 +32,8 @@ import static org.opengis.annotation.Specification.*;
  * </font></blockquote>
  *
  * In its simplest representation, the three points in the {@linkplain #getControlPoints control point}
- * sequence for an {@code Arc} shall consist of, in order, the initial point on the arc, some
- * point on the arc neither at the start or end, and the end point of the {@code Arc}. If
+ * sequence for an <code>Arc</code> shall consist of, in order, the initial point on the arc, some
+ * point on the arc neither at the start or end, and the end point of the <code>Arc</code>. If
  * additional points are given, then all points must lie on the circle defined by any 3 non-colinear
  * points in the control point array. All points shall lie on the same circle, and shall be given
  * in the {@linkplain #getControlPoints control point} array in the order in which they occur on
@@ -53,36 +47,36 @@ import static org.opengis.annotation.Specification.*;
  * but it is not absolutely necessary for the mathematics to work.
  * </font></blockquote>
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract GM_Arc
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  *
  * @see GeometryFactory#createArc(Position,Position,Position)
  * @see GeometryFactory#createArc(Position,Position,double,double[])
  */
-@UML(identifier="GM_Arc", specification=ISO_19107)
 public interface Arc extends ArcString {
     /**
      * Calculates the center of the circle of which this arc is a portion as a direct position.
      * The {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system}
      * of the returned {@linkplain DirectPosition direct position} will be the same as that
-     * for this {@code Arc}. In some extreme cases, the {@linkplain DirectPosition direct
+     * for this <code>Arc</code>. In some extreme cases, the {@linkplain DirectPosition direct
      * position} as calculated may lie outside the domain of validity of the coordinate reference
-     * system used by this {@code Arc} (especially if the underlying arc has a very large
+     * system used by this <code>Arc</code> (especially if the underlying arc has a very large
      * radius). Implementations may choose an appropriate course of action in such cases.
      *
      * @return The center of the circle of which this arc is a portion.
+     * @UML operation center
      */
-    @UML(identifier="center", obligation=MANDATORY, specification=ISO_19107)
     public DirectPosition getCenter();
 
     /**
      * Calculates the radius of the circle of which this arc is a portion.
      *
      * @return The radius of the circle of which this arc is a portion.
+     * @UML operation radius
      * @unitof Distance
      */
-    @UML(identifier="radius", obligation=MANDATORY, specification=ISO_19107)
     public double getRadius();
 
     /**
@@ -93,11 +87,11 @@ public interface Arc extends ArcString {
      *
      * @return The bearing from the {@linkplain #getCenter center} of the circle to the
      *         {@link #getStartPoint start point} of this arc.
+     * @UML operation startAngle
      *
-     * @todo Inconsistent UML: "startAngle" and "startOfArc" are both used.
-     *       Which one is the right one?
+     * @revisit Inconsistent UML: "startAngle" and "startOfArc" are both used.
+     *          Which one is the right one?
      */
-    @UML(identifier="startAngle", obligation=MANDATORY, specification=ISO_19107)
     public Bearing getStartAngle();
 
     /**
@@ -108,10 +102,10 @@ public interface Arc extends ArcString {
      *
      * @return The bearing from the {@linkplain #getCenter center} of the circle to the
      *         {@link #getEndPoint end point} of this arc.
+     * @UML operation endAngle
      *
-     * @todo Inconsistent UML: "endAngle" and "endOfArc" are both used.
-     *       Which one is the right one?
+     * @revisit Inconsistent UML: "endAngle" and "endOfArc" are both used.
+     *          Which one is the right one?
      */
-    @UML(identifier="endAngle", obligation=MANDATORY, specification=ISO_19107)
     public Bearing getEndAngle();
 }

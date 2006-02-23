@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.datum;
@@ -15,14 +14,8 @@ import java.util.Date;
 import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.Info;
 import org.opengis.metadata.extent.Extent;
-import org.opengis.util.InternationalString;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -32,52 +25,15 @@ import static org.opengis.annotation.Specification.*;
  * reference system. Each datum subtype can be associated with only specific types of
  * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems}.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract CD_Datum
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
-@UML(identifier="CD_Datum", specification=ISO_19111)
-public interface Datum extends IdentifiedObject {
-    /**
-     * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
-     * This is used for setting the value to be returned by {@link #getAnchorPoint}.
-     *
-     * @see #getAnchorPoint
-     */
-    String ANCHOR_POINT_KEY = "anchorPoint";
-
-    /**
-     * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
-     * This is used for setting the value to be returned by {@link #getRealizationEpoch}.
-     *
-     * @see #getRealizationEpoch
-     */
-    String REALIZATION_EPOCH_KEY = "realizationEpoch";
-
-    /**
-     * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
-     * This is used for setting the value to be returned by {@link #getValidArea}.
-     *
-     * @see #getValidArea
-     */
-    String VALID_AREA_KEY = "validArea";
-
-    /**
-     * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
-     * This is used for setting the value to be returned by {@link #getScope}.
-     *
-     * @see #getScope
-     */
-    String SCOPE_KEY = "scope";
-
+public interface Datum extends Info {
     /**
      * Description, possibly including coordinates, of the point or points used to anchor the datum
      * to the Earth. Also known as the "origin", especially for Engineering and Image Datums.
@@ -98,9 +54,15 @@ public interface Datum extends IdentifiedObject {
      *   <li>For a temporal datum, this attribute is not defined. Instead of the anchor point,
      *       a temporal datum carries a separate time origin of type {@link Date}.</li>
      * </ul>
+     *
+     * @param  locale The desired locale for the datum anchor point to be returned,
+     *         or <code>null</code> for anchor point in some default locale (may or
+     *         may not be the {@linkplain Locale#getDefault() system default}).
+     * @return The datum anchor point in the given locale, or <code>null</code> if none. If no
+     *         anchor point is available in the given locale, then some default locale is used.
+     * @UML optional anchorPoint
      */
-    @UML(identifier="anchorPoint", obligation=OPTIONAL, specification=ISO_19111)
-    InternationalString getAnchorPoint();
+    String getAnchorPoint(Locale locale);
 
     /**
      * The time after which this datum definition is valid. This time may be precise (e.g. 1997
@@ -111,23 +73,29 @@ public interface Datum extends IdentifiedObject {
      * realization epoch for the new datum defines the upper limit for the validity of the
      * superseded datum.
      *
-     * @return The datum realization epoch, or {@code null} if not available.
+     * @return The datum realization epoch, or <code>null</code> if not available.
+     * @UML optional realizationEpoch
      */
-    @UML(identifier="realizationEpoch", obligation=OPTIONAL, specification=ISO_19111)
     Date getRealizationEpoch();
 
     /**
      * Area or region in which this datum object is valid.
      *
-     * @return The datum valid area, or {@code null} if not available.
+     * @return The datum valid area, or <code>null</code> if not available.
+     * @UML optional validArea
      */
-    @UML(identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this
      * datum object is valid.
+     *
+     * @param  locale The desired locale for the datum scope to be returned, or <code>null</code>
+     *         for scope in some default locale (may or may not be the
+     *         {@linkplain Locale#getDefault() system default}).
+     * @return The datum scope in the given locale, or <code>null</code> if none. If no
+     *         scope is available in the given locale, then some default locale is used.
+     * @UML optional scope
      */
-    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
-    InternationalString getScope();
+    String getScope(Locale locale);
 }

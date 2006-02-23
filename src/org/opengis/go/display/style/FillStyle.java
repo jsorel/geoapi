@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.go.display.style;
@@ -28,11 +27,7 @@ import org.opengis.util.SimpleEnumerationType;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  */
-public class FillStyle extends SimpleEnumerationType<FillStyle> {
-    /**
-     * Serial number for compatibility with different versions.
-     */
-    private static final long serialVersionUID = -6523391302208138885L;
+public class FillStyle extends SimpleEnumerationType {
 
     //*************************************************************************
     //  Static Fields
@@ -41,7 +36,7 @@ public class FillStyle extends SimpleEnumerationType<FillStyle> {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List<FillStyle> VALUES = new ArrayList<FillStyle>(5);
+    private static final List VALUES = new ArrayList(5);
 
     /**
      * This constant indicates that an object should be completely filled
@@ -119,7 +114,7 @@ public class FillStyle extends SimpleEnumerationType<FillStyle> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{FillStyle}*/ CodeList[] family() {
+    public CodeList[] family() {
         return values();
     }
 }

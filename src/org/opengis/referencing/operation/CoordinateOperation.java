@@ -4,27 +4,19 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
 // J2SE direct dependencies
-import java.util.Collection;
+import java.util.Locale;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.Info;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.metadata.quality.PositionalAccuracy;
+import org.opengis.referencing.quality.PositionalAccuracy;
 import org.opengis.metadata.extent.Extent;
-import org.opengis.util.InternationalString;
-
-// Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -42,54 +34,21 @@ import static org.opengis.annotation.Specification.*;
  * entirely different parameter values are needed, a different coordinate operation
  * shall be defined.
  *  
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract CC_CoordinateOperation
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-@UML(identifier="CC_CoordinateOperation", specification=ISO_19111)
-public interface CoordinateOperation extends IdentifiedObject {
-    /**
-     * Key for the <code>{@value}</code> property.
-     * This is used for setting the value to be returned by {@link #getOperationVersion}.
-     *
-     * @see #getOperationVersion
-     */
-    String OPERATION_VERSION_KEY = "operationVersion";
-
-    /**
-     * Key for the <code>{@value}</code> property.
-     * This is used for setting the value to be returned by {@link #getPositionalAccuracy}.
-     *
-     * @see #getPositionalAccuracy
-     */
-    String POSITIONAL_ACCURACY_KEY = "positionalAccuracy";
-
-    /**
-     * Key for the <code>{@value}</code> property.
-     * This is used for setting the value to be returned by {@link #getValidArea}.
-     *
-     * @see #getValidArea
-     */
-    String VALID_AREA_KEY = "validArea";
-
-    /**
-     * Key for the <code>{@value}</code> property.
-     * This is used for setting the value to be returned by {@link #getScope}.
-     *
-     * @see #getScope
-     */
-    String SCOPE_KEY = "scope";
-
+public interface CoordinateOperation extends Info {
     /**
      * Returns the source CRS. The source CRS is mandatory for {@linkplain Transformation
      * transformations} only. {@linkplain Conversion Conversions} may have a source CRS that
      * is not specified here, but through
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS} instead.
      *
-     * @return The source CRS, or {@code null} if not available.
+     * @return The source CRS.
+     * @UML association sourceCRS
      */
-    @UML(identifier="sourceCRS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateReferenceSystem getSourceCRS();
 
     /**
@@ -98,9 +57,9 @@ public interface CoordinateOperation extends IdentifiedObject {
      * that is not specified here, but through
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS} instead.
      *
-     * @return The target CRS, or {@code null} if not available.
+     * @return The source CRS.
+     * @UML association targetCRS
      */
-    @UML(identifier="targetCRS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateReferenceSystem getTargetCRS();
 
     /**
@@ -108,9 +67,9 @@ public interface CoordinateOperation extends IdentifiedObject {
      * nature of the parameters). Mandatory when describing a transformation, and should not
      * be supplied for a conversion.
      *
-     * @return The coordinate operation version, or {@code null} in none.
+     * @return The coordinate operation version, or <code>null</code> in none.
+     * @UML conditional operationVersion
      */
-    @UML(identifier="operationVersion", obligation=CONDITIONAL, specification=ISO_19111)
     String getOperationVersion();
 
     /**
@@ -118,31 +77,38 @@ public interface CoordinateOperation extends IdentifiedObject {
      * position error estimates for target coordinates of this coordinate
      * operation, assuming no errors in source coordinates.
      *
-     * @return The position error estimates, or an empty collection if not available.
+     * @return The position error estimates, or an empty array if not available.
+     * @UML optional positionalAccuracy
      */
-    @UML(identifier="positionalAccuracy", obligation=OPTIONAL, specification=ISO_19111)
-    Collection<PositionalAccuracy> getPositionalAccuracy();
+    PositionalAccuracy[] getPositionalAccuracy();
 
     /**
      * Area in which this operation is valid.
      *
-     * @return Coordinate operation valid area, or {@code null} if not available.
+     * @return Coordinate operation valid area, or <code>null</code> if not available.
+     * @UML optional validArea
      */
-    @UML(identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this operation is valid.
+     *
+     * @param  locale The desired locale for the coordinate operation scope to be returned,
+     *         of <code>null</code> for scope in some default locale (may or may not be the
+     *         {@linkplain Locale#getDefault() system default}).
+     * @return The coordinate operation scope in the given locale, or <code>null</code> if none.
+     *         If no scope is available in the given locale, then some default locale is used.
+     * @UML optional scope
      */
-    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
-    InternationalString getScope();
+    String getScope(Locale locale);
     
     /**
      * Gets the math transform. The math transform will transform positions in the
      * {@linkplain #getSourceCRS source coordinate reference system}
      * into positions in the
      * {@linkplain #getTargetCRS target coordinate reference system}.
+     *
+     * @UML mandatory mathTransform in 1.0 specification.
      */
-    @UML(identifier="CT_CoordinateTransformation.getMathTransform", specification=OGC_01009)
     MathTransform getMathTransform();
 }

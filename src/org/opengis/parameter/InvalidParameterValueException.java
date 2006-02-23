@@ -4,31 +4,23 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.parameter;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
  * Thrown when an invalid value was given to a {@linkplain ParameterValue parameter}.
  *
+ * @UML exception GC_InvalidParameterValue
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @author Open Geospatial Consortium
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
  *
  * @see ParameterValue#setValue(int)
  * @see ParameterValue#setValue(double)
  * @see ParameterValue#setValue(Object)
  */
-@UML(identifier="GC_InvalidParameterValue", specification=ISO_19111)
 public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Serial number for interoperability with different versions.

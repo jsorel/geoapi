@@ -4,44 +4,37 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
 // Direct dependencies
 import javax.units.Unit;
-import org.opengis.referencing.IdentifiedObject;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.referencing.Info;
 
 
 /**
  * Definition of a coordinate system axis.
  * See <A HREF="package-summary.html#AxisNames">axis name constraints</A>.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract CS_CoordinateSystemAxis
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see CoordinateSystem
  * @see Unit
  */
-@UML(identifier="CS_CoordinateSystemAxis", specification=ISO_19111)
-public interface CoordinateSystemAxis extends IdentifiedObject {
+public interface CoordinateSystemAxis extends Info {
     /**
      * The abbreviation used for this coordinate system axes. This abbreviation is also
      * used to identify the ordinates in coordinate tuple. Examples are "<var>X</var>"
      * and "<var>Y</var>".
      *
      * @return The coordinate system axis abbreviation.
+     * @UML mandatory axisAbbrev
      */
-    @UML(identifier="axisAbbrev", obligation=MANDATORY, specification=ISO_19111)
     String getAbbreviation();
 
     /**
@@ -61,8 +54,8 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * specific descriptions of the directions of its coordinate system axes.
      *
      * @return The coordinate system axis direction.
+     * @UML mandatory axisDirection
      */
-    @UML(identifier="axisDirection", obligation=MANDATORY, specification=ISO_19111)
     AxisDirection getDirection();
 
     /**
@@ -72,7 +65,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * coordinate system that uses this axis.
      *
      * @return  The coordinate system axis unit.
+     * @UML mandatory axisUnitID
      */
-    @UML(identifier="axisUnitID", obligation=MANDATORY, specification=ISO_19111)
     Unit getUnit();
 }

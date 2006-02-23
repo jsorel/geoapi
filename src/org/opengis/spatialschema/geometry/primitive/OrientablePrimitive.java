@@ -4,16 +4,10 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.primitive;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -26,8 +20,8 @@ import static org.opengis.annotation.Specification.*;
  * would form a right-handed system. When used as a boundary surface, the bounded solid is "below"
  * the surface. The orientation of points and solids has no immediate geometric interpretation in
  * 3-dimensional space.
- * <p>
- * {@code OrientablePrimitive} objects are essentially references to geometric primitives
+ * <br><br>
+ * <code>OrientablePrimitive</code> objects are essentially references to geometric primitives
  * that carry an "orientation" reversal flag (either "+" or "-") that determines whether this
  * primitive agrees or disagrees with the orientation of the referenced object.
  *
@@ -45,31 +39,31 @@ import static org.opengis.annotation.Specification.*;
  * corresponding primitive subtype) while negatively oriented primitives are not.
  * </font></blockquote>
  *  
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML type GM_OrientablePrimitive
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  */
-@UML(identifier="GM_OrientablePrimitive", specification=ISO_19107)
 public interface OrientablePrimitive extends Primitive {
     /**
      * Determines which of the two possible orientations this object represents.
      *
      * @return +1 for a positive orientation, or -1 for a negative orientation.
+     * @UML operation orientation
      */
-    @UML(identifier="orientation", obligation=MANDATORY, specification=ISO_19107)
     public int getOrientation();
 
     /**
-     * Returns the primitive associated with this {@code OrientablePrimitive}.
+     * Returns the primitive associated with this <code>OrientablePrimitive</code>.
      * Each {@linkplain Primitive primitive} of dimension 1 or 2 is associated to two
-     * {@code OrientablePrimitive}s, one for each possible orientation.
+     * <code>OrientablePrimitive</code>s, one for each possible orientation.
      * For curves and surfaces, there are exactly two orientable primitives
      * for each geometric object.
      *
-     * @return The primitive, never {@code null}.
+     * @return The primitive, never <code>null</code>.
+     * @UML association primitive
      *
      * @see Primitive#getProxy
      */
-    @UML(identifier="primitive", obligation=MANDATORY, specification=ISO_19107)
     public Primitive getPrimitive();
 }

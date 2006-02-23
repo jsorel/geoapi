@@ -5,28 +5,53 @@
     <TITLE>OpenGIS interface overview</TITLE>
   </HEAD>
   <BODY>
-  <A HREF="http://java.sun.com">Java</A> interfaces from
-  <A HREF="http://www.opengeospatial.org">Open Geospatial Consortium</A> specifications.
-  The interfaces were created from UML diagrams found in the ISO and OGC specifications.
+  <A HREF="http://www.opengis.org">OpenGIS&reg;</A> interfaces for
+  <A HREF="http://java.sun.com">Java</A>. Interfaces were created
+  from UML diagrams found in the following specifications:
 
-  <H3>Links</H3>
   <UL>
-    <LI><A HREF="org/opengis/annotation/Specification.html">Specifications used</A></LI>
-    <LI><A HREF="org/opengis/doc-files/UML-Java.html">Mapping from UML diagrams to Java interfaces</A></LI>
-    <LI><A HREF="org/opengis/doc-files/departures.html">Substantial departures in Java interfaces compared to UML diagrams</A></LI>
-    <UL>
-      <LI><A HREF="org/opengis/doc-files/departures-list.html">Full list (automatically generated)</A></LI>
-    </UL>
-    <LI><A HREF="org/opengis/doc-files/changes.html">Changes since last GeoAPI releases</A></LI>
-    <LI><A HREF="http://jira.codehaus.org/browse/GEO">Bugs and issues tracking</A></LI>
-    <LI><A HREF="http://geoapi.sourceforge.net/">GeoAPI home page</A></LI>
-    <LI><A HREF="http://www.opengeospatial.org/">Open Geospatial Consortium home page</A></LI>
+    <LI><A HREF="http://www.opengis.org/docs/01-111.pdf">Metadata (Topic 11)</A></LI>
+    <LI><A HREF="http://www.opengis.org/docs/02-087r3.pdf">Catalog Services</A></LI>
+    <LI><A HREF="http://www.opengis.org/docs/03-073r1.zip">Spatial Referencing by Coordinates (Topic 2)</A>
+        completed by <A HREF="http://www.opengis.org/docs/01-009.pdf">Coordinate Transformation Services</A></LI>
+    <LI><A HREF="http://www.opengis.org/docs/01-101.pdf">Feature Geometry (Topic 1)</A></LI>
+    <LI><A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation</A></LI>
+    <LI><A HREF="http://www.opengis.org/docs/03-064r1.pdf">GO-1 Application Objects Report</A></LI>
   </UL>
 
-  <H3>Requirements</H3>
+  <P ALIGN="justify">Interfaces are created using a fixed set of
+  <A HREF="org/opengis/doc-files/UML-Java.html">UML to Java mapping</A>.
+  Substantial modifications are declared in the list of
+  <A HREF="org/opengis/doc-files/OpenIssues.html#Changes">changes from UML diagrams</A>.</P>
+
+  <H2>Status</H2>
   <UL>
-    <LI><A HREF="http://java.sun.com/j2se/">J2SE&nbsp;1.4</A> or later.</LI>
-    <LI>A <A HREF="http://jsr-108.sourceforge.net/">JSR-108</A> units implementation.</LI>
+    <LI><P ALIGN="justify"><STRONG>Spatial Referencing by Coordinates</STRONG><BR>
+    Mostly completed and should be stable. Minor additions expected, especially something
+    equivalent to the legacy <CODE>WGS84ConversionInfo</CODE> structure from OGC 01-009.</P></LI>
+
+    <LI><P ALIGN="justify"><STRONG>Feature Geometry</STRONG><BR>
+    Geometries partially done. New classes and methods to be added, especially related to
+    topology. The package names may be revisited.</P></LI>
+
+    <LI><P ALIGN="justify"><STRONG>Grid coverage</STRONG><BR>
+    Mostly completed and stable until the next OGC specification, excepted <CODE>GridCoverageExchange</CODE>,
+    <CODE>Reader</CODE> and <CODE>Writer</CODE> which are under revision.</P></LI>
+
+    <LI><P ALIGN="justify"><STRONG>Metadata</STRONG><BR>
+    Placeholders for resolving dependencies in
+    <CITE>Spatial Referencing by Coordinates</CITE>. Will be completed later.</P></LI>
+
+    <LI><P ALIGN="justify"><STRONG>User interfaces</STRONG><BR>
+    First submission. Those packages are not derivated from an OGC abstract specification, but
+    are themselves a proposal for a specification. They may be revisited as more experience will
+    be gained.</P></LI>
+  </UL>
+
+  <H2>Requirements</H2>
+  <UL>
+    <LI><A HREF="http://java.sun.com/j2se/">J2SE&nbsp;1.3</A> or later.</LI>
+    <LI>A <A HREF="http://jsr-108.sourceforge.net">JSR-108</A> units implementation.</LI>
   </UL>
   </BODY>
 </HTML>

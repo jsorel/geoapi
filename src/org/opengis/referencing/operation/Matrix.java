@@ -4,20 +4,13 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.operation;
 
 // OpenGIS direct dependencies
 import org.opengis.util.Cloneable;
-
-// Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -28,10 +21,9 @@ import static org.opengis.annotation.Specification.*;
  * case and optimized versions for 3&times;3 and 4&times;4 cases, which are quite common in a
  * transformation package.
  *
+ * @UML abstract PT_Matrix
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @author Open Geospatial Consortium
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
  *
  * @see javax.vecmath.Matrix3d
  * @see javax.vecmath.Matrix4d
@@ -42,14 +34,12 @@ import static org.opengis.annotation.Specification.*;
  * @see <A HREF="http://math.nist.gov/javanumerics/jama/">Jama matrix</A>
  * @see <A HREF="http://jcp.org/jsr/detail/83.jsp">JSR-83 Multiarray package</A>
  */
-@UML(identifier="PT_Matrix", specification=OGC_01009)
 public interface Matrix extends Cloneable {
     /**
      * Returns the number of rows in this matrix.
      *
      * @return The number of rows in this matrix.
      */
-    @Extension
     int getNumRow();
     // Same signature than GMatrix, for straightforward implementation.
 
@@ -58,7 +48,6 @@ public interface Matrix extends Cloneable {
      *
      * @return The number of columns in this matrix.
      */
-    @Extension
     int getNumCol();
     // Same signature than GMatrix, for straightforward implementation.
 
@@ -69,7 +58,6 @@ public interface Matrix extends Cloneable {
      * @param column The column number to be retrieved (zero indexed).
      * @return The value at the indexed element.
      */
-    @Extension
     double getElement(int row, int column);
     // Same signature than GMatrix, for straightforward implementation.
 
@@ -80,16 +68,14 @@ public interface Matrix extends Cloneable {
      * @param column The column number to be retrieved (zero indexed).
      * @param value  The new matrix element value.
      */
-    @Extension
     void setElement(int row, int column, double value);
     // Same signature than GMatrix, for straightforward implementation.
 
     /**
-     * Returns {@code true} if this matrix is an identity matrix.
+     * Returns <code>true</code> if this matrix is an identity matrix.
      *
-     * @return {@code true} if this matrix is an identity matrix.
+     * @return <code>true</code> if this matrix is an identity matrix.
      */
-    @Extension
     boolean isIdentity();
 
     /**

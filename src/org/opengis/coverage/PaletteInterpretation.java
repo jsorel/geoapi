@@ -4,50 +4,31 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// J2SE direct dependencies
+// J2SE directdependencies
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.color.ColorSpace; // For Javadoc
 
-// OpenGIS direct dependencies
+//OpenGIS direct dependencies
 import org.opengis.util.CodeList;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
  * Describes the color entry in a color table.
  *
- * <P>&nbsp;</P>
- * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
- *   <TR><TD>
- *     <P align="justify"><STRONG>WARNING: THIS CLASS WILL CHANGE.</STRONG> Current API is derived from OGC
- *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
- *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
- *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
- *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
- *     compatibility as possible, but no migration plan has been determined yet.</P>
- *   </TD></TR>
- * </TABLE>
- *
+ * @UML codelist CV_PaletteInterpretation
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
  *
  * @see ColorInterpretation
  * @see SampleDimension
  */
-@UML(identifier="CV_PaletteInterpretation", specification=OGC_01004)
-public final class PaletteInterpretation extends CodeList<PaletteInterpretation> {
+public final class PaletteInterpretation extends CodeList {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -57,38 +38,38 @@ public final class PaletteInterpretation extends CodeList<PaletteInterpretation>
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<PaletteInterpretation> VALUES = new ArrayList<PaletteInterpretation>(4);
+    private static final List VALUES = new ArrayList(4);
 
     /**
      * Gray Scale color palette.
      *
+     * @UML conditional CV_Gray
      * @see ColorSpace#TYPE_GRAY
      */
-    @UML(identifier="CV_Gray", obligation=CONDITIONAL, specification=OGC_01004)
     public static final PaletteInterpretation GRAY = new PaletteInterpretation("GRAY");
 
     /**
      * RGB (Red Green Blue) color palette.
      *
+     * @UML conditional CV_RGB
      * @see ColorSpace#TYPE_RGB
      */
-    @UML(identifier="CV_RGB", obligation=CONDITIONAL, specification=OGC_01004)
     public static final PaletteInterpretation RGB = new PaletteInterpretation("RGB");
 
     /**
      * CYMK (Cyan Yellow Magenta blacK) color palette.
      *
+     * @UML conditional CV_CMYK
      * @see ColorSpace#TYPE_CMYK
      */
-    @UML(identifier="CV_CMYK", obligation=CONDITIONAL, specification=OGC_01004)
     public static final PaletteInterpretation CMYK = new PaletteInterpretation("CMYK");
 
     /**
      * HSL (Hue Saturation Lightness) color palette.
      *
+     * @UML conditional CV_HLS
      * @see ColorSpace#TYPE_HLS
      */
-    @UML(identifier="CV_HLS", obligation=CONDITIONAL, specification=OGC_01004)
     public static final PaletteInterpretation HLS = new PaletteInterpretation("HLS");
 
     /**
@@ -102,7 +83,7 @@ public final class PaletteInterpretation extends CodeList<PaletteInterpretation>
     }
 
     /**
-     * Returns the list of {@code PaletteInterpretation}s.
+     * Returns the list of <code>PaletteInterpretation</code>s.
      */
     public static PaletteInterpretation[] values() {
         synchronized (VALUES) {

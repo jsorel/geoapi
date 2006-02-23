@@ -4,16 +4,10 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.datum;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -24,16 +18,17 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain org.opengis.referencing.cs.CoordinateSystemAxis Coordinate Axis} with which
  * it is combined to create a {@linkplain org.opengis.referencing.crs.VerticalCRS Vertical CRS}.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract CD_VerticalDatum
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-@UML(identifier="CD_VerticalDatum", specification=ISO_19111)
 public interface VerticalDatum extends Datum {
     /**
      * The type of this vertical datum. Default is “geoidal”.
+     *
+     * @return The type of this vertical datum.
+     * @UML mandatory vertDatumType
      */
-    @UML(identifier="vertDatumType", obligation=MANDATORY, specification=ISO_19111)
     VerticalDatumType getVerticalDatumType();
 }

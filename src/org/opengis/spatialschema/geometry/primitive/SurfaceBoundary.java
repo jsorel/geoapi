@@ -4,20 +4,14 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.primitive;
 
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
- * The boundary of {@linkplain Surface surfaces}. A {@code SurfaceBoundary} consists of some number
+ * The boundary of {@linkplain Surface surfaces}. A <code>SurfaceBoundary</code> consists of some number
  * of {@linkplain Ring rings}, corresponding to the various components of its boundary. In the normal 2D
  * case, one of these rings is distinguished as being the exterior boundary. In a general manifold this
  * is not always possible, in which case all boundaries shall be listed as interior boundaries,
@@ -35,40 +29,40 @@ import static org.opengis.annotation.Specification.*;
  * Jordan Separation Theorem shows that normal 2D or 3D space separates into bounded and unbounded
  * pieces by the insertion of a ring or shell, respectively. It goes beyond that, but this
  * specification is restricted to at most 3 dimensions.
- * <p>
+ * <br><br>
  * <strong>EXAMPLE 1:</strong> If the underlying manifold is an infinite cylinder, then two
  * transverse cuts of the cylinder define a compact surface between the cuts, and two separate
  * unbounded portions of the cylinders. In this case, either cut could reasonably be called
  * exterior. In cases of such ambiguity, the standard chooses to list all boundaries in the
  * "interior" set. The only guarantee of an exterior boundary being unique is in the 2-dimensional
  * plane, E<sup>2</sup>.
- * <p>
+ * <br><br>
  * <strong>EXAMPLE 2:</strong> Taking the equator of a sphere, and generating a 1 meter buffer,
  * we have a surface with two isomorphic boundary components. There is no unbiased manner to
  * distinguish one of these as an exterior.
  * </font></blockquote>
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML type GM_SurfaceBoundary
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  *
  * @see SolidBoundary
  */
-@UML(identifier="GM_SurfaceBoundary", specification=ISO_19107)
 public interface SurfaceBoundary extends PrimitiveBoundary {
     /**
-     * Returns the exterior ring, or {@code null} if none.
+     * Returns the exterior ring, or <code>null</code> if none.
      *
-     * @return The exterior ring, or {@code null}.
+     * @return The exterior ring, or <code>null</code>.
+     * @UML operation exterior
      */
-    @UML(identifier="exterior", obligation=MANDATORY, specification=ISO_19107)
     public Ring getExterior();
 
     /**
      * Returns the interior rings.
      *
-     * @return The interior rings. Never {@code null}, but may be an empty array.
+     * @return The interior rings. Never <code>null</code>, but may be an empty array.
+     * @UML operation interior
      */
-    @UML(identifier="interior", obligation=MANDATORY, specification=ISO_19107)
     public Ring[] getInteriors();
 }

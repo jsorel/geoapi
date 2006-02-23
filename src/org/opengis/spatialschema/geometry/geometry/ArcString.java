@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.geometry;
@@ -17,11 +16,6 @@ import java.util.List;
 import org.opengis.spatialschema.geometry.primitive.CurveInterpolation;
 import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
  * Similar to a {@linkplain LineString line string} except that the interpolation is
@@ -32,14 +26,14 @@ import static org.opengis.annotation.Specification.*;
  * this {@linkplain Position position} is not repeated in the {@linkplain #getControlPoints
  * control points} sequence.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract GM_ArcString
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  *
  * @see GeometryFactory#createArcString
  * @see ArcStringByBulge#asArcString
  */
-@UML(identifier="GM_ArcString", specification=ISO_19107)
 public interface ArcString extends CurveSegment {
     /**
      * Returns the number of circular arcs in the string. Since the interpolation method
@@ -51,8 +45,8 @@ public interface ArcString extends CurveSegment {
      * </blockquote>
      *
      * @return The number of circular arcs.
+     * @UML operation numArc
      */
-    @UML(identifier="numArc", obligation=MANDATORY, specification=ISO_19107)
     public int getNumArc();
 
     /**
@@ -62,24 +56,24 @@ public interface ArcString extends CurveSegment {
      * another arc in the string.
      *
      * @return The control points. The array size is <code>2*{@link #getNumArc numArc}&nbsp;+1</code>.
+     * @UML operation controlPoints
      */
-    @UML(identifier="controlPoints", obligation=MANDATORY, specification=ISO_19107)
     public PointArray getControlPoints();
 
     /**
-     * The interpolation for a {@code ArcString} is
+     * The interpolation for a <code>ArcString</code> is
      * "{@linkplain CurveInterpolation#CIRCULAR_ARC_3_POINTS circular arc by 3 points}".
      *
      * @return Always {@link CurveInterpolation#CIRCULAR_ARC_3_POINTS}.
+     * @UML operation interpolation
      */
-    @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     public CurveInterpolation getInterpolation();
 
     /**
      * Constructs a sequence of arcs that is the geometric equivalent of this arc string.
      *
      * @return The sequence of arcs.
+     * @UML operation asGM_Arc
      */
-    @UML(identifier="asGM_Arc", obligation=MANDATORY, specification=ISO_19107)
-    public List<Arc> asArcs();
+    public List/*<Arc>*/ asArcs();
 }

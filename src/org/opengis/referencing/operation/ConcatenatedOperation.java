@@ -4,19 +4,10 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.operation;
-
-// J2SE direct dependencies
-import java.util.List;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -29,18 +20,17 @@ import static org.opengis.annotation.Specification.*;
  * operation may be used for one or more of the operation steps mentioned above, if the inverse
  * operation is uniquely defined by the forward operation.
  *  
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract CC_ConcatenatedOperation
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-@UML(identifier="CC_ConcatenatedOperation", specification=ISO_19111)
 public interface ConcatenatedOperation extends CoordinateOperation {
     /**
      * Returns the sequence of operations.
      *
      * @return The sequence of operations.
+     * @UML association usesOperation
      */
-    @UML(identifier="usesOperation", obligation=MANDATORY, specification=ISO_19111)
-    List<SingleOperation> getOperations();
+    SingleOperation[] getOperations();
 }

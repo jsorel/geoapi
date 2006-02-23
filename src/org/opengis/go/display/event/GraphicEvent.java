@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.go.display.event;
@@ -30,7 +29,7 @@ public interface GraphicEvent {
     /**
      * Returns the <code>Graphic</code> this <code>GraphicEvent</code> initially occurred on.
      *
-     * @return the <code>Graphic</code> source of this event or {@code null} if none.
+     * @return the <code>Graphic</code> source of this event or <code>null</code> if none.
      */
     public Graphic getGraphic();
 

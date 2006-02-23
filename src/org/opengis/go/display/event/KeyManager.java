@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 
@@ -56,10 +55,10 @@ public interface KeyManager extends EventManager {
                                      KeyHandler replacementHandler);
 
     /**
-     * Returns the current <code>KeyHandler</code> or {@code null} if no
+     * Returns the current <code>KeyHandler</code> or <code>null</code> if no
      *         handler is set.
      *
-     * @return the current <code>KeyHandler</code> or {@code null}.
+     * @return the current <code>KeyHandler</code> or <code>null</code>.
      */
     public KeyHandler getCurrentKeyHandler();
 

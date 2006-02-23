@@ -4,19 +4,13 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.primitive;
 
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.Boundary;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -25,10 +19,10 @@ import static org.opengis.annotation.Specification.*;
  * subtypes of {@link Primitive}. Since points have no boundary, no special subclass is needed
  * for their boundary.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML type GM_PrimitiveBoundary
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  */
-@UML(identifier="GM_PrimitiveBoundary", specification=ISO_19107)
 public interface PrimitiveBoundary extends Boundary {
 }

@@ -4,29 +4,25 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.crs;
 
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+// OpenGIS direct dependencies
+import org.opengis.spatialschema.geometry.DirectPosition;
 
 
 /**
  * A coordinate reference system that is defined by its coordinate conversion from another
  * coordinate reference system but is not a projected coordinate reference system. This
- * category includes coordinate reference systems derived from a {@linkplain ProjectedCRS
- * projected coordinate reference system}.
+ * category includes coordinate reference systems derived from a projected coordinate
+ * reference system.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract SC_DerivedCRS
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-@UML(identifier="SC_DerivedCRS", specification=ISO_19111)
 public interface DerivedCRS extends GeneralDerivedCRS {
 }

@@ -4,27 +4,22 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.operation;
-
-// Annotations
-import org.opengis.annotation.Extension;
 
 
 /**
  * Transforms one-dimensional coordinate points.
  * {@link CoordinateOperation#getMathTransform} may returns instance of this
  * interface when source and destination coordinate systems are both one dimensional.
- * {@code MathTransform1D} extends {@link MathTransform} by adding a simple method
+ * <code>MathTransform1D</code> extends {@link MathTransform} by adding a simple method
  * transforming a value without the overhead of creating data array.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 1.0
  */
-@Extension
 public interface MathTransform1D extends MathTransform {
     /**
      * Transforms the specified value.

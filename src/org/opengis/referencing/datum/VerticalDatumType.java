@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.datum;
@@ -17,22 +16,16 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
  * Type of a vertical datum. 
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML codelist CD_VerticalDatumType
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-@UML(identifier="CD_VerticalDatumType", specification=ISO_19111)
-public final class VerticalDatumType extends CodeList<VerticalDatumType> {
+public final class VerticalDatumType extends CodeList {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -42,30 +35,31 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<VerticalDatumType> VALUES = new ArrayList<VerticalDatumType>(6);
+    private static final List VALUES = new ArrayList(6);
 
     /**
      * In some cases, e.g. oil exploration and production, a geological feature, such as the top
      * or bottom of a geologically identifiable and meaningful subsurface layer, is used as a
      * vertical datum. Other variations to the above three vertical datum types may exist
      * and are all included in this type.
+     *
+     * @UML conditional other&nbsp;surface
      */
-    @UML(identifier="other surface", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType OTHER_SURFACE = new VerticalDatumType("OTHER_SURFACE");
 
     /**
      * The zero value of the associated vertical coordinate system axis is defined to approximate
      * a constant potential surface, usually the geoid. Such a reference surface is usually
      * determined by a national or scientific authority, and is then a well-known, named datum.
+     *
+     * @UML conditional geoidal
      */
-    @UML(identifier="geoidal", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType GEOIDAL = new VerticalDatumType("GEOIDAL");
 
     /**
      * A vertical datum for ellipsoidal heights that are measured along the
      * normal to the ellipsoid used in the definition of horizontal datum.
      */
-    @UML(identifier="CS_DatumType.CS_VD_Ellipsoidal", obligation=CONDITIONAL, specification=OGC_01009)
     public static final VerticalDatumType ELLIPSOIDAL = new VerticalDatumType("ELLIPSOIDAL");
 
     /**
@@ -75,8 +69,9 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * effects) that occurs at low tide. Depths are measured in the direction perpendicular
      * (approximately) to the actual equipotential surfaces of the earth's gravity field,
      * using such procedures as echo-sounding.
+     *
+     * @UML conditional depth
      */
-    @UML(identifier="depth", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType DEPTH = new VerticalDatumType("DEPTH");
 
     /**
@@ -86,14 +81,14 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * altimeter. These values are usually expressed in one of the following units:
      * meters, feet, millibars (used to measure pressure levels), or theta value
      * (units used to measure geopotential height).
+     *
+     * @UML conditional barometric
      */
-    @UML(identifier="barometric", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType BAROMETRIC = new VerticalDatumType("BAROMETRIC");
 
     /**
      * A vertical datum for orthometric heights that are measured along the plumb line.
      */
-    @UML(identifier="CS_DatumType.CS_VD_Orthometric", obligation=CONDITIONAL, specification=OGC_01009)
     public static final VerticalDatumType ORTHOMETRIC = new VerticalDatumType("ORTHOMETRIC");
 
     /**
@@ -107,7 +102,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     }
 
     /**
-     * Returns the list of {@code VerticalDatumType}s.
+     * Returns the list of <code>VerticalDatumType</code>s.
      */
     public static VerticalDatumType[] values() {
         synchronized (VALUES) {

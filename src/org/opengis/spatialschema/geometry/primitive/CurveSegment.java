@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.primitive;
@@ -14,48 +13,43 @@ package org.opengis.spatialschema.geometry.primitive;
 import org.opengis.spatialschema.geometry.geometry.GenericCurve;
 import org.opengis.spatialschema.geometry.geometry.PointArray;
 
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
  * Defines a homogeneous segment of a {@linkplain Curve curve}.
- * Each {@code CurveSegment} shall be in, at most, one {@linkplain Curve curve}.
+ * Each <code>CurveSegment</code> shall be in, at most, one {@linkplain Curve curve}.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML type GM_CurveSegment
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  */
-@UML(identifier="GM_CurveSegment", specification=ISO_19107)
 public interface CurveSegment extends GenericCurve {
     /**
      * Returns the curve which own this curve segment.
      *
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> In this specification, curve segments do not appear except in the
-     * context of a curve, and therefore this method should never returns {@code null}
+     * context of a curve, and therefore this method should never returns <code>null</code>
      * which would preclude the use of curve segments except in this manner. While this would
-     * not affect this specification, allowing {@code null} owner allows other standards
+     * not affect this specification, allowing <code>null</code> owner allows other standards
      * based on this one to use curve segments in a more open-ended manner.
      * </font></blockquote>
      *
-     * @return The owner of this curve segment, or {@code null} if none.
+     * @return The owner of this curve segment, or <code>null</code> if none.
+     * @UML association curve
      *
      * @see Curve#getSegments
      */
-    @UML(identifier="curve", obligation=OPTIONAL, specification=ISO_19107)
     public Curve getCurve();
 
     /**
      * Specifies the curve interpolation mechanism used for this segment. This mechanism
      * uses the control points and control parameters to determine the position of this
-     * {@code CurveSegment}.
+     * <code>CurveSegment</code>.
      *
      * @return The interpolation mechanism used for this segment.
+     * @UML operation interpolation
      */
-    @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     public CurveInterpolation getInterpolation();
 
     /**
@@ -72,11 +66,11 @@ public interface CurveSegment extends GenericCurve {
      * </font></blockquote>
      *
      * @return The type of continuity between this curve semgent and its immediate neighbors.
+     * @UML operation numDerivativesAtStart
      *
-     * @see #getNumDerivativesInterior
+     * @see #getNumDerivativeInterior
      * @see #getNumDerivativesAtEnd
      */
-    @UML(identifier="numDerivativesAtStart", obligation=MANDATORY, specification=ISO_19107)
     public int getNumDerivativesAtStart();
 
     /**
@@ -88,12 +82,12 @@ public interface CurveSegment extends GenericCurve {
      * first <var>n</var> derivatives are continuous: "C<sup>n</sup>" continuity.
      *
      * @return The type of continuity that is guaranteed interior to the curve.
+     * @UML operation numDerivativeInterior
      *
      * @see #getNumDerivativesAtStart
      * @see #getNumDerivativesAtEnd
      */
-    @UML(identifier="numDerivativesInterior", obligation=MANDATORY, specification=ISO_19107)
-    public int getNumDerivativesInterior();
+    public int getNumDerivativeInterior();
 
     /**
      * Specifies the type of continuity between this curve segment and its immediate neighbors.
@@ -109,11 +103,11 @@ public interface CurveSegment extends GenericCurve {
      * </font></blockquote>
      *
      * @return The type of continuity between this curve semgent and its immediate neighbors.
+     * @UML operation numDerivativesAtEnd
      *
      * @see #getNumDerivativesAtStart
-     * @see #getNumDerivativesInterior
+     * @see #getNumDerivativeInterior
      */
-    @UML(identifier="numDerivativesAtEnd", obligation=MANDATORY, specification=ISO_19107)
     public int getNumDerivativesAtEnd();
 
     /**
@@ -128,19 +122,19 @@ public interface CurveSegment extends GenericCurve {
      * segment.
      *
      * @return The control points.
+     * @UML operation samplePoint
      */
-    @UML(identifier="samplePoint", obligation=MANDATORY, specification=ISO_19107)
     public PointArray getSamplePoints();
 
     /**
      * Returns an ordered pair of points, which are the start point and end point of the curve.
      * This method operates with the same semantics as that on {@linkplain Curve#getBoundary curve}
-     * except that the end points of a {@code CurveSegment} are not necessarily existing
+     * except that the end points of a <code>CurveSegment</code> are not necessarily existing
      * {@linkplain Point points} and thus the boundary may contain transient {@linkplain Point points}.
      *
      * <blockquote><font size=2>
      * <strong>NOTE:</strong> The above {@linkplain CurveBoundary curve boundary} will almost always
-     * be two distinct positions, but, like {@linkplain Curve curves}, {@code CurveSegment}s can
+     * be two distinct positions, but, like {@linkplain Curve curves}, <code>CurveSegment</code>s can
      * be cycles in themselves. The most likely scenario is that all of the points used will be transients
      * (constructed to support the return value), except for the start point and end point of the aggregated
      * {@linkplain Curve curve}. These two positions, in the case where the {@linkplain Curve curve} is
@@ -149,15 +143,15 @@ public interface CurveSegment extends GenericCurve {
      * </font></blockquote>
      *
      * @return The sets of positions on the boundary.
+     * @UML operation boundary
      */
-    @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
     public CurveBoundary getBoundary();
 
     /**
      * Reverses the orientation of the parameterizations of the segment.
      *
      * @return The reverse of this curve segment.
+     * @UML operation reverse
      */
-    @UML(identifier="reverse", obligation=MANDATORY, specification=ISO_19107)
     public CurveSegment reverse();
 }

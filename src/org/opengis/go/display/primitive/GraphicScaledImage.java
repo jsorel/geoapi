@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
@@ -13,18 +12,32 @@ package org.opengis.go.display.primitive;
 // J2SE direct dependencies
 import java.awt.image.RenderedImage;
 
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.spatialschema.geometry.Envelope;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**
  * Defines a common abstraction for implementations projected images defined
- * by a  lower-left (lowerCorner) point and an upper-right (upperCorner) point.
+ * by an upper-left point and a lower-right point.
  * 
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  */
 public interface GraphicScaledImage extends Graphic {
+    
+    /**
+     * Sets the geometry based on ISO 19107 geometric forms.
+     * @param envelope a geometry Envelope.
+     */
+    public void setEnvelope(Envelope envelope);
+    
+    /**
+     * Returns the geometry based on ISO 19107 geometric forms.
+     * @return the geometry Envelope.
+     */
+    public Envelope getEnvelope();
+    
     /**
      * Sets the image represented by this GraphicScaledImage.
      * @param image the image to be rendered.
@@ -38,28 +51,32 @@ public interface GraphicScaledImage extends Graphic {
     public RenderedImage getScaledImage();
     
     /**
-     * Convenience menthod to set the DirectPosition for the upper-right position of the image.
-     * @param coord the upper-right positon.
+     * Convenience menthod to set the DirectPosition for the upper-left position of the image.
+     * Value is set on the underlying Envelope geometry for this Graphic.
+     * @param coord the upper-left positon.
      */
-    public void setUpperCorner(DirectPosition coord);
+    public void setUpperLeft(DirectPosition coord);
     
     /**
-     * Convenience menthod to return the DirectPosition for the upper-right position of the image.
-     * @return the upper-right position.
+     * Returns the DirectPosition for the upper-left position of the image.
+     * Value is acquired from the underlying Envelope geometry for this Graphic.
+     * @return the upper-left position.
      */
-    public DirectPosition getUpperCorner();
+    public DirectPosition getUpperLeft();
     
     /**
-     * Convenience menthod to set the DirectPosition for the lower-left position of the image.
-     * @param coord the lower-left positon.
+     * Convenience menthod to set the DirectPosition for the lower-right position of the image.
+     * Value is set on the underlying Envelope geometry for this Graphic.
+     * @param coord the lower-right positon.
      */
-    public void setLowerCorner(DirectPosition coord);
+    public void setLowerRight(DirectPosition coord);
     
     /**
-     * Returns the DirectPosition for the lower-left position of the image.
-     * @return the lower-left position.
+     * Convenience menthod to return the DirectPosition for the lower-right position of the image.
+     * Value is acquired from the underlying Envelope geometry for this Graphic.
+     * @return the lower-right position.
      */
-    public DirectPosition getLowerCorner();
+    public DirectPosition getLowerRight();
     
     /**
      * Sets the intensity of the image, as an integer from 0 to 100.

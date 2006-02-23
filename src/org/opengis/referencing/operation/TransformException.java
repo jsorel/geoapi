@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.operation;
@@ -16,7 +15,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;  // For javadoc
 
 /**
  * Common superclass for a number of transformation-related exceptions.
- * {@code TransformException} are thrown by {@link MathTransform}
+ * <code>TransformException</code> are thrown by {@link MathTransform}
  * when a coordinate transformation can't be {@linkplain MathTransform#inverse inverted}
  * ({@link NoninvertibleTransformException}), when the
  * {@linkplain MathTransform#derivative derivative} can't be computed or when a coordinate
@@ -24,8 +23,8 @@ import org.opengis.spatialschema.geometry.DirectPosition;  // For javadoc
  * It is also thrown when {@link CoordinateOperationFactory} fails to find a path between two
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 1.0
  */
 public class TransformException extends Exception {
     /**

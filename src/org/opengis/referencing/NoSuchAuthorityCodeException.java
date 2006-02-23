@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing;
@@ -15,8 +14,8 @@ package org.opengis.referencing;
  * Thrown when an {@linkplain AuthorityFactory authority factory} can't find
  * the requested authority code.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 1.0
  *
  * @see org.opengis.referencing.datum.DatumAuthorityFactory
  * @see org.opengis.referencing.crs.CRSAuthorityFactory

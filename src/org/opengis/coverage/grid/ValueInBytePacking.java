@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.coverage.grid;
@@ -17,12 +16,7 @@ import java.util.ArrayList;
 //OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 import org.opengis.coverage.SampleDimensionType; // For Javadoc
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-
+ 
 
 /**
  * Order of values packed in a byte for sample dimensions with less than 8 bits.
@@ -31,27 +25,14 @@ import static org.opengis.annotation.Specification.*;
  * {@link SampleDimensionType#UNSIGNED_2BITS UNSIGNED_2BITS} and
  * {@link SampleDimensionType#UNSIGNED_4BITS UNSIGNED_4BITS} data types.
  *
- * <P>&nbsp;</P>
- * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
- *   <TR><TD>
- *     <P align="justify"><STRONG>WARNING: THIS CLASS WILL CHANGE.</STRONG> Current API is derived from OGC
- *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
- *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
- *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
- *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
- *     compatibility as possible, but no migration plan has been determined yet.</P>
- *   </TD></TR>
- * </TABLE>
- *
+ * @UML codelist GC_ValueInBytePacking
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
  *
  * @see GridPacking
  * @see ByteInValuePacking
  */
-@UML(identifier="GC_ValueInBytePacking", specification=OGC_01004)
-public final class ValueInBytePacking extends CodeList<ValueInBytePacking> {
+public final class ValueInBytePacking extends CodeList {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -61,18 +42,20 @@ public final class ValueInBytePacking extends CodeList<ValueInBytePacking> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<ValueInBytePacking> VALUES = new ArrayList<ValueInBytePacking>(2);
+    private static final List VALUES = new ArrayList(2);
 
     /**
      * Low bit firts (little endian order).
+     *
+     * @UML conditional GC_LoBitFirst
      */
-    @UML(identifier="GC_LoBitFirst", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ValueInBytePacking LO_BIT_FIRST = new ValueInBytePacking("LO_BIT_FIRST");
 
     /**
      * High bit first (big endian order).
+     *
+     * @UML conditional GC_HiBitFirst
      */
-    @UML(identifier="GC_HiBitFirst", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ValueInBytePacking HI_BIT_FIRST = new ValueInBytePacking("HI_BIT_FIRST");
 
     /**
@@ -86,7 +69,7 @@ public final class ValueInBytePacking extends CodeList<ValueInBytePacking> {
     }
 
     /**
-     * Returns the list of {@code ValueInBytePacking}s.
+     * Returns the list of <code>ValueInBytePacking</code>s.
      */
     public static ValueInBytePacking[] values() {
         synchronized (VALUES) {

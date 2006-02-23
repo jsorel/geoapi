@@ -4,24 +4,16 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// J2SE and extensions
-import java.util.Locale;
+// J2SE extensions
 import javax.units.Unit;
 
-// OpenGIS direct dependencies
-import org.opengis.util.InternationalString;
+// OpenGIS dependencies
 import org.opengis.referencing.operation.MathTransform1D;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -30,38 +22,27 @@ import static org.opengis.annotation.Specification.*;
  * For {@linkplain org.opengis.coverage.grid.GridCoverage grid coverages},
  * the sample dimension refers to an individual band.
  *
- * <P>&nbsp;</P>
- * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
- *   <TR><TD>
- *     <P align="justify"><STRONG>WARNING: THIS CLASS WILL CHANGE.</STRONG> Current API is derived from OGC
- *     <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</A>.
- *     We plan to replace it by new interfaces derived from ISO 19123 (<CITE>Schema for coverage geometry
- *     and functions</CITE>). Current interfaces should be considered as legacy and are included in this
- *     distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much 
- *     compatibility as possible, but no migration plan has been determined yet.</P>
- *   </TD></TR>
- * </TABLE>
- *
+ * @UML abstract CV_SampleDimension
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
  */
-@UML(identifier="CV_SampleDimension", specification=OGC_01004)
 public interface SampleDimension {
     /**
      * Sample dimension title or description.
      * This string may be null or empty if no description is present.
+     *
+     * @return The sample dimension title or description.
+     * @UML mandatory description
      */
-    @UML(identifier="description", obligation=MANDATORY, specification=OGC_01004)
-    InternationalString getDescription();
+    String getDescription();
 
     /**
      * A code value indicating grid value data type.
      * This will also indicate the number of bits for the data type.
      *
      * @return A code value indicating grid value data type.
+     * @UML mandatory sampleDimensionType
      */
-    @UML(identifier="sampleDimensionType", obligation=MANDATORY, specification=OGC_01004)
     SampleDimensionType getSampleDimensionType();
 
     /**
@@ -78,9 +59,11 @@ public interface SampleDimension {
      *    <li>3 Urban</li>
      *  </UL>
      * Note: If no category names exist, an empty sequence is returned.
+     *
+     * @return The sequence of category names for the values contained in a sample dimension.
+     * @UML mandatory categoryNames
      */
-    @UML(identifier="categoryNames", obligation=MANDATORY, specification=OGC_01004)
-    InternationalString[] getCategoryNames();
+    String[] getCategoryNames();
 
     /**
      * Color interpretation of the sample dimension.
@@ -89,8 +72,8 @@ public interface SampleDimension {
      * value is {@link ColorInterpretation#UNDEFINED UNDEFINED}.
      *
      * @return The color interpretation of the sample dimension.
+     * @UML mandatory colorInterpretation
      */
-    @UML(identifier="colorInterpretation", obligation=MANDATORY, specification=OGC_01004)
     ColorInterpretation getColorInterpretation();
 
     /**
@@ -101,23 +84,23 @@ public interface SampleDimension {
      * A palette entry type can be Gray, RGB, CMYK or HLS.
      *
      * @return The type of color palette entry for sample dimensions which have a palette.
+     * @UML mandatory paletteInterpretation
      */
-    @UML(identifier="paletteInterpretation", obligation=MANDATORY, specification=OGC_01004)
     PaletteInterpretation getPaletteInterpretation();
 
     /**
      * Color palette associated with the sample dimension.
      * A color palette can have any number of colors.
      * See palette interpretation for meaning of the palette entries.
-     * If the grid coverage has no color palette, {@code null} will be returned.
+     * If the grid coverage has no color palette, <code>null</code> will be returned.
      *
      * @return The color palette associated with the sample dimension.
+     * @UML mandatory palette
      *
      * @see #getPaletteInterpretation
      * @see #getColorInterpretation
      * @see java.awt.image.IndexColorModel
      */
-    @UML(identifier="palette", obligation=MANDATORY, specification=OGC_01004)
     int[][] getPalette();
 
     /**
@@ -125,11 +108,11 @@ public interface SampleDimension {
      * For low precision sample dimensions, this will often be no data values.
      *
      * @return The values to indicate no data values for the sample dimension.
+     * @UML mandatory noDataValue
      *
      * @see #getMinimumValue
      * @see #getMaximumValue
      */
-    @UML(identifier="noDataValue", obligation=MANDATORY, specification=OGC_01004)
     double[] getNoDataValues();
 
     /**
@@ -139,11 +122,11 @@ public interface SampleDimension {
      * This value can be empty if this value is not provided by the implementation.
      *
      * @return The minimum value occurring in the sample dimension.
+     * @UML mandatory minimumValue
      *
      * @see #getMaximumValue
      * @see #getNoDataValues
      */
-    @UML(identifier="minimumValue", obligation=MANDATORY, specification=OGC_01004)
     double getMinimumValue();
 
     /**
@@ -153,22 +136,22 @@ public interface SampleDimension {
      * This value can be empty if this value is not provided by the implementation.
      *
      * @return The maximum value occurring in the sample dimension.
+     * @UML mandatory maximumValue
      *
      * @see #getMinimumValue
      * @see #getNoDataValues
      */
-    @UML(identifier="maximumValue", obligation=MANDATORY, specification=OGC_01004)
     double getMaximumValue();
 
     /**
      * The unit information for this sample dimension.
      * This interface typically is provided with grid coverages which represent
      * digital elevation data.
-     * This value will be {@code null} if no unit information is available.
+     * This value will be <code>null</code> if no unit information is available.
      *
      * @return The unit information for this sample dimension.
+     * @UML mandatory units
      */
-    @UML(identifier="units", obligation=MANDATORY, specification=OGC_01004)
     Unit getUnits();
 
     /**
@@ -176,9 +159,11 @@ public interface SampleDimension {
      * This attribute is typically used when the sample dimension represents
      * elevation data. The default for this value is 0.
      *
+     * @return The offset is the value to add to grid values for this sample dimension.
+     * @UML mandatory offset
+     *
      * @see #getScale
      */
-    @UML(identifier="offset", obligation=MANDATORY, specification=OGC_01004)
     double getOffset();
 
     /**
@@ -186,9 +171,11 @@ public interface SampleDimension {
      * This attribute is typically used when the sample dimension represents elevation
      * data. The default for this value is 1.
      *
+     * @return The scale.
+     * @UML mandatory scale
+     *
      * @see #getOffset
      */
-    @UML(identifier="scale", obligation=MANDATORY, specification=OGC_01004)
     double getScale();
 
     /**
@@ -200,7 +187,7 @@ public interface SampleDimension {
      * example a logarithmic one. In order words, this transform is a generalization of
      * {@link #getScale}, {@link #getOffset} and {@link #getNoDataValues} methods.
      *
-     * @return The transform from sample to geophysics values, or {@code null} if
+     * @return The transform from sample to geophysics values, or <code>null</code> if
      *         it doesn't apply.
      *
      * @see #getScale
@@ -213,10 +200,12 @@ public interface SampleDimension {
      * The list of metadata keywords for a sample dimension.
      * If no metadata is available, the sequence will be empty.
      *
+     * @return The list of metadata keywords for a sample dimension.
+     * @UML mandatory metadataNames
+     *
      * @see #getMetadataValue
      * @see javax.media.jai.PropertySource#getPropertyNames
      */
-    @UML(identifier="metadataNames", obligation=MANDATORY, specification=OGC_01004)
     String[] getMetaDataNames();
 
     /**
@@ -225,10 +214,10 @@ public interface SampleDimension {
      * @param  name Metadata keyword for which to retrieve metadata.
      * @return The metadata value for a given metadata name.
      * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.
+     * @UML operation getMetadataValue
      *
      * @see #getMetaDataNames
      * @see javax.media.jai.PropertySource#getProperty
      */
-    @UML(identifier="getMetadataValue", obligation=MANDATORY, specification=OGC_01004)
     String getMetadataValue(String name) throws MetadataNameNotFoundException;
 }

@@ -4,19 +4,13 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.IdentifiedObject;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.referencing.Info;
 
 
 /**
@@ -26,18 +20,17 @@ import static org.opengis.annotation.Specification.*;
  * the order in which the coordinate system axes associations are recorded, whenever those
  * coordinates use a coordinate reference system that uses this coordinate system.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract CS_CoordinateSystem
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  *
  * @see org.opengis.referencing.cs.CoordinateSystemAxis
  * @see javax.units.Unit
  * @see org.opengis.referencing.datum.Datum
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
-@UML(identifier="CS_CoordinateSystem", specification=ISO_19111)
-public interface CoordinateSystem extends IdentifiedObject {
+public interface CoordinateSystem extends Info {
     /**
      * Returns the dimension of the coordinate system.
      *
@@ -51,8 +44,8 @@ public interface CoordinateSystem extends IdentifiedObject {
      *
      * @param  dimension The zero based index of axis.
      * @return The axis at the specified dimension.
-     * @throws IndexOutOfBoundsException if {@code dimension} is out of bounds.
+     * @throws IndexOutOfBoundsException if <code>dimension</code> is out of bounds.
+     * @UML association usesAxis
      */
-    @UML(identifier="usesAxis", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystemAxis getAxis(int dimension) throws IndexOutOfBoundsException;
 }

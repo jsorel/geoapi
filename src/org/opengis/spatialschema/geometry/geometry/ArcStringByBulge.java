@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.geometry;
@@ -17,11 +16,6 @@ import java.util.List;
 import org.opengis.spatialschema.geometry.primitive.CurveInterpolation;
 import org.opengis.spatialschema.geometry.primitive.CurveSegment;
 
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
  * A variant of the arc that stores the parameters of the second constructor of
@@ -31,13 +25,13 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain Position position} is not needed since it is to be calculated.
  * The control point sequence shall consist of the start and end points of each arc.
  *  
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract GM_ArcStringByBulge
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  *
  * @see GeometryFactory#createArcStringByBulge
  */
-@UML(identifier="GM_ArcStringByBulge", specification=ISO_19107)
 public interface ArcStringByBulge extends CurveSegment {
     /**
      * Returns the offset of each arc's midpoint. The attribute "bulge" is the real number
@@ -45,13 +39,13 @@ public interface ArcStringByBulge extends CurveSegment {
      * arc. The length of the bulge sequence is exactly 1 less than the length of the control
      * point array, since a bulge is needed for each pair of adjacent points in the control point
      * array.
-     * <p>
+     * <br><br>
      * The bulge is not given by a distance, since it is simply a multiplier for the normal,
      * the unit of the offset distance is determined by the length function for vectors in
      * the coordinate reference system. In the examples in this specification, the normal is
      * often given as a Euclidean unit vector, which may or may not fix its length to one
      * depending of the distance formulae used for the coordinate reference system.
-     * <p>
+     * <br><br>
      * The midpoint of the resulting arc is given by:
      *
      * <blockquote><code>
@@ -61,8 +55,8 @@ public interface ArcStringByBulge extends CurveSegment {
      * </code></blockquote>
      *
      * @return The offset of each arc's midpoint.
+     * @UML operation bulge
      */
-    @UML(identifier="bulge", obligation=MANDATORY, specification=ISO_19107)
     public double[] getBulges();
 
     /**
@@ -75,8 +69,8 @@ public interface ArcStringByBulge extends CurveSegment {
      * </blockquote>
      *
      * @return The number of circular arcs.
+     * @UML operation numArc
      */
-    @UML(identifier="numArc", obligation=MANDATORY, specification=ISO_19107)
     public int getNumArc();
 
     /**
@@ -87,32 +81,32 @@ public interface ArcStringByBulge extends CurveSegment {
      * indicating a right turn from the chord. In 3D, the normal determines the plane of the arc,
      * along with the {@linkplain #getStartPoint start} and {@linkplain #getEndPoint end point}
      * of the arc.
-     * <p>
+     * <br><br>
      * The normal is usually a unit vector, but this is not absolutely necessary. If the normal
      * is a zero vector, the geometric object becomes equivalent to the straight line between
      * the two end points. The length of the normal sequence is exactly the same as for the
      * {@linkplain #getBulges bulge} sequence, 1 less than the control point sequence length.
      *
      * @return The sequence of normal vectors.
+     * @UML operation normal
      */
-    @UML(identifier="normal", obligation=MANDATORY, specification=ISO_19107)
-    public List<double[]> getNormals();
+    public List/*<double[]>*/ getNormals();
 
     /**
-     * The interpolation for a {@code ArcStringByBulge} is
+     * The interpolation for a <code>ArcStringByBulge</code> is
      * "{@linkplain CurveInterpolation#CIRCULAR_ARC_2_POINTS_WITH_BULGE
      * Circular arc by 2 points and bulge factor}".
      *
      * @return Always {@link CurveInterpolation#CIRCULAR_ARC_2_POINTS_WITH_BULGE}.
+     * @UML operation interpolation
      */
-    @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     public CurveInterpolation getInterpolation();
 
     /**
      * Recast as a base {@linkplain ArcString arc string}.
      *
      * @return This arc string by bulge as a base {@linkplain ArcString arc string}.
+     * @UML operation asGM_ArcString
      */
-    @UML(identifier="asGM_ArcString", obligation=MANDATORY, specification=ISO_19107)
     public ArcString asArcString();
 }

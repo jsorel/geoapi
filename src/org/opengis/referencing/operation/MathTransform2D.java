@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.operation;
@@ -14,41 +13,37 @@ package org.opengis.referencing.operation;
 import java.awt.Shape;
 import java.awt.geom.Point2D;
 
-// Annotations
-import org.opengis.annotation.Extension;
-
 
 /**
  * Transforms two-dimensional coordinate points.
  * {@link CoordinateOperation#getMathTransform} may returns instance of this
  * interface when source and destination coordinate systems are both two dimensional.
- * {@code MathTransform2D} extends {@link MathTransform} by adding some methods
+ * <code>MathTransform2D</code> extends {@link MathTransform} by adding some methods
  * for easier interoperability with
  *
  * <A HREF="http://java.sun.com/products/java-media/2D/">Java2D</A>.
  *
- * If the transformation is affine, then {@code MathTransform} shall be an
+ * If the transformation is affine, then <code>MathTransform</code> shall be an
  * immutable instance of {@link java.awt.geom.AffineTransform}.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 1.0
  */
-@Extension
 public interface MathTransform2D extends MathTransform {
     /**
-     * Transforms the specified {@code ptSrc} and stores the result in {@code ptDst}.
-     * If {@code ptDst} is {@code null}, a new {@link Point2D} object is allocated
+     * Transforms the specified <code>ptSrc</code> and stores the result in <code>ptDst</code>.
+     * If <code>ptDst</code> is <code>null</code>, a new {@link Point2D} object is allocated
      * and then the result of the transformation is stored in this object. In either case,
-     * {@code ptDst}, which contains the transformed point, is returned for convenience.
-     * If {@code ptSrc} and {@code ptDst} are the same object, the input point is
+     * <code>ptDst</code>, which contains the transformed point, is returned for convenience.
+     * If <code>ptSrc</code> and <code>ptDst</code> are the same object, the input point is
      * correctly overwritten with the transformed point.
      *
      * @param ptSrc the specified coordinate point to be transformed.
      * @param ptDst the specified coordinate point that stores the
-     *              result of transforming {@code ptSrc}, or
-     *              {@code null}.
-     * @return the coordinate point after transforming {@code ptSrc}
-     *         and stroring the result in {@code ptDst}.
+     *              result of transforming <code>ptSrc</code>, or
+     *              <code>null</code>.
+     * @return the coordinate point after transforming <code>ptSrc</code>
+     *         and stroring the result in <code>ptDst</code>.
      * @throws TransformException if the point can't be transformed.
      */
     Point2D transform(final Point2D ptSrc, final Point2D ptDst) throws TransformException;
@@ -60,11 +55,10 @@ public interface MathTransform2D extends MathTransform {
      * same number of points than the original shape.
      *
      * @param  shape Shape to transform.
-     * @return Transformed shape, or {@code shape} if
+     * @return Transformed shape, or <code>shape</code> if
      *         this transform is the identity transform.
      * @throws TransformException if a transform failed.
      */
-    @Extension
     Shape createTransformedShape(final Shape shape) throws TransformException;
 
     /**
@@ -81,7 +75,7 @@ public interface MathTransform2D extends MathTransform {
      *         never returns an internal object: changing the matrix will not change the
      *         state of this math transform.
      * @throws NullPointerException if the derivative dependents on coordinate
-     *         and {@code point} is {@code null}.
+     *         and <code>point</code> is <code>null</code>.
      * @throws TransformException if the derivative can't be evaluated at the
      *         specified point.
      */

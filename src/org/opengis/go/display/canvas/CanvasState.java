@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.go.display.canvas;
@@ -27,6 +26,7 @@ import org.opengis.spatialschema.geometry.DirectPosition;
  * @version $Revision$, $Date$
  */
 public interface CanvasState {
+
     /**
      * Returns the title of the <code>Canvas</code>.
      */
@@ -50,4 +50,7 @@ public interface CanvasState {
      * <code>getCanvasParameterAccessor()</code>.
      */
     public boolean equals(Object object);
+
+    
+
 }

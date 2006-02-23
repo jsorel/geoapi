@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.cs;
@@ -18,11 +17,6 @@ import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;  // For javadoc
 
-// Annotations
-import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
  * Creates {@linkplain CoordinateSystem coordinate systems} using authority codes. External authorities
@@ -31,15 +25,13 @@ import static org.opengis.annotation.Specification.*;
  * which is also used in the <A HREF="http://www.remotesensing.org/geotiff/geotiff.html">GeoTIFF</A>
  * standard.
  *
+ * @UML abstract CS_CoordinateSystemAuthorityFactory in 1.0 specification
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @author Open Geospatial Consortium
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
  * @see org.opengis.referencing.datum.DatumAuthorityFactory
  */
-@Extension
 public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an arbitrary {@linkplain CoordinateSystem coordinate system} from a code.
@@ -50,7 +42,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * know he is asking for a {@linkplain CartesianCS cartesian coordinate system}).
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
     CoordinateSystem createCoordinateSystem(String code) throws FactoryException;
@@ -59,7 +51,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * Creates a cartesian coordinate system from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
     CartesianCS createCartesianCS(String code) throws FactoryException;
@@ -68,7 +60,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * Creates a polar coordinate system from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
     PolarCS createPolarCS(String code) throws FactoryException;
@@ -77,7 +69,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * Creates a cylindrical coordinate system from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
     CylindricalCS createCylindricalCS(String code) throws FactoryException;
@@ -86,7 +78,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * Creates a spherical coordinate system from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
     SphericalCS createSphericalCS(String code) throws FactoryException;
@@ -95,7 +87,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * Creates an ellipsoidal coordinate system from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
     EllipsoidalCS createEllipsoidalCS(String code) throws FactoryException;
@@ -104,7 +96,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * Creates a vertical coordinate system from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
     VerticalCS createVerticalCS(String code) throws FactoryException;
@@ -113,17 +105,19 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * Creates a temporal coordinate system from a code.
      *
      * @param code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    TimeCS createTimeCS(String code) throws FactoryException;
+    TemporalCS createTemporalCS(String code) throws FactoryException;
 
     /**
      * Returns a {@linkplain CoordinateSystemAxis coordinate system axis} from a code.
      *
      * @param  code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @UML operation createLinearUnit createAngularUnit in 1.0 specification
      */
     CoordinateSystemAxis createCoordinateSystemAxis(String code) throws FactoryException;
 
@@ -131,9 +125,10 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * Returns an {@linkplain Unit unit} from a code.
      *
      * @param  code Value allocated by authority.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws NoSuchAuthorityCodeException if the specified <code>code</code> was not found.
      * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @UML operation createLinearUnit createAngularUnit in 1.0 specification
      */
-    @UML(identifier="CS_CoordinateSystemAuthorityFactory.createLinearUnit, createAngularUnit", specification=OGC_01009)
     Unit createUnit(String code) throws FactoryException;
 }

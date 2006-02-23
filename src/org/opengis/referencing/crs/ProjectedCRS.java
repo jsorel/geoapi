@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.crs;
@@ -13,12 +12,6 @@ package org.opengis.referencing.crs;
 // OpenGIS direct dependencies
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.operation.Projection;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
  * A 2D coordinate reference system used to approximate the shape of the earth on a planar surface.
@@ -32,26 +25,31 @@ import static org.opengis.annotation.Specification.*;
  *   {@link org.opengis.referencing.cs.CartesianCS Cartesian}
  * </TD></TR></TABLE>
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract SC_ProjectedCRS
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-@UML(identifier="SC_ProjectedCRS", specification=ISO_19111)
 public interface ProjectedCRS extends GeneralDerivedCRS {
     /**
      * Returns the base coordinate reference system, which must be geographic.
+     *
+     * @return The base coordinate reference system.
      */
 /// GeographicCRS getBaseCRS();
 
     /**
      * Returns the map projection from the {@linkplain #getBaseCRS base CRS} to this CRS.
+     *
+     * @return The projection to this CRS.
      */
 /// Projection getConversionFromBase();
 
     /**
      * Returns the coordinate system, which must be cartesian.
+     *
+     * @return The coordinate system.
+     * @UML association usesCS
      */
-/// @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
 /// CartesianCS getCoordinateSystem();
 }

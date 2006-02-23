@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.primitive;
@@ -13,75 +12,53 @@ package org.opengis.spatialschema.geometry.primitive;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.geometry.Position;
-import org.opengis.spatialschema.geometry.UnmodifiableGeometryException;
-
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
  * Basic data type for a geometric object consisting of one and only one point.
- * In most cases, the state of a {@code Point} is fully determined by its
- * position attribute. The only exception to this is if the {@code Point}
+ * In most cases, the state of a <code>Point</code> is fully determined by its
+ * position attribute. The only exception to this is if the <code>Point</code>
  * has been subclassed to provide additional non-geometric information such as
  * symbology.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML type GM_Point
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  *
  * @see PrimitiveFactory#createPoint
  *
- * @todo Some associations are commented out for now.
+ * @revisit Some associations are commented out for now.
  */
-@UML(identifier="GM_Point", specification=ISO_19107)
-public interface Point extends Primitive, Position {
+public interface Point extends Primitive {
     /**
-     * Returns the direct position of this point. {@code Point} is the only subclass
+     * Returns the direct position of this point. <code>Point</code> is the only subclass
      * of {@linkplain Primitive primitive} that cannot use {@linkplain Position positions}
      * to represent its defining geometry. A {@linkplain Position position} is either a
-     * {@linkplain DirectPosition direct position} or a reference to a {@code Point}
+     * {@linkplain DirectPosition direct position} or a reference to a <code>Point</code>
      * (from which a {@linkplain DirectPosition direct position} may be obtained). By not
-     * allowing {@code Point} to use this technique, infinitely recursive references
+     * allowing <code>Point</code> to use this technique, infinitely recursive references
      * are prevented.
      *
      * @return The direct position.
+     * @UML mandatory position
      */
-    @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
     public DirectPosition getPosition();
 
     /**
-     * Sets the direct position of this point. {@code Point} is the only subclass
-     * of {@linkplain Primitive primitive} that cannot use {@linkplain Position positions}
-     * to represent its defining geometry. A {@linkplain Position position} is either a
-     * {@linkplain DirectPosition direct position} or a reference to a {@code Point}
-     * (from which a {@linkplain DirectPosition direct position} may be obtained). By not
-     * allowing {@code Point} to use this technique, infinitely recursive references
-     * are prevented.
+     * Returns always <code>null</code>, since point has no boundary.
      *
-     * @param  position The direct position.
-     * @throws UnmodifiableGeometryException if this geometry is not modifiable.
+     * @return Always <code>null</code>.
+     * @UML operation boundary
      */
-    @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
-    public void setPosition(DirectPosition position) throws UnmodifiableGeometryException;
-
-    /**
-     * Returns always {@code null}, since point has no boundary.
-     *
-     * @return Always {@code null}.
-     */
-/// @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
 /// public PrimitiveBoundary getBoundary();
 
     /**
-     * Returns the bearing, as a unit vector, of the tangent (at this {@code Point}) to
-     * the curve between this {@code Point} and a passed {@linkplain Position position}.
+     * Returns the bearing, as a unit vector, of the tangent (at this <code>Point</code>) to
+     * the curve between this <code>Point</code> and a passed {@linkplain Position position}.
      * The choice of the curve type for defining the bearing is dependent on the 
      * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system}
-     * in which this {@code Point} is defined.
+     * in which this <code>Point</code> is defined.
      * For example, in the Mercator projection, the curve is the rhumb line.
      * In 3D, geocentric coordinate system, the curve may be the geodesic joining the two
      * points along the surface of the geoid or ellipsoid in use. Implementations that support
@@ -89,8 +66,8 @@ public interface Point extends Primitive, Position {
      *
      * @param toPoint the destination point.
      * @return The tangent to the curve between this point and the passed position.
+     * @UML operation bearing
      */
-    @UML(identifier="bearing", obligation=MANDATORY, specification=ISO_19107)
     public Bearing getBearing(Position toPoint);
 
 //    public org.opengis.spatialschema.geometry.complex.GM_CompositePoint composite[];

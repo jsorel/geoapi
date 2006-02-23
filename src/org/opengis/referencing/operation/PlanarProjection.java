@@ -4,14 +4,10 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.operation;
-
-// Annotations
-import org.opengis.annotation.Extension;
 
 
 /**
@@ -20,12 +16,11 @@ import org.opengis.annotation.Extension;
  * <p>&nbsp;</p>
  * <p align="center"><img src="../doc-files/PlanarProjection.png"></p>
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
  * @see <A HREF="http://mathworld.wolfram.com/AzimuthalProjection.html">Azimuthal projection on MathWorld</A>
  */
-@Extension
 public interface PlanarProjection extends Projection {
 }

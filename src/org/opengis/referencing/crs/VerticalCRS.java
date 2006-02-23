@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.crs;
@@ -13,11 +12,6 @@ package org.opengis.referencing.crs;
 // OpenGIS direct dependencies
 import org.opengis.referencing.cs.VerticalCS; 	 
 import org.opengis.referencing.datum.VerticalDatum;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -34,22 +28,25 @@ import static org.opengis.annotation.Specification.*;
  *   {@link org.opengis.referencing.cs.VerticalCS Vertical}
  * </TD></TR></TABLE>
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract SC_VerticalCRS
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-@UML(identifier="SC_VerticalCRS", specification=ISO_19111)
-public interface VerticalCRS extends SingleCRS {
+public interface VerticalCRS extends CoordinateReferenceSystem {
     /**
      * Returns the coordinate system, which must be vertical.
+     *
+     * @return The coordinate system.
+     * @UML association usesCS
      */
-/// @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
 /// VerticalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be vertical.
+     *
+     * @return The datum.
+     * @UML association usesDatum
      */
-/// @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
 /// VerticalDatum getDatum();
 }

@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.parameter;
@@ -14,15 +13,12 @@ package org.opengis.parameter;
 /**
  * Thrown when a parameter can't be cast to the requested type. For example this exception
  * is thrown when {@link ParameterValue#doubleValue} is invoked but the value is not
- * convertible to a {@code double}.
+ * convertible to a <code>double</code>. This exception is the only one to not extends
+ * {@link IllegalArgumentException} since it is thrown when the wrong zero-argument method
+ * is called rather than a wrong argument given to a method call.
  *
- * <P><strong>Note:</strong> This exception is of kind "{@linkplain IllegalStateException illegal
- * state}" rather than "{@linkplain IllegalArgumentException illegal argument}" because it is
- * not caused by a bad argument. It is rather a consequence of invoking the wrong zero-argument
- * method.</P>
- *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  *
  * @see ParameterValue#intValue
  * @see ParameterValue#doubleValue

@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.parameter;
@@ -13,13 +12,13 @@ package org.opengis.parameter;
 
 /**
  * Thrown when a required parameter was not found in a
- * {@linkplain ParameterDescriptorGroup parameter group}.
+ * {@linkplain OperationParameterGroup parameter group}.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  *
- * @see ParameterDescriptorGroup#descriptor
- * @see ParameterValueGroup#parameter
+ * @see OperationParameterGroup#getParameter
+ * @see ParameterValueGroup#getValue
  */
 public class ParameterNotFoundException extends IllegalArgumentException {
     /**

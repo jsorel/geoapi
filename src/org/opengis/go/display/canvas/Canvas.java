@@ -4,21 +4,20 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 
 package org.opengis.go.display.canvas;
 
-import org.opengis.go.display.DisplayFactory;
-import org.opengis.go.display.event.EventManager;
-import org.opengis.go.display.primitive.Graphic;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.IncompatibleOperationException;
 import org.opengis.referencing.operation.MathTransform;
+import org.opengis.go.display.DisplayFactory;
+import org.opengis.go.display.event.EventManager;
+import org.opengis.go.display.primitive.Graphic;
+import org.opengis.go.geometry.BoundingRectangle;
 import org.opengis.spatialschema.geometry.DirectPosition;
-import org.opengis.spatialschema.geometry.Envelope;
 
 /**
  * <code>Canvas</code> defines a common abstraction for implementations that
@@ -31,7 +30,7 @@ import org.opengis.spatialschema.geometry.Envelope;
  *   <li>center</li>
  *   <li>width</li>
  *   <li>scale</li>
- *   <li>envelope</li>
+ *   <li>boundingRectangle</li>
  * </ul>
  *
  * @author Open GIS Consortium, Inc.
@@ -195,14 +194,14 @@ public interface Canvas {
 
     /**
      * Returns the <code>Graphic</code>s that occupy the given 
-     * <code>Envelope</code>. The order is implementation-specific.
+     * <code>BoundingRectangle</code>. The order is implementation-specific.
      * 
-     * @param bounds the <code>Envelope</code> in which to look for
+     * @param bounds the <code>BoundingRectangle</code> in which to look for
      *   <code>Graphic</code>s.
      * @return the array of <code>Graphic</code>s in the given 
-     *   <code>Envelope</code>.
+     *   <code>BoundingRectangle</code>.
      */
-    Graphic[] getGraphicsIn(Envelope bounds);
+    Graphic[] getGraphicsIn(BoundingRectangle bounds);
 
     //**  canvas listener methods  **
 

@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.go.display;
@@ -34,15 +33,7 @@ public interface DisplayCapabilities {
     
     /**
      * Returns an array of <code>Class</code> objects for the
-     * <code>Canvas</code> interfaces that are supported by a given 
-     * implementation. 
-     * @return an array of <code>Canvas</code> interfaces
-     */
-    public Class[] getSupportedCanvases();
-    
-    /**
-     * Returns an array of <code>Class</code> objects for the
-     * primitive interfaces that are supported by a given
+     * non-editable primitive interfaces that are supported by a given
      * implementation.
      */
     public Class[] getSupportedPrimitives();

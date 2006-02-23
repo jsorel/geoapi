@@ -4,16 +4,10 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.spatialschema.geometry.primitive;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -30,27 +24,27 @@ import static org.opengis.annotation.Specification.*;
  * boundaries are possible.
  * </font></blockquote>
  *
- * @version <A HREF="http://www.opengis.org/docs/01-101.pdf">Abstract specification 5</A>
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML type GM_SolidBoundary
+ * @author ISO/DIS 19107
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version 2.0
  *
  * @see SurfaceBoundary
  */
-@UML(identifier="GM_SolidBoundary", specification=ISO_19107)
 public interface SolidBoundary extends PrimitiveBoundary {
     /**
-     * Returns the exterior shell, or {@code null} if none.
+     * Returns the exterior shell, or <code>null</code> if none.
      *
-     * @return The exterior shell, or {@code null}.
+     * @return The exterior shell, or <code>null</code>.
+     * @UML operation exterior
      */
-    @UML(identifier="exterior", obligation=MANDATORY, specification=ISO_19107)
     public Shell getExterior();
 
     /**
      * Returns the interior shells.
      *
-     * @return The interior shells. Never {@code null}, but may be an empty array.
+     * @return The interior shells. Never <code>null</code>, but may be an empty array.
+     * @UML operation interior
      */
-    @UML(identifier="interior", obligation=MANDATORY, specification=ISO_19107)
     public Shell[] getInteriors();
 }

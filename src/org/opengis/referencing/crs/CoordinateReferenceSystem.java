@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.crs;
@@ -13,49 +12,50 @@ package org.opengis.referencing.crs;
 // OpenGIS direct dependencies
 import org.opengis.referencing.ReferenceSystem;
 import org.opengis.referencing.cs.CoordinateSystem;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.referencing.datum.Datum;
 
 
 /**
- * Abstract coordinate reference system, usually defined by a 
- * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate system} and a
- * {@linkplain org.opengis.referencing.datum.Datum datum}. The concept of a coordinate
- * reference system (CRS) captures the choice of values for the parameters that constitute
- * the degrees of freedom of the coordinate space. The fact that such a choice has to be made,
- * either arbitrarily or by adopting values from survey measurements, leads to the large number
- * of coordinate reference systems in use around the world. It is also the cause of the little
- * understood fact that the latitude and longitude of a point are not unique. Without the full
- * specification of the coordinate reference system, coordinates are ambiguous at best and
- * meaningless at worst. However for some interchange purposes it is sufficient to confirm the
- * {@linkplain #getName identity of the system} without necessarily having the full system
- * definition.
- * <p>
- * The concept of coordinates may be expanded from a strictly spatial context to include time.
- * Time is then added as another coordinate to the coordinate tuple. It is even possible to add
- * two time-coordinates, provided the two coordinates describe different independent quantities.
- * An example of the latter is the time/space position of a subsurface point of which the vertical
- * coordinate is expressed as the two-way travel time of a sound signal in milliseconds, as is
- * common in seismic imaging. A second time-coordinate indicates the time of observation, usually
- * expressed in whole years.
+ * Abstract coordinate reference system, consisting of a single
+ * {@linkplain CoordinateSystem Coordinate System} and a single
+ * {@linkplain Datum Datum} (as opposed to {@linkplain CompoundCRS Compound CRS}).
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * A coordinate reference system consists of an ordered sequence of coordinate system
+ * axes that are related to the earth through a datum. A coordinate reference system
+ * is defined by one datum and by one coordinate system. Most coordinate reference system
+ * do not move relative to the earth, except for engineering coordinate reference systems
+ * defined on moving platforms such as cars, ships, aircraft, and spacecraft.
+ *
+ * Coordinate reference systems are commonly divided into sub-types. The common classification
+ * criterion for sub-typing of coordinate reference systems is the way in which they deal with
+ * earth curvature. This has a direct effect on the portion of the earth's surface that can be
+ * covered by that type of CRS with an acceptable degree of error. The exception to the rule is
+ * the subtype "Temporal" which has been added by analogy.
+ *
+ * @UML abstract SC_CoordinateReferenceSystem
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
+ *
+ * @see org.opengis.referencing.cs.CoordinateSystem
+ * @see org.opengis.referencing.datum.Datum
  */
-@UML(identifier="SC_CRS", specification=ISO_19111)
 public interface CoordinateReferenceSystem extends ReferenceSystem {
     /**
-     * Returns the coordinate system. One of {@linkplain CoordinateSystem coordinate system}
-     * sub-interfaces is associated with {@linkplain SingleCRS single CRS}. Other CRS
-     * like {@linkplain CompoundCRS compound CRS} may also provides a synthetic coordinate
-     * system in order to allow users to access to two commonly requested information:
-     * {@linkplain CoordinateSystem#getDimension dimension} and
-     * {@linkplain CoordinateSystem#getAxis axis}.
+     * Returns the coordinate system.
+     *
+     * @return The coordinate system.
+     * @UML association usesCS
+     *
+     * @rename Expanded the "CS" abbreviation into "CoordinateSystem".
      */
     CoordinateSystem getCoordinateSystem();
+
+    /**
+     * Returns the datum.
+     *
+     * @return The datum.
+     * @UML association usesDatum
+     */
+    Datum getDatum();
 }

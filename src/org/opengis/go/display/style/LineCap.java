@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.go.display.style;
@@ -26,11 +25,7 @@ import org.opengis.util.SimpleEnumerationType;
  * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version $Revision$, $Date$
  */
-public class LineCap extends SimpleEnumerationType<LineCap> {
-    /**
-     * Serial number for compatibility with different versions.
-     */
-    private static final long serialVersionUID = 7111743758813550715L;
+public class LineCap extends SimpleEnumerationType {
 
     //*************************************************************************
     //  Static Fields
@@ -39,7 +34,7 @@ public class LineCap extends SimpleEnumerationType<LineCap> {
      * The list of enumeration available in this virtual machine.
      * <strong>Must be declared first!</strong>.
      */
-    private static final List<LineCap> VALUES = new ArrayList<LineCap>(3);
+    private static final List VALUES = new ArrayList(3);
 
     /**
      * This constant indicates that line ends should be drawn with no extra
@@ -93,7 +88,7 @@ public class LineCap extends SimpleEnumerationType<LineCap> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public /*{LineCap}*/ CodeList[] family() {
+    public CodeList[] family() {
         return values();
     }
 }

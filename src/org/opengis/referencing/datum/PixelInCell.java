@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.datum;
@@ -17,22 +16,16 @@ import java.util.ArrayList;
 // OpenGIS direct dependencies
 import org.opengis.util.CodeList;
 
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
  * Specification of the way the image grid is associated with the image data attributes.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML codelist CD_PixelInCell
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-@UML(identifier="CD_PixelInCell", specification=ISO_19111)
-public final class PixelInCell extends CodeList<PixelInCell> {
+public final class PixelInCell extends CodeList {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -42,19 +35,21 @@ public final class PixelInCell extends CodeList<PixelInCell> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<PixelInCell> VALUES = new ArrayList<PixelInCell>(2);
+    private static final List VALUES = new ArrayList(2);
 
     /**
      * The origin of the image coordinate system is the centre of a grid cell or image pixel.
+     *
+     * @UML conditional cell&nbsp;center
      */
-    @UML(identifier="cell center", obligation=CONDITIONAL, specification=ISO_19111)
     public static final PixelInCell CELL_CENTER = new PixelInCell("CELL_CENTER");
 
     /**
      * The origin of the image coordinate system is the corner of a grid cell, or half-way
      * between the centres of adjacent image pixels.
+     *
+     * @UML conditional cell&nbsp;corner
      */
-    @UML(identifier="cell corner", obligation=CONDITIONAL, specification=ISO_19111)
     public static final PixelInCell CELL_CORNER = new PixelInCell("CELL_CORNER");
 
     /**
@@ -68,7 +63,7 @@ public final class PixelInCell extends CodeList<PixelInCell> {
     }
 
     /**
-     * Returns the list of {@code PixelInCell}s.
+     * Returns the list of <code>PixelInCell</code>s.
      */
     public static PixelInCell[] values() {
         synchronized (VALUES) {

@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
@@ -15,7 +14,6 @@ import java.awt.geom.Point2D;
 import javax.swing.Icon;
 import javax.units.Unit;
 
-import org.opengis.go.display.style.PointSymbolizer;
 import org.opengis.spatialschema.geometry.DirectPosition;
 
 /**
@@ -79,6 +77,10 @@ public interface GraphicIcon extends Graphic {
      * will be drawn over the icon's position.  This will also be the point
      * about which rotation will occur.  If the offset coordinate is null, then
      * the icon will be centered over its position.
+     *
+     * @revisit In the original interface, the argument was a <code>Pixel</code>
+     *          implementation. Do we really need to ask for a particuler class?
+     *          Replaced by <code>DirectPosition</code> for now.
      */
     public void setOffset(Point2D offset);
 
@@ -87,17 +89,13 @@ public interface GraphicIcon extends Graphic {
      * that will be drawn over the icon's position.  This is the center
      * of rotation as well.  If the offset coordinate is null, then the icon
      * will be centered over its position.
+     *
+     * @revisit In the original interface, the return value was a <code>Pixel</code>
+     *          implementation. Do we really need to ask for a particuler class?
+     *          Replaced by <code>DirectPosition</code> for now.
      */
     public Point2D getOffset();
 
-    /**
-     * Returns the <code>GraphicStyle</code> for this <code>GraphicIcon</code>,
-     * which is required to be a <code>PointSymbolizer</code>.
-     * @return the GraphicIcon's <code>GraphicStyle</code>.
-     */
-    public PointSymbolizer getPointSymbolizer();
-
-    
     /**
      * Indicates whether this primitive is displaying anchor handles that allow the
      * user to change the rotation of this icon.

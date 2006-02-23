@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.go.display.primitive;
@@ -24,7 +23,7 @@ import org.opengis.go.display.event.AggregationListener;
  * <code>Graphic</code>s may be stored in a Skiplist sorted by a unique
  * <code>Graphic</code> identifier to make adding and removing
  * <code>Graphic</code>s very efficient.
- * <p>
+ * <br><br>
  * Additionally, the abstraction makes no
  * assumptions as to thread safety. If the implementations of
  * <code>Graphic</code> are to be used in a multi-threaded environment,
@@ -40,7 +39,7 @@ public interface AggregateGraphic extends Graphic {
      * Sets the children of this <code>AggregateGraphic</code> to the given
      * set of <code>Graphic</code>s.  If there are already children assigned,
      * then those children will be removed and their parent will be set to 
-     * {@code null}.
+     * <code>null</code>.
      *
      * @param children the new children of the <code>AggregateGraphic</code>.
      */
@@ -63,28 +62,12 @@ public interface AggregateGraphic extends Graphic {
     public Graphic addChild(Graphic child);
 
     /**
-     * Adds the given children to this <code>AggregateGraphic</code>.
-     *
-     * @param children <code>Graphic</code> children to add to the aggregate.
-     * @return the added <code>Graphic</code>s.
-     */
-    public Graphic[] addChildren(Graphic[] children);
-
-    /**
      * Removes the given child from this <code>AggregateGraphic</code>.
      *
      * @param child the <code>Graphic</code> child to remove from the aggregate.
-     * @return the removed <code>Graphic</code>, or {@code null} if it is not found.
+     * @return the removed <code>Graphic</code>, or <code>null</code> if it is not found.
      */
     public Graphic removeChild(Graphic child);
-
-    /**
-     * Removes the given children from this <code>AggregateGraphic</code>.
-     *
-     * @param children the <code>Graphic</code> children to remove from the aggregate.
-     * @return the removed <code>Graphic</code>s, or {@code null} if none are found.
-     */
-    public Graphic[] removeChildren(Graphic[] children);
 
     /**
      * Removes all of the children from this <code>AggregateGraphic</code>.
@@ -132,8 +115,8 @@ public interface AggregateGraphic extends Graphic {
      * 
      * @param event the <code>AggregationChangedEvent</code> to give to the listeners.
      *
-     * @todo Usually, this kind of method is a protected one in the implementation class,
-     *       not a public method in the interface...
+     * @revisit Usually, this kind of method is a protected one in the implementation class,
+     *          not a public method in the interface...
      */
     public void aggregationChanged(AggregationChangeEvent event);
 }

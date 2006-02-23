@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.go.display.event;
@@ -59,9 +58,9 @@ public interface MouseManager extends EventManager {
         MouseHandler replacementHandler);
 
     /**
-     * Returns the current <code>MouseHandler</code> or {@code null} if none.
+     * Returns the current <code>MouseHandler</code> or <code>null</code> if none.
      *
-     * @return the current <code>MouseHandler</code> or {@code null} if none.
+     * @return the current <code>MouseHandler</code> or <code>null</code> if none.
      */
     public MouseHandler getCurrentMouseHandler();
 

@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.datum;
@@ -14,12 +13,7 @@ package org.opengis.referencing.datum;
 import javax.units.Unit;
 
 // OpenGIS direct dependencies
-import org.opengis.referencing.IdentifiedObject;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import org.opengis.referencing.Info;
 
 
 /**
@@ -28,27 +22,25 @@ import static org.opengis.annotation.Specification.*;
  * used when the {@linkplain #getGreenwichLongitude greenwich longitude} value is
  * zero.
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract CD_PrimeMeridian
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-@UML(identifier="CD_PrimeMeridian", specification=ISO_19111)
-public interface PrimeMeridian extends IdentifiedObject {
+public interface PrimeMeridian extends Info {
     /**
      * Longitude of the prime meridian measured from the Greenwich meridian, positive eastward.
-     * The {@code greenwichLongitude} initial value is zero, and that value shall be used
+     * The <code>greenwichLongitude</code> initial value is zero, and that value shall be used
      * when the {@linkplain #getName meridian name} value is "Greenwich".
      *
      * @return The prime meridian Greenwich longitude, in {@linkplain #getAngularUnit angular unit}.
      * @unitof Length
+     * @UML conditional greenwichLongitude
      */
-    @UML(identifier="greenwichLongitude", obligation=CONDITIONAL, specification=ISO_19111)
     double getGreenwichLongitude();
 
     /**
      * Returns the angular unit of the {@linkplain #getGreenwichLongitude Greenwich longitude}.
      */
-    @UML(identifier="getAngularUnit", specification=OGC_01009)
     Unit getAngularUnit();
 }

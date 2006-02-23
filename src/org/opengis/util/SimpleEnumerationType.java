@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.util;
@@ -15,7 +14,6 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.net.URL;
 import java.util.Collection;
-import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -23,17 +21,13 @@ import javax.swing.ImageIcon;
 
 /**
  * Class that implements simple, type safe enumerations in Java.
- * Two enumeration values are equal if {@code e1 == e2} or if
- * {@code e1.getValue() == e2.getValue()}.
+ * Two enumeration values are equal if <code>e1 == e2</code> or if
+ * <code>e1.getValue() == e2.getValue()</code>.
  *
- * @author Jesse Crossley (SYS Technologies)
- * @since GeoAPI 1.0
- *
- * @todo The name doesn't said what is the difference between this class and {@link CodeList}.
- *       Furthermore, according ISO 19103, enumeration and code list are not the same thing.
- *       This base class is closer to a code list than an enumeration.
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version $Revision$, $Date$
  */
-public abstract class SimpleEnumerationType<E extends SimpleEnumerationType<E>> extends CodeList<E> {
+public abstract class SimpleEnumerationType extends CodeList implements Comparable {
 
     //*************************************************************************
     //  static methods
@@ -41,8 +35,8 @@ public abstract class SimpleEnumerationType<E extends SimpleEnumerationType<E>> 
 
     /**
      * Load an icon for this
-     * enumeration. {@code loadIconResource} loads the icon found
-     * by {@code a_class.getResource(name)}.
+     * enumeration. <code>loadIconResource</code> loads the icon found
+     * by <code>a_class.getResource(name)</code>.
      * @param a_class class to use to find icon resource.
      * @param name name of icon resource, for example, "SOLID.gif"
      * @return a loaded icon for this enumeration. When no icon can be
@@ -60,7 +54,7 @@ public abstract class SimpleEnumerationType<E extends SimpleEnumerationType<E>> 
     /**
      * Gets the null icon.
      * @return a singleton icon that can be used when no icon was
-     * found in {@code loadIconResource}. The null icon is a
+     * found in <code>loadIconResource</code>. The null icon is a
      * fixed size, 16x64, and its paint method simply returns.
      */
     public static Icon getNullIcon() {
@@ -89,30 +83,30 @@ public abstract class SimpleEnumerationType<E extends SimpleEnumerationType<E>> 
     //*************************************************************************
 
     /**
-     * Add a new {@code SimpleEnumerationType} to the given list
-     * using the given {@code name} and {@code description}.
+     * Add a new <code>SimpleEnumerationType</code> to the given list
+     * using the given <code>name</code> and <code>description</code>.
      * The icon will be set to the Null Icon.
      *
      * @param values the list of values to add to.
      * @param name the short name for the enum.
      * @param description the description for the enum.
      */
-    protected SimpleEnumerationType(Collection<E> values, String name, String description) {
+    protected SimpleEnumerationType(Collection values, String name, String description) {
         super(name, values);
         this.description = description;
         this.icon = getNullIcon();
     }
 
     /**
-     * Add a new {@code SimpleEnumerationType} to the given list
-     * using the given {@code name} and {@code description}.
+     * Add a new <code>SimpleEnumerationType</code> to the given list
+     * using the given <code>name</code> and <code>description</code>.
      *
      * @param values the list of values to add to.
      * @param name the short name for the enum.
      * @param description the description for the enum.
      * @param icon the icon for the enum.
      */
-    protected SimpleEnumerationType(Collection<E> values, String name, String description, Icon icon) {
+    protected SimpleEnumerationType(Collection values, String name, String description, Icon icon) {
         super(name, values);
         this.description = description;
         this.icon = icon;
@@ -153,6 +147,30 @@ public abstract class SimpleEnumerationType<E extends SimpleEnumerationType<E>> 
         return icon;
     }
 
+    //*************************************************************************
+    //  comparison method
+    //*************************************************************************
+
+    /**
+     * Compares this object to another of the same type.
+     *
+     * @param obj the object to compare to.
+     * @return a value that corresponds to the comparison.
+     */
+    public int compareTo(Object obj) {
+        int rv = 0;
+        if (this.getClass() != obj.getClass()) {
+            throw new ClassCastException("Can't compare " +
+                                            this.getClass().getName() +
+                                            " to " +
+                                            obj.getClass().getName());
+        }
+        if (this != obj) {
+            rv = this.ordinal() - ((SimpleEnumerationType)obj).ordinal();
+        }
+        return rv;
+    }
+
     
     //*************************************************************************
     //  the private, static NullIcon inner class
@@ -174,3 +192,5 @@ public abstract class SimpleEnumerationType<E extends SimpleEnumerationType<E>> 
         }
     }
 }
+
+

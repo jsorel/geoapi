@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.crs;
@@ -15,11 +14,6 @@ import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.SphericalCS;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.datum.GeodeticDatum;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -34,23 +28,27 @@ import static org.opengis.annotation.Specification.*;
  *   {@link org.opengis.referencing.cs.SphericalCS Spherical}
  * </TD></TR></TABLE>
  *
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
- * @author ISO/DIS 19111
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
+ * @UML abstract SC_GeocentricCRS
+ * @author ISO 19111
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
+ * @version <A HREF="http://www.opengis.org/docs/03-073r1.zip">Abstract specification 2.0</A>
  */
-@UML(identifier="SC_GeocentricCRS", specification=ISO_19111)
-public interface GeocentricCRS extends SingleCRS {
+public interface GeocentricCRS extends CoordinateReferenceSystem {
     /**
      * Returns the coordinate system, which must be {@linkplain CartesianCS cartesian}
      * or {@linkplain SphericalCS spherical}.
+     *
+     * @return The cartesian or spherical coordinate system.
+     * @UML association usesCartesianCS
+     * @UML association usesSphericalCS
      */
-    @UML(identifier="usesCartesianCS, usesSphericalCS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystem getCoordinateSystem();
   	 
     /**
      * Returns the datum, which must be geodetic.
+     *
+     * @return The datum.
+     * @UML association usesDatum
      */
-/// @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
 /// GeodeticDatum getDatum();
 }

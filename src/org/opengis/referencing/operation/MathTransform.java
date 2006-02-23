@@ -4,8 +4,7 @@
  **
  ** $Source$
  **
- ** Copyright (C) 2003-2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
+ ** Copyright (C) 2003 Open GIS Consortium, Inc. All Rights Reserved. http://www.opengis.org/Legal/
  **
  *************************************************************************************************/
 package org.opengis.referencing.operation;
@@ -13,11 +12,6 @@ package org.opengis.referencing.operation;
 // OpenGIS direct dependencies
 import org.opengis.spatialschema.geometry.DirectPosition;
 import org.opengis.spatialschema.geometry.MismatchedDimensionException;
-
-// Annotations
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
@@ -36,10 +30,9 @@ import static org.opengis.annotation.Specification.*;
  * of an operation, then it should keep hold of the {@link CoordinateOperation} interface,
  * and use the contained math transform object whenever it wishes to perform a transform.
  *
+ * @UML abstract CT_MathTransform
+ * @author <A HREF="http://www.opengis.org">OpenGIS&reg; consortium</A>
  * @version <A HREF="http://www.opengis.org/docs/01-009.pdf">Implementation specification 1.0</A>
- * @author Open Geospatial Consortium
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 1.0
  *
  * @see java.awt.geom.AffineTransform
  * @see javax.media.jai.PerspectiveTransform
@@ -47,41 +40,43 @@ import static org.opengis.annotation.Specification.*;
  * @see MathTransformFactory
  * @see CoordinateOperation#getMathTransform
  */
-@UML(identifier="CT_MathTransform", specification=OGC_01009)
 public interface MathTransform {
     /**
      * Gets the dimension of input points.
+     *
+     * @UML mandatory dimSource
      */
-    @UML(identifier="getDimSource", specification=OGC_01009)
-    int getSourceDimensions();
+    int getDimSource();
     
     /**
      * Gets the dimension of output points.
+     *
+     * @UML mandatory dimTarget
      */
-    @UML(identifier="getDimTarget", specification=OGC_01009)
-    int getTargetDimensions();
+    int getDimTarget();
     
     /**
-     * Transforms the specified {@code ptSrc} and stores the result in
-     * {@code ptDst}. If {@code ptDst} is {@code null}, a new
+     * Transforms the specified <code>ptSrc</code> and stores the result in
+     * <code>ptDst</code>. If <code>ptDst</code> is <code>null</code>, a new
      * {@link DirectPosition} object is allocated and then the result of the
-     * transformation is stored in this object. In either case, {@code ptDst},
+     * transformation is stored in this object. In either case, <code>ptDst</code>,
      * which contains the transformed point, is returned for convenience.
-     * If {@code ptSrc} and {@code ptDst} are the same object,
+     * If <code>ptSrc</code> and <code>ptDst</code> are the same object,
      * the input point is correctly overwritten with the transformed point.
      *
      * @param ptSrc the specified coordinate point to be transformed.
      * @param ptDst the specified coordinate point that stores the
-     *              result of transforming {@code ptSrc}, or
-     *              {@code null}.
-     * @return the coordinate point after transforming {@code ptSrc}
-     *         and storing the result in {@code ptDst}, or a newly
-     *         created point if {@code ptDst} was null.
-     * @throws MismatchedDimensionException if {@code ptSrc} or
-     *         {@code ptDst} doesn't have the expected dimension.
+     *              result of transforming <code>ptSrc</code>, or
+     *              <code>null</code>.
+     * @return the coordinate point after transforming <code>ptSrc</code>
+     *         and storing the result in <code>ptDst</code>, or a newly
+     *         created point if <code>ptDst</code> was null.
+     * @throws MismatchedDimensionException if <code>ptSrc</code> or
+     *         <code>ptDst</code> doesn't have the expected dimension.
      * @throws TransformException if the point can't be transformed.
+     *
+     * @UML operation transform
      */
-    @UML(identifier="transform", specification=OGC_01009)
     DirectPosition transform(DirectPosition ptSrc, DirectPosition ptDst)
             throws MismatchedDimensionException, TransformException;
     
@@ -100,14 +95,15 @@ public interface MathTransform {
      *               in the source array.
      * @param dstPts the array into which the transformed point
      *               coordinates are returned. May be the same
-     *               than {@code srcPts}.
+     *               than <code>srcPts</code>.
      * @param dstOff the offset to the location of the first
      *               transformed point that is stored in the
      *               destination array.
      * @param numPts the number of point objects to be transformed.
      * @throws TransformException if a point can't be transformed.
+     *
+     * @UML operation transformList
      */
-    @UML(identifier="transformList", specification=OGC_01009)
     void transform(double[] srcPts, int srcOff,
                    double[] dstPts, int dstOff,
                    int numPts) throws TransformException;
@@ -127,7 +123,7 @@ public interface MathTransform {
      *               in the source array.
      * @param dstPts the array into which the transformed point
      *               coordinates are returned. May be the same
-     *               than {@code srcPts}.
+     *               than <code>srcPts</code>.
      * @param dstOff the offset to the location of the first
      *               transformed point that is stored in the
      *               destination array.
@@ -150,7 +146,7 @@ public interface MathTransform {
      *
      * form a vector in the output space which is parallel to the displacement
      * caused by a small change in the <var>m</var>'th ordinate in the input space.
-     * <p>
+     * <br><br>
      * For example, if the input dimension is 4 and the
      * output dimension is 3, then a small displacement
      *
@@ -175,17 +171,18 @@ public interface MathTransform {
      *         For example affine transform accept null value since they produces
      *         identical derivative no matter the coordinate value. But most map
      *         projection will requires a non-null value.
-     * @return The derivative at the specified point (never {@code null}).
+     * @return The derivative at the specified point (never <code>null</code>).
      *         This method never returns an internal object: changing the matrix
      *         will not change the state of this math transform.
      * @throws NullPointerException if the derivative dependents on coordinate
-     *         and {@code point} is {@code null}.
-     * @throws MismatchedDimensionException if {@code point} doesn't have
+     *         and <code>point</code> is <code>null</code>.
+     * @throws MismatchedDimensionException if <code>point</code> doesn't have
      *         the expected dimension.
      * @throws TransformException if the derivative can't be evaluated at the
      *         specified point.
+     *
+     * @UML operation derivative
      */
-    @UML(identifier="derivative", specification=OGC_01009)
     Matrix derivative(final DirectPosition point)
             throws MismatchedDimensionException, TransformException;
     
@@ -199,27 +196,18 @@ public interface MathTransform {
      *
      * @return The inverse transform.
      * @throws NoninvertibleTransformException if the transform can't be inversed.
+     *
+     * @UML operation inverse
      */
-    @UML(identifier="inverse", specification=OGC_01009)
     MathTransform inverse() throws NoninvertibleTransformException;
     
     /**
      * Tests whether this transform does not move any points.
      *
-     * @return {@code true} if this {@code MathTransform} is
-     *         an identity transform; {@code false} otherwise.
-     */
-    @UML(identifier="isIdentity", specification=OGC_01009)
-    boolean isIdentity();
-
-    /**
-     * Returns a <cite>Well Known Text</cite> (WKT) for this object. Well know text are
-     * <A HREF="../doc-files/WKT.html">defined in extended Backus Naur form</A>.
-     * This operation may fails if an object is too complex for the WKT format capability.
+     * @return <code>true</code> if this <code>MathTransform</code> is
+     *         an identity transform; <code>false</code> otherwise.
      *
-     * @return The <A HREF="../doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.
-     * @throws UnsupportedOperationException If this object can't be formatted as WKT.
+     * @UML operation isIdentity
      */
-    @UML(identifier="getWKT", specification=OGC_01009)
-    String toWKT() throws UnsupportedOperationException;
+    boolean isIdentity();
 }
