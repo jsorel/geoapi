@@ -30,7 +30,6 @@ import org.opengis.util.InternationalString;
 
 // Annotations
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -253,10 +252,12 @@ public interface Coverage {
      * @throws CannotEvaluateException If the point can't be evaluate for some other reason.
      * @see Raster#getDataElements(int, int, Object)
      *
-     * @deprecated Use one of the more specific {@code evaluate(...)} flavors instead.
+     * The original return type (Object) is replaced by something that returns a set (The ISO 19123
+     * implementation will always return a set).
+     * 
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=OGC_01004)
-    Object evaluate(DirectPosition point) throws CannotEvaluateException;
+    Set evaluate(DirectPosition point) throws CannotEvaluateException;
 
     /**
      * Return a sequence of boolean values for a given point in the coverage.
@@ -278,6 +279,9 @@ public interface Coverage {
      * @throws CannotEvaluateException if the point can't be evaluate for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
+     *
+     * @deprecated No replacement.
+     * @todo Consider keeping this method as undeprecated.
      */
     @UML(identifier="evaluateAsBoolean", obligation=MANDATORY, specification=OGC_01004)
     boolean[] evaluate(DirectPosition point, boolean[] destination)
@@ -303,6 +307,9 @@ public interface Coverage {
      * @throws CannotEvaluateException if the point can't be evaluate for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
+     *
+     * @deprecated No replacement.
+     * @todo Consider keeping this method as undeprecated.
      */
     @UML(identifier="evaluateAsByte", obligation=MANDATORY, specification=OGC_01004)
     byte[] evaluate(DirectPosition point, byte[] destination)
@@ -330,6 +337,9 @@ public interface Coverage {
      *         and too small to hold the output.
      *
      * @see Raster#getPixel(int, int, int[])
+     *
+     * @deprecated No replacement.
+     * @todo Consider keeping this method as undeprecated.
      */
     @UML(identifier="evaluateAsInteger", obligation=MANDATORY, specification=OGC_01004)
     int[] evaluate(DirectPosition point, int[] destination)
@@ -357,6 +367,9 @@ public interface Coverage {
      *         and too small to hold the output.
      *
      * @see Raster#getPixel(int, int, float[])
+     *
+     * @deprecated No replacement.
+     * @todo Consider keeping this method as undeprecated.
      */
     float[] evaluate(DirectPosition point, float[] destination)
             throws CannotEvaluateException, ArrayIndexOutOfBoundsException;
@@ -383,6 +396,9 @@ public interface Coverage {
      *         and too small to hold the output.
      *
      * @see Raster#getPixel(int, int, double[])
+     *
+     * @deprecated No replacement.
+     * @todo Consider keeping this method as undeprecated.
      */
     @UML(identifier="evaluateAsDouble", obligation=MANDATORY, specification=OGC_01004)
     double[] evaluate(DirectPosition point, double[] destination)
@@ -506,8 +522,10 @@ public interface Coverage {
      * @return A 2D view of this coverage as a renderable image.
      * @throws UnsupportedOperationException if this optional operation is not supported.
      * @throws IndexOutOfBoundsException if {@code xAxis} or {@code yAxis} is out of bounds.
+     *
+     * @deprecated No replacement.
+     * @todo Consider keeping this method as undeprecated.
      */
-    @Extension
     RenderableImage getRenderableImage(int xAxis, int yAxis)
             throws UnsupportedOperationException, IndexOutOfBoundsException;
 }

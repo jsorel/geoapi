@@ -22,8 +22,6 @@ import org.opengis.filter.expression.Literal;
 import org.opengis.filter.expression.Multiply;
 import org.opengis.filter.expression.PropertyName;
 import org.opengis.filter.expression.Subtract;
-import org.opengis.filter.identity.FeatureId;
-import org.opengis.filter.identity.Identifier;
 import org.opengis.filter.sort.SortBy;
 import org.opengis.filter.sort.SortOrder;
 import org.opengis.filter.spatial.BBOX;
@@ -51,14 +49,6 @@ import org.opengis.spatialschema.geometry.Geometry;
 public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  IDENTIFIERS 
-//
-////////////////////////////////////////////////////////////////////////////////
-	/** Creates a new feautre id from a string */
-	FeatureId featureId( String id );
-	
-////////////////////////////////////////////////////////////////////////////////
-//
 //  FILTERS
 //
 ////////////////////////////////////////////////////////////////////////////////
@@ -78,9 +68,9 @@ public interface FilterFactory {
     /** Reverses the logical value of a filter. */
     Not not(Filter f);
 
-    /** Passes only for objects that have one of the IDs given to this object. */
-    Id id( Set<Identifier> ids);
-    
+    /** Passes only for features that have one of the IDs given to this object. */
+    FeatureId featureId(Set<String> ids);
+
     /** Retrieves the value of a {@linkplain org.opengis.feature.Feature feature}'s property. */
     PropertyName property(String name);
 
@@ -92,7 +82,7 @@ public interface FilterFactory {
      */
     PropertyIsEqualTo equals(Expression expr1, Expression expr2);
     
-    /** Checks that the first sub-expression is not equal to the second subexpression. */
+    /** Checks that two expressions are not equal to each other */
     PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2);
     
     /** Checks that the first sub-expression is greater than the second subexpression. */
@@ -221,5 +211,7 @@ public interface FilterFactory {
     //////////////////////////////////////////////////////////////////////////////    //
     /** Indicates an property by which contents should be sorted, along with intended order. */
     SortBy sort(String propertyName, SortOrder order );
+    
+    
     
 }
