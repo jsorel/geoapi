@@ -24,5 +24,5 @@ import org.opengis.annotation.XmlElement;
  * @since GeoAPI 2.0
  */
 @XmlElement("Within")
-public interface Within extends BinarySpatialOperator, BoundedSpatialOperator {
+public interface Within extends BinarySpatialOperator {
 }
