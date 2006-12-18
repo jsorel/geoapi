@@ -10,22 +10,28 @@
  *************************************************************************************************/
 package org.opengis.filter;
 
-// Annotations
+// J2SE dependencies
+import java.util.Set;
+
 import org.opengis.annotation.XmlElement;
 
 
 /**
- * Reverses the logical value of an expression.
- *
+ * Instances of this interface represent a filter that passes only the IDs given to this object.
+ * <p>
+ * This application of this filter for Features is well understood. For other identifiable Objects
+ * such as Geometry or Records we may have to provide more thought.
+ * </p>
+ * 
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */
-@XmlElement("Not")
-public interface Not extends Filter {
+@XmlElement("FeatureId")
+public interface FeatureId extends Filter {
     /**
-     * The filter to reverse.
+     * Returns a {@linkplain Set} containing the IDs of that will pass this filter.
      */
-    Filter getFilter();
-    
+    @XmlElement("fid")
+    Set<String> getIDs();
 }
