@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;  // For Javadoc
-
-// Annotations
+import org.opengis.geometry.DirectPosition;  // For Javadoc
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -31,7 +29,6 @@ import static org.opengis.annotation.Specification.*;
  * @see Coverage#evaluate(DirectPosition, byte[])
  * @see Coverage#evaluate(DirectPosition, double[])
  *
- * @deprecated In favor of {@linkplain CoverageDomainException}.
  * @todo  {@linkplain CoverageDomainException} seems to duplicate the role
  * 		  of this class. Evaluate which one is to be used, especially since
  * 		  {@linkplain CoverageDomainException} is not explicitly defined in ISO 19123.

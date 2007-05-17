@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
-// Annotations
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -19,7 +18,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Number of objects, listed by geometric object type, used in the dataset.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
@@ -36,5 +35,5 @@ public interface GeometricObjects {
      * Total number of the point or vector object type occurring in the dataset.
      */
     @UML(identifier="geometricObjectCount", obligation=OPTIONAL, specification=ISO_19115)
-    int getGeometricObjectCount();
+    Integer getGeometricObjectCount();
 }

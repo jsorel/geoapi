@@ -10,14 +10,10 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
-// J2SE direct dependencies
 import java.util.Collection;
-
-// OpenGIS direct dependencies
 import org.opengis.metadata.citation.OnLineResource;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -25,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Information describing metadata extensions.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
@@ -43,5 +39,5 @@ public interface MetadataExtensionInformation {
      * required to describe geographic data.
      */
     @UML(identifier="extendedElementInformation", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<ExtendedElementInformation> getExtendedElementInformation();
+    Collection<? extends ExtendedElementInformation> getExtendedElementInformation();
 }

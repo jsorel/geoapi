@@ -10,25 +10,20 @@
  *************************************************************************************************/
 package org.opengis.metadata.quality;
 
-// J2SE direct dependencies
 import java.util.Collection;
-
-// OpenGIS direct dependencies
 import org.opengis.metadata.lineage.Lineage;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.ComplianceLevel.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
  * Quality information for the data specified by a data quality scope.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
@@ -47,7 +42,7 @@ public interface DataQuality {
      * {@linkplain org.opengis.metadata.maintenance.ScopeCode#DATASET dataset}.
      */
     @UML(identifier="report", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<Element> getReports();
+    Collection<? extends Element> getReports();
 
     /**
      * Non-quantitative quality information about the lineage of the data specified by the scope.

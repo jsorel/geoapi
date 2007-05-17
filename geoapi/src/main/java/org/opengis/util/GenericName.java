@@ -10,12 +10,10 @@
  *************************************************************************************************/
 package org.opengis.util;
 
-// J2SE direct dependencies
 import java.util.List;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -54,9 +52,10 @@ public interface GenericName extends Comparable {
     /**
      * Returns the scope (name space) in which this name is local. The scope is set on creation
      * and is not modifiable. The scope of a name determines where a name "starts". For instance,
-     * if a name has a {@linkplain #depth depth} of two ({@code "util.GenericName"}) and is
-     * associated with a {@linkplain NameSpace name space} having the name {@code "org.opengis"},
-     * then the fully qualified name would be {@code "org.opengis.util.GenericName"}.
+     * if a name has a {@linkplain #depth depth} of two (for example {@code "util.GenericName"})
+     * and is associated with a {@linkplain NameSpace name space} having the name
+     * {@code "org.opengis"}, then the fully qualified name would be
+     * {@code "org.opengis.util.GenericName"}.
      *
      * @since GeoAPI 2.1
      */
@@ -89,6 +88,9 @@ public interface GenericName extends Comparable {
      * Returns the sequence of {@linkplain LocalName local names} making this generic name. All
      * elements of the list except for the last one refer to {@linkplain NameSpace name spaces}.
      * The length of this sequence is the {@linkplain #depth depth}.
+     *
+     * @todo What means the "All elements of the list except for the last one refer to name
+     *       spaces"? Does it means that the last element refer to the global name space?
      */
     @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
     List<LocalName> getParsedNames();
@@ -97,7 +99,7 @@ public interface GenericName extends Comparable {
      * Returns a view of this object as a local name. This is always the last element in the
      * sequence of {@linkplain #getParsedNames parsed names}.
      *
-     * @deprecated Renammed as {@link #name()}.
+     * @deprecated Renamed as {@link #name()}.
      */
     @Extension
     LocalName asLocalName();
@@ -137,7 +139,7 @@ public interface GenericName extends Comparable {
      */
     @Extension
     GenericName toFullyQualifiedName();
-    
+
     /**
      * Returns this name expanded with the specified scope. One may represent this operation
      * as a concatenation of the specified {@code name} with {@code this}. In pseudo-code,
@@ -156,7 +158,7 @@ public interface GenericName extends Comparable {
      * @since GeoAPI 2.1
      */
     @UML(identifier="push", obligation=MANDATORY, specification=ISO_19103)
-    ScopedName push(GenericName scope);
+    ScopedName push(GenericName name);
 
     /**
      * Returns a string representation of this generic name. This string representation

@@ -10,8 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
-// OpenGIS direct dependencies
-import org.opengis.spatialschema.geometry.DirectPosition;  // For Javadoc
+import org.opengis.geometry.DirectPosition;  // For Javadoc
 
 
 /**
@@ -25,8 +24,6 @@ import org.opengis.spatialschema.geometry.DirectPosition;  // For Javadoc
  *
  * @see Coverage#evaluate(DirectPosition, byte[])
  * @see Coverage#evaluate(DirectPosition, double[])
- *
- * @deprecated No replacement.
  */
 public class CannotEvaluateException extends RuntimeException {
     /**

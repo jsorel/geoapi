@@ -10,15 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
-// J2SE directdependencies
 import java.util.List;
 import java.util.ArrayList;
-
-// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -26,8 +22,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Function performed by the responsible party.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @UML(identifier="CI_RoleCode", specification=ISO_19115)
@@ -41,7 +38,7 @@ public final class Role extends CodeList<Role> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Role> VALUES = new ArrayList<Role>(10);
+    private static final List<Role> VALUES = new ArrayList<Role>(11);
 
     /**
      * Party that supplies the resource.
@@ -103,6 +100,12 @@ public final class Role extends CodeList<Role> {
      */
     @UML(identifier="publisher", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Role PUBLISHER = new Role("PUBLISHER");
+
+    /**
+     * Party who authored the resource.
+     */
+    @UML(identifier="author", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Role AUTHOR = new Role("AUTHOR");
 
     /**
      * Constructs an enum with the given name. The new enum is

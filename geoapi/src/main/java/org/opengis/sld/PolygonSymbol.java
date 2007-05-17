@@ -10,7 +10,6 @@
  *************************************************************************************************/
 package org.opengis.sld;
 
-// Annotations
 import org.opengis.annotation.XmlElement;
 
 
@@ -21,7 +20,7 @@ import org.opengis.annotation.XmlElement;
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */
-@XmlElement("PolygonSymbol")
+@XmlElement("PolygonSymbolizer")
 public interface PolygonSymbol extends Symbol {
     /**
      * Returns the object containing all the information necessary to draw

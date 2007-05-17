@@ -10,13 +10,8 @@
  *************************************************************************************************/
 package org.opengis.sld;
 
-// J2SE direct dependencies
 import java.util.List;
-
-// OpenGIS direct dependencies
 import org.opengis.filter.expression.Expression;
-
-// Annotations
 import org.opengis.annotation.XmlElement;
 
 
@@ -27,7 +22,7 @@ import org.opengis.annotation.XmlElement;
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */
-@XmlElement("TextSymbol")
+@XmlElement("TextSymbolizer")
 public interface TextSymbol extends Symbol {
     /**
      * Returns the expression that will be evaluated to determine what text is

@@ -10,13 +10,10 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid.quadrilateral;
 
-//OpenGIS dependencies:
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.Operation;
-
-// Annotations
 import org.opengis.annotation.Extension;
-import org.opengis.spatialschema.geometry.geometry.Position;
+import org.opengis.geometry.coordinate.Position;
 import org.opengis.util.Cloneable;
 
 import static org.opengis.annotation.Obligation.*;

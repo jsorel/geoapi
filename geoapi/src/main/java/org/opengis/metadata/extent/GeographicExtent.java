@@ -10,8 +10,8 @@
  *************************************************************************************************/
 package org.opengis.metadata.extent;
 
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -19,8 +19,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Base interface for geographic area of the dataset.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 1.0
  */
 @UML(identifier="EX_GeographicExtent", specification=ISO_19115)
@@ -32,5 +33,5 @@ public interface GeographicExtent {
      * @return {@code true} for inclusion, or {@code false} for exclusion.
      */
     @UML(identifier="extentTypeCode", obligation=OPTIONAL, specification=ISO_19115)
-    boolean getInclusion();
+    Boolean getInclusion();
 }

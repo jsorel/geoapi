@@ -10,10 +10,10 @@
  *************************************************************************************************/
 package org.opengis.filter;
 
-// OpenGIS direct dependencies
 import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.Feature;
+import org.opengis.feature.type.FeatureType;  // For javadoc
 
 
 /**
@@ -40,6 +40,20 @@ import org.opengis.feature.Feature;
  */
 @XmlElement("Filter")
 public interface Filter {
+	/**
+	 * Placeholder Filter that evaulates to <code>true</code>.
+	 * <p>
+	 * Filtering a set with Filter.INCLUDE results in the origional set.
+	 * </p>
+	 */
+	public static final IncludeFilter INCLUDE = new IncludeFilter();
+	
+	/**Placeholder Filter that evaulates to <code>false</code>.
+	 * <p>
+	 * Filtering a set with Filter.EXCLUDE results in the Empty Set.
+	 * */
+	public static final ExcludeFilter EXCLUDE = new ExcludeFilter();
+	
     /**
      * Give an object, this method determines if the test(s) represented by this filter object
      * are passed.

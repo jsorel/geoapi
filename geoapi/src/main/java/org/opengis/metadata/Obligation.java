@@ -10,22 +10,18 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
-// J2SE directdependencies
 import java.util.List;
 import java.util.ArrayList;
-
-// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Specification.*;
 
 
 /**
  * Obligation of the element or entity.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
@@ -40,7 +36,7 @@ public final class Obligation extends CodeList<Obligation> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Obligation> VALUES = new ArrayList<Obligation>(2);
+    private static final List<Obligation> VALUES = new ArrayList<Obligation>(3);
 
     /**
      * Element is always required.

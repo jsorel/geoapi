@@ -10,12 +10,13 @@
  *************************************************************************************************/
 package org.opengis.metadata.quality;
 
-// OpenGIS direct dependencies
+import java.util.Collection;
+
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.maintenance.ScopeCode;
-
-// Annotations
+import org.opengis.metadata.maintenance.ScopeDescription;
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -23,7 +24,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Description of the data specified by the scope.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
@@ -36,18 +37,19 @@ public interface Scope {
     ScopeCode getLevel();
 
     /**
+     * Detailed description about the level of the data specified by the scope.
+     * Should be defined only if the {@linkplain #getLevel level} is not equal
+     * to {@link ScopeCode#DATASET DATASET} or {@link ScopeCode#SERIES SERIES}.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="levelDescription", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<? extends ScopeDescription> getLevelDescription();
+
+    /**
      * Information about the spatial, vertical and temporal extent of the data specified by the
      * scope.
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
     Extent getExtent();
-
-    /**
-     * Detailed description about the level of the data specified by the scope.
-     *
-     * @todo Need to define the {@code ScopeDescription} union. This union depends
-     *       on {@code FeatureType} and {@code AttributeType}.
-     */
-//  @UML(identifier="levelDescription", obligation=CONDITIONAL)
-//  Collection<ScopeDescription> getLevelDescription();
 }

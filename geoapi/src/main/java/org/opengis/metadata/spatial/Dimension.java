@@ -10,8 +10,8 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -19,8 +19,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Axis properties.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Dimension", specification=ISO_19115)
@@ -33,9 +34,11 @@ public interface Dimension {
 
     /**
      * Number of elements along the axis.
+     * 
+     * @return Integer mandatory for valid content, may be null for an invalid document.
      */
     @UML(identifier="dimensionSize", obligation=MANDATORY, specification=ISO_19115)
-    int getDimensionSize();
+    Integer getDimensionSize();
 
     /**
      * Degree of detail in the grid dataset.
@@ -43,5 +46,5 @@ public interface Dimension {
      * @unitof Measure
      */
     @UML(identifier="resolution", obligation=OPTIONAL, specification=ISO_19115)
-    double getResolution();
+    Double getResolution();
 }

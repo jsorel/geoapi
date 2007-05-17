@@ -10,16 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata.content;
 
-// J2SE direct dependencies
 import java.util.Collection;
 import java.util.Locale;
-
-// OpenGIS direct dependencies
 import org.opengis.util.GenericName;
 import org.opengis.metadata.citation.Citation;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -27,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Information identifying the feature catalogue.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
@@ -35,9 +31,11 @@ import static org.opengis.annotation.Specification.*;
 public interface FeatureCatalogueDescription extends ContentInformation {
     /**
      * Indication of whether or not the cited feature catalogue complies with ISO 19110.
+     * 
+     * This value is optional, and therefore may be null.
      */
     @UML(identifier="complianceCode", obligation=OPTIONAL, specification=ISO_19115)
-    boolean isCompliant();
+    Boolean isCompliant();
 
     /**
      * Language(s) used within the catalogue
@@ -55,11 +53,11 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * Subset of feature types from cited feature catalogue occurring in dataset.
      */
     @UML(identifier="featureTypes", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<GenericName> getFeatureTypes();
+    Collection<? extends GenericName> getFeatureTypes();
 
     /**
      * Complete bibliographic reference to one or more external feature catalogues.
      */
     @UML(identifier="featureCatalogueCitation", obligation=MANDATORY, specification=ISO_19115)
-    Collection<Citation> getFeatureCatalogueCitations();
+    Collection<? extends Citation> getFeatureCatalogueCitations();
 }

@@ -10,20 +10,19 @@
  *************************************************************************************************/
 package org.opengis.metadata.content;
 
-// OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Information about an image’s suitability for use.
+ * Information about an image's suitability for use.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_ImageDescription", specification=ISO_19115)
@@ -36,7 +35,7 @@ public interface ImageDescription extends CoverageDescription {
      * @return A value between -90° and +90°, or {@code null} if unspecified.
      */
     @UML(identifier="illuminationElevationAngle", obligation=OPTIONAL, specification=ISO_19115)
-    Number getIlluminationElevationAngle();
+    Double getIlluminationElevationAngle();
 
     /**
      * Illumination azimuth measured in degrees clockwise from true north at the time the
@@ -45,7 +44,7 @@ public interface ImageDescription extends CoverageDescription {
      * @return A value between 0° and 360°, or {@code null} if unspecified.
      */
     @UML(identifier="illuminationAzimuthAngle", obligation=OPTIONAL, specification=ISO_19115)
-    Number getIlluminationAzimuthAngle();
+    Double getIlluminationAzimuthAngle();
 
     /**
      * Conditions affected the image.
@@ -62,10 +61,10 @@ public interface ImageDescription extends CoverageDescription {
     /**
      * Area of the dataset obscured by clouds, expressed as a percentage of the spatial extent.
      *
-     * @return A value between 0 and 100, or {@code null} if unknow.
+     * @return A value between 0 and 100, or {@code null} if unknown.
      */
     @UML(identifier="cloudCoverPercentage", obligation=OPTIONAL, specification=ISO_19115)
-    Number getCloudCoverPercentage();
+    Double getCloudCoverPercentage();
 
     /**
      * Image distributor’s code that identifies the level of radiometric and geometric
@@ -93,24 +92,24 @@ public interface ImageDescription extends CoverageDescription {
      * radiometrically calibrated standard data product is available.
      */
     @UML(identifier="radiometricCalibrationDataAvailability", obligation=OPTIONAL, specification=ISO_19115)
-    boolean isRadiometricCalibrationDataAvailable();
+    Boolean isRadiometricCalibrationDataAvailable();
 
     /**
      * Indication of whether or not constants are available which allow for camera calibration
      * corrections.
      */
     @UML(identifier="cameraCalibrationInformationAvailability", obligation=OPTIONAL, specification=ISO_19115)
-    boolean isCameraCalibrationInformationAvailable();
+    Boolean isCameraCalibrationInformationAvailable();
 
     /**
      * Indication of whether or not Calibration Reseau information is available.
      */
     @UML(identifier="filmDistortionInformationAvailability", obligation=OPTIONAL, specification=ISO_19115)
-    boolean isFilmDistortionInformationAvailable();
+    Boolean isFilmDistortionInformationAvailable();
 
     /**
      * Indication of whether or not lens aberration correction information is available.
      */
     @UML(identifier="lensDistortionInformationAvailability", obligation=OPTIONAL, specification=ISO_19115)
-    boolean isLensDistortionInformationAvailable();
+    Boolean isLensDistortionInformationAvailable();
 }

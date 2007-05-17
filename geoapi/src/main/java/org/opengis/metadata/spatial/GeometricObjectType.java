@@ -10,15 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
-// J2SE directdependencies
 import java.util.List;
 import java.util.ArrayList;
-
-// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -27,8 +23,9 @@ import static org.opengis.annotation.Specification.*;
  * Name of point and vector spatial objects used to locate zero-, one-, and twodimensional
  * spatial locations in the dataset.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_GeometricObjectTypeCode", specification=ISO_19115)
@@ -48,14 +45,14 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      * Set of geometric primitives such that their boundaries can be represented as a
      * union of other primitives.
      */
-    @UML(identifier="complexes", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final GeometricObjectType COMPLEXES = new GeometricObjectType("COMPLEXES");
+    @UML(identifier="complex", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final GeometricObjectType COMPLEX = new GeometricObjectType("COMPLEX");
 
     /**
      * Connected set of curves, solids or surfaces.
      */
-    @UML(identifier="composites", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final GeometricObjectType COMPOSITES = new GeometricObjectType("COMPOSITES");
+    @UML(identifier="composite", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final GeometricObjectType COMPOSITE = new GeometricObjectType("COMPOSITE");
 
     /**
      * Bounded, 1-dimensional geometric primitive, representing the continuous image of a line.
@@ -83,6 +80,21 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
     @UML(identifier="surface", obligation=CONDITIONAL, specification=ISO_19115)
     public static final GeometricObjectType SURFACE = new GeometricObjectType("SURFACE");
 
+    /**
+     * Set of geometric primitives such that their boundaries can be represented as a
+     * union of other primitives.
+     *
+     * @deprecated Renamed as {@link #COMPLEX}.
+     */
+    public static final GeometricObjectType COMPLEXES = COMPLEX;
+    
+    /**
+     * Connected set of curves, solids or surfaces.
+     *
+     * @deprecated Renamed as {@link #COMPOSITE}.
+     */
+    public static final GeometricObjectType COMPOSITES = COMPOSITE;
+    
     /**
      * Constructs an enum with the given name. The new enum is
      * automatically added to the list returned by {@link #values}.

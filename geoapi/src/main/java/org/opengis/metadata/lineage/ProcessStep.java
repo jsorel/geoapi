@@ -10,16 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata.lineage;
 
-// J2SE direct dependencies
 import java.util.Collection;
 import java.util.Date;
-
-// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.ResponsibleParty;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -27,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Description of the event, including related parameters or tolerances.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
@@ -56,11 +52,11 @@ public interface ProcessStep {
      * organization(s) associated with the process step.
      */
     @UML(identifier="processor", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<ResponsibleParty> getProcessors();
+    Collection<? extends ResponsibleParty> getProcessors();
 
     /**
      * Information about the source data used in creating the data specified by the scope.
      */
     @UML(identifier="source", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Source> getSources();
+    Collection<? extends Source> getSources();
 }

@@ -22,6 +22,9 @@ import org.opengis.filter.expression.Literal;
 import org.opengis.filter.expression.Multiply;
 import org.opengis.filter.expression.PropertyName;
 import org.opengis.filter.expression.Subtract;
+import org.opengis.filter.identity.FeatureId;
+import org.opengis.filter.identity.GmlObjectId;
+import org.opengis.filter.identity.Identifier;
 import org.opengis.filter.sort.SortBy;
 import org.opengis.filter.sort.SortOrder;
 import org.opengis.filter.spatial.BBOX;
@@ -35,7 +38,7 @@ import org.opengis.filter.spatial.Intersects;
 import org.opengis.filter.spatial.Overlaps;
 import org.opengis.filter.spatial.Touches;
 import org.opengis.filter.spatial.Within;
-import org.opengis.spatialschema.geometry.Geometry;
+import org.opengis.geometry.Geometry;
 
 
 /**
@@ -47,6 +50,17 @@ import org.opengis.spatialschema.geometry.Geometry;
  * @since GeoAPI 2.0
  */
 public interface FilterFactory {
+////////////////////////////////////////////////////////////////////////////////
+//
+//  IDENTIFIERS 
+//
+////////////////////////////////////////////////////////////////////////////////
+	/** Creates a new feautre id from a string */
+	FeatureId featureId( String id );
+	
+	/** Creates a new gml object id from a string */
+	GmlObjectId gmlObjectId( String id );
+	
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  FILTERS
@@ -68,9 +82,9 @@ public interface FilterFactory {
     /** Reverses the logical value of a filter. */
     Not not(Filter f);
 
-    /** Passes only for features that have one of the IDs given to this object. */
-    FeatureId featureId(Set<String> ids);
-
+    /** Passes only for objects that have one of the IDs given to this object. */
+    Id id( Set<Identifier> ids);
+    
     /** Retrieves the value of a {@linkplain org.opengis.feature.Feature feature}'s property. */
     PropertyName property(String name);
 
@@ -78,10 +92,16 @@ public interface FilterFactory {
     PropertyIsBetween between(Expression expr, Expression lower, Expression upper);
 
     /** Compares that two sub-expressions are equal to each other.
-     * @todo should be equalTo (so equals can refer to geometry)
+     * @todo should be equal (so equals can refer to geometry)
      */
     PropertyIsEqualTo equals(Expression expr1, Expression expr2);
-
+    
+    /** Compares that two sub-expressions are equal to eacher other */
+    PropertyIsEqualTo equal(Expression expr1, Expression expr2, boolean matchCase);
+    
+    /** Checks that the first sub-expression is not equal to the second subexpression. */
+    PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2, boolean matchCase);
+    
     /** Checks that the first sub-expression is greater than the second subexpression. */
     PropertyIsGreaterThan greater(Expression expr1, Expression expr2);
 
@@ -208,7 +228,5 @@ public interface FilterFactory {
     //////////////////////////////////////////////////////////////////////////////    //
     /** Indicates an property by which contents should be sorted, along with intended order. */
     SortBy sort(String propertyName, SortOrder order );
-    
-    
     
 }

@@ -10,16 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata.distribution;
 
-// J2SE direct dependencies
 import java.util.Collection;
-
-// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.OnLineResource;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.ComplianceLevel.*;
@@ -29,8 +25,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Technical means and media by which a resource is obtained from the distributor.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @Profile (level=CORE)
@@ -48,14 +45,14 @@ public interface DigitalTransferOptions {
      * Returns {@code null} if the transfer size is unknown.
      */
     @UML(identifier="transferSize", obligation=OPTIONAL, specification=ISO_19115)
-    Number getTransferSize();
+    Double getTransferSize();
 
     /**
      * Information about online sources from which the resource can be obtained.
      */
     @Profile (level=CORE)
     @UML(identifier="onLine", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<OnLineResource> getOnLines();
+    Collection<? extends OnLineResource> getOnLines();
 
     /**
      * Information about offline media on which the resource can be obtained.

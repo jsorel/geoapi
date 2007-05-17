@@ -10,15 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
-// J2SE direct dependencies
 import java.util.Collection;
-
-// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
+import org.opengis.util.Record;
 import org.opengis.metadata.citation.Citation;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -28,8 +25,9 @@ import static org.opengis.annotation.Specification.*;
  * system, whose individual cells can be geolocated using geolocation information
  * supplied with the data but cannot be geolocated from the grid properties alone.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Georeferenceable", specification=ISO_19115)
@@ -55,14 +53,21 @@ public interface Georeferenceable extends GridSpatialRepresentation {
     /**
      * Terms which support grid data georeferencing.
      *
-     * @todo Return type in UML is {@code Record}.
+     * @since GeoAPI 2.1
      */
-    @UML(identifier="parameters", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="georeferencedParameters", obligation=MANDATORY, specification=ISO_19115)
+    Record getGeoreferencedParameters();
+    
+    /**
+     * Terms which support grid data georeferencing.
+     *
+     * @deprecated Use {@link #getGeoreferencedParameters} instead.
+     */
     Object getParameters();
 
     /**
      * Reference providing description of the parameters.
      */
     @UML(identifier="parameterCitation", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Citation> getParameterCitation();
+    Collection<? extends Citation> getParameterCitation();
 }

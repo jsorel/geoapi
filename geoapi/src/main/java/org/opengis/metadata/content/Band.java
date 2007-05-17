@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.content;
 
-// J2SE extensions
 import javax.units.Unit;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -22,8 +20,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Range of wavelengths in the electromagnetic spectrum.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Band", specification=ISO_19115)
@@ -33,14 +32,14 @@ public interface Band extends RangeDimension {
      * Returns {@code null} if unspecified.
      */
     @UML(identifier="maxValue", obligation=OPTIONAL, specification=ISO_19115)
-    Number getMaxValue();
+    Double getMaxValue();
 
     /**
      * Shortest wavelength that the sensor is capable of collecting within a designated band.
      * Returns {@code null} if unspecified.
      */
     @UML(identifier="minValue", obligation=OPTIONAL, specification=ISO_19115)
-    Number getMinValue();
+    Double getMinValue();
 
     /**
      * Units in which sensor wavelengths are expressed. Should be non-null if
@@ -55,7 +54,7 @@ public interface Band extends RangeDimension {
      * Returns {@code null} if unspecified.
      */
     @UML(identifier="peakResponse", obligation=OPTIONAL, specification=ISO_19115)
-    Number getPeakResponse();
+    Double getPeakResponse();
 
     /**
      * Maximum number of significant bits in the uncompressed representation for the value
@@ -77,12 +76,12 @@ public interface Band extends RangeDimension {
      * Returns {@code null} if unspecified.
      */
     @UML(identifier="scaleFactor", obligation=OPTIONAL, specification=ISO_19115)
-    Number getScaleFactor();
+    Double getScaleFactor();
 
     /**
      * The physical value corresponding to a cell value of zero.
      * Returns {@code null} if unspecified.
      */
     @UML(identifier="offset", obligation=OPTIONAL, specification=ISO_19115)
-    Number getOffset();
+    Double getOffset();
 }

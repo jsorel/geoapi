@@ -10,18 +10,13 @@
  *************************************************************************************************/
 package org.opengis.referencing;
 
-// J2SE direct dependencies
 import java.util.Set;
 import java.util.Collection;
-
-// OpenGIS direct dependencies
-import org.opengis.metadata.Identifier;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -29,11 +24,11 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Supplementary identification and remarks information for a CRS or CRS-related object.
  * When {@link org.opengis.referencing.crs.CRSAuthorityFactory} is used to create an object,
- * the {@linkplain Identifier#getAuthority authority} and {@linkplain Identifier#getCode
- * authority code} values should be set to the authority name of the factory object,
- * and the authority code supplied by the client, respectively. The other values may
- * or may not be set. If the authority is EPSG, the implementer may consider using the
- * corresponding metadata values in the EPSG tables.
+ * the {@linkplain ReferenceIdentifier#getAuthority authority} and
+ * {@linkplain ReferenceIdentifier#getCode authority code} values should be set to the
+ * authority name of the factory object, and the authority code supplied by the client,
+ * respectively. The other values may or may not be set. If the authority is EPSG, the
+ * implementer may consider using the corresponding metadata values in the EPSG tables.
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=6716">Abstract specification 2.0</A>
  * @author ISO/DIS 19111
@@ -82,7 +77,7 @@ public interface IdentifiedObject {
      * The primary name by which this object is identified.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19111)
-    Identifier getName();
+    ReferenceIdentifier getName();
 
     /**
      * An alternative name by which this object is identified.
@@ -99,7 +94,7 @@ public interface IdentifiedObject {
      * @return This object identifiers, or an empty set if there is none.
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19111)
-    Set<Identifier> getIdentifiers();
+    Set<ReferenceIdentifier> getIdentifiers();
 
     /**
      * Comments on or information about this object, including data source information.

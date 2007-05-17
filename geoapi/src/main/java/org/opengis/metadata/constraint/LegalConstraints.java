@@ -10,14 +10,10 @@
  *************************************************************************************************/
 package org.opengis.metadata.constraint;
 
-// J2SE direct dependencies
 import java.util.Collection;
-
-// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -25,8 +21,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Restrictions and legal prerequisites for accessing and using the resource.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @UML(identifier="MD_LegalConstraints", specification=ISO_19115)
@@ -47,10 +44,10 @@ public interface LegalConstraints extends Constraints {
 
     /**
      * Other restrictions and legal prerequisites for accessing and using the resource.
-     * This method should returns a non-null value only if {@linkplain #getAccessConstraints
+     * This method should returns a non-empty value only if {@linkplain #getAccessConstraints
      * access constraints} or {@linkplain #getUseConstraints use constraints} declares
      * {@linkplain Restriction#OTHER_RESTRICTIONS other restrictions}.
      */
     @UML(identifier="otherConstraints", obligation=CONDITIONAL, specification=ISO_19115)
-    InternationalString getOtherConstraints();
+    Collection<? extends InternationalString> getOtherConstraints();
 }

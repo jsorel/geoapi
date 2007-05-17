@@ -10,14 +10,10 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
-// J2SE direct dependencies
 import java.util.Collection;
-
-// OpenGIS direct dependencies
 import org.opengis.metadata.citation.Citation;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -25,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Information identifying the portrayal catalogue used.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
@@ -35,5 +31,5 @@ public interface PortrayalCatalogueReference {
      * Bibliographic reference to the portrayal catalogue cited.
      */
     @UML(identifier="portrayalCatalogueCitation", obligation=MANDATORY, specification=ISO_19115)
-    Collection<Citation> getPortrayalCatalogueCitations();
+    Collection<? extends Citation> getPortrayalCatalogueCitations();
 }

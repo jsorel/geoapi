@@ -10,15 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.lineage;
 
-// J2SE direct dependencies
 import java.util.Collection;
-
-// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.ComplianceLevel.*;
@@ -32,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  * Only one of {@linkplain #getStatement statement}, {@linkplain #getProcessSteps process steps}
  * and {@linkplain #getSources sources} should be provided.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
@@ -54,11 +50,11 @@ public interface Lineage {
      * Information about an event in the creation process for the data specified by the scope.
      */
     @UML(identifier="processStep", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<ProcessStep> getProcessSteps();
+    Collection<? extends ProcessStep> getProcessSteps();
 
     /**
      * Information about the source data used in creating the data specified by the scope.
      */
     @UML(identifier="source", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<Source> getSources();
+    Collection<? extends Source> getSources();
 }

@@ -10,11 +10,9 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
-// J2SE direct dependencies
 import java.util.Collection;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -22,7 +20,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Spatial attributes in the application schema for the feature types.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */

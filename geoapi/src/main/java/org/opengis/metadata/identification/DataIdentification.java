@@ -10,31 +10,26 @@
  *************************************************************************************************/
 package org.opengis.metadata.identification;
 
-// J2SE direct dependencies
 import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Locale;
-
-// OpenGIS direct dependencies
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.metadata.extent.GeographicDescription;
 import org.opengis.metadata.spatial.SpatialRepresentationType;
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.ComplianceLevel.*;
-import static org.opengis.annotation.Specification.*;
 
 
 /**
  * Information required to identify a dataset.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
@@ -54,7 +49,7 @@ public interface DataIdentification extends Identification {
      */
     @Profile (level=CORE)
     @UML(identifier="spatialResolution", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Resolution> getSpatialResolutions();
+    Collection<? extends Resolution> getSpatialResolutions();
 
     /**
      * Language(s) used within the dataset.
@@ -65,13 +60,19 @@ public interface DataIdentification extends Identification {
 
     /**
      * Full name of the character coding standard used for the dataset.
+     * @deprecated use getCharacterSets
      */
-    @Profile (level=CORE)
-    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
     Charset getCharacterSet();
 
     /**
-     * Main theme(s) of the datset.
+     * Full name of the character coding standard(s) used for the dataset.
+     */
+    @Profile (level=CORE)
+    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<CharacterSet> getCharacterSets();
+
+    /**
+     * Main theme(s) of the dataset.
      */
     @Profile (level=CORE)
     @UML(identifier="topicCategory", obligation=MANDATORY, specification=ISO_19115)
@@ -81,6 +82,8 @@ public interface DataIdentification extends Identification {
      * Minimum bounding rectangle within which data is available.
      * Only one of {@code getGeographicBox()} and {@link #getGeographicDescription()}
      * should be provided.
+     *
+     * @deprecated not in ISO 19115:2003
      */
     @Profile (level=CORE)
     @UML(identifier="geographicBox", obligation=CONDITIONAL, specification=ISO_19115)
@@ -90,6 +93,8 @@ public interface DataIdentification extends Identification {
      * Description of the geographic area within which data is available.
      * Only one of {@link #getGeographicBox()} and {@code getGeographicDescription()}
      * should be provided.
+     *
+     * @deprecated not in ISO 19115:2003
      */
     @Profile (level=CORE)
     @UML(identifier="geographicDescription", obligation=CONDITIONAL, specification=ISO_19115)
@@ -108,7 +113,7 @@ public interface DataIdentification extends Identification {
      */
     @Profile (level=CORE)
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Extent> getExtent();
+    Collection<? extends Extent> getExtent();
 
     /**
      * Any other descriptive information about the dataset.

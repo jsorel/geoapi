@@ -10,17 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
-// J2SE direct dependencies
 import java.net.URI;
-
-// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
+
 import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.ComplianceLevel.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -29,8 +24,9 @@ import static org.opengis.annotation.Specification.*;
  * Information about on-line sources from which the dataset, specification, or
  * community profile name and extended metadata elements can be obtained.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 1.0
  */
 @Profile (level=CORE)
@@ -56,6 +52,14 @@ public interface OnLineResource {
     @UML(identifier="applicationProfile", obligation=OPTIONAL, specification=ISO_19115)
     String getApplicationProfile();
 
+    /**
+     * Name of the online resource. Returns {@code null} if none.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
+    String getName();
+    
     /**
      * Detailed text description of what the online resource is/does.
      * Returns {@code null} if none.

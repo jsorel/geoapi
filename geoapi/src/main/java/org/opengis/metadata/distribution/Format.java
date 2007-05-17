@@ -10,15 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.distribution;
 
-// J2SE direct dependencies
 import java.util.Collection;
-
-// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.ComplianceLevel.*;
@@ -29,7 +25,7 @@ import static org.opengis.annotation.Specification.*;
  * Description of the computer language construct that specifies the representation
  * of data objects in a record, file, message, storage device or transmission channel.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
@@ -73,5 +69,5 @@ public interface Format {
      * Provides information about the distributor’s format.
      */
     @UML(identifier="formatDistributor", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Distributor> getFormatDistributors();
+    Collection<? extends Distributor> getFormatDistributors();
 }

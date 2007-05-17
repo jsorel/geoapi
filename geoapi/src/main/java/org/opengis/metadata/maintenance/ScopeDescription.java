@@ -10,11 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.maintenance;
 
-// J2SE directdependencies
 import java.util.Set;
-
-// Annotations
 import org.opengis.annotation.UML;
+import org.opengis.feature.type.AttributeType;
+import org.opengis.feature.type.FeatureType;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -22,12 +22,10 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Description of the class of information covered by the information.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
- *
- * @todo Collection types in this interface are not yet defined, because they require
- *       {@code Feature} and {@code FeatureType}.
  */
 @UML(identifier="MD_ScopeDescription", specification=ISO_19115)
 public interface ScopeDescription {
@@ -35,17 +33,42 @@ public interface ScopeDescription {
      * Attributes to which the information applies.
      */
     @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
-    public Set getAttributes();
+    public Set<? extends AttributeType> getAttributes();
 
     /**
      * Features to which the information applies.
      */
     @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115)
-    public Set getFeatures();
+    public Set<? extends FeatureType> getFeatures();
 
     /**
-     * Reature instances to which the information applies.
+     * Feature instances to which the information applies.
      */
     @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    public Set getFeatureInstances();
+    public Set<? extends FeatureType> getFeatureInstances();
+
+    /**
+     * Attribute instances to which the information applies.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
+    public Set<? extends AttributeType> getAttributeInstances();
+
+    /**
+     * Dataset to which the information applies.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
+    public String getDataset();
+
+    /**
+     * Class of information that does not fall into the other categories to
+     * which the information applies.
+     *
+     * @since GeoAPI 2.1
+     */
+    @UML(identifier="other", obligation=CONDITIONAL, specification=ISO_19115)
+    public String getOther();
 }

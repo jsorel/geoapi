@@ -10,10 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage.processing;
 
-// J2SE dependencies
 import java.util.Collection;
-
-// OpenGIS direct dependencies
 import org.opengis.coverage.grid.GridCoverage;
 import org.opengis.coverage.SampleDimensionType; // For javadoc
 import org.opengis.coverage.MetadataNameNotFoundException;
@@ -22,9 +19,8 @@ import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterNotFoundException;
 import org.opengis.parameter.InvalidParameterNameException;
 import org.opengis.parameter.InvalidParameterValueException;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -78,7 +74,6 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
- * @deprecated In favor of migrating to ISO 19123 definition for Coverage.
  */
 @UML(identifier="GP_GridCoverageProcessor", specification=OGC_01004)
 public interface GridCoverageProcessor {
@@ -87,7 +82,10 @@ public interface GridCoverageProcessor {
      * An empty list will returned if no metadata is available.
      *
      * @return The list of metadata keywords for the interface.
+     *
+     * @deprecated No replacement.
      */
+    @Deprecated
     @UML(identifier="metadataNames", obligation=MANDATORY, specification=OGC_01004)
     String[] getMetadataNames();
 
@@ -97,7 +95,10 @@ public interface GridCoverageProcessor {
      * @param  name Metadata keyword for which to retrieve metadata.
      * @return The metadata value for a given metadata name.
      * @throws MetadataNameNotFoundException if there is no value for the specified metadata name.
+     *
+     * @deprecated No replacement.
      */
+    @Deprecated
     @UML(identifier="getMetadataValue", obligation=MANDATORY, specification=OGC_01004)
     String getMetadataValue(String name) throws MetadataNameNotFoundException;
 
@@ -141,7 +142,10 @@ public interface GridCoverageProcessor {
      *
      * @param  gridCoverage Grid coverage on which the analysis will be performed.
      * @return A new {@link GridAnalysis} interface.
+     *
+     * @deprecated No replacement.
      */
+    @Deprecated
     @UML(identifier="analyze", obligation=MANDATORY, specification=OGC_01004)
     GridAnalysis analyze(GridCoverage gridCoverage);
 

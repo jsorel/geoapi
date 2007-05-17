@@ -10,15 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
-// J2SE direct dependencies
 import java.util.Collection;
-
-// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.ResponsibleParty;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -26,7 +22,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * New metadata element, not found in ISO 19115, which is required to describe geographic data.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
@@ -118,11 +114,11 @@ public interface ExtendedElementInformation {
      * Reason for creating the extended element.
      */
     @UML(identifier="rationale", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<InternationalString> getRationales();
+    Collection<? extends InternationalString> getRationales();
 
     /**
      * Name of the person or organization creating the extended element.
      */
     @UML(identifier="source", obligation=MANDATORY, specification=ISO_19115)
-    Collection<ResponsibleParty> getSources();
+    Collection<? extends ResponsibleParty> getSources();
 }

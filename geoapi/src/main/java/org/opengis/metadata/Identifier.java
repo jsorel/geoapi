@@ -10,12 +10,10 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
-// OpenGIS direct dependencies
 import org.opengis.metadata.citation.Citation;
-
-// Annotations
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -23,7 +21,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Value uniquely identifying an object within a namespace.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
@@ -50,12 +48,12 @@ public interface Identifier {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
-     * methods. This is used for setting the value to be returned by {@link #getVersion}.
-     *
-     * @see #getVersion
+     * methods. This is used for setting the value to be returned by {@link #getAuthority}.
+     * 
+     * @deprecated Moved to {@link org.opengis.referencing.ReferenceIdentifier#VERSION_KEY}.
      */
-    String VERSION_KEY = "version";
-
+    String VERSION_KEY = org.opengis.referencing.ReferenceIdentifier.VERSION_KEY;
+    
     /**
      * Alphanumeric value identifying an instance in the namespace.
      */
@@ -74,6 +72,8 @@ public interface Identifier {
      * This version is included only when the {@linkplain #getCode code} uses versions. When
      * appropriate, the edition is identified by the effective date, coded using ISO 8601 date
      * format.
+     * 
+     * @deprecated Moved to {@link org.opengis.referencing.ReferenceIdentifier#getVersion()}.
      */
     @Extension
     String getVersion();

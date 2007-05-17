@@ -10,17 +10,13 @@
  *************************************************************************************************/
 package org.opengis.metadata.quality;
 
-// J2SE direct dependencies
 import java.util.Collection;
 import java.util.Date;
-
-// OpenGIS direct dependencies
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -28,8 +24,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Type of test applied to the data specified by a data quality scope.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @UML(identifier="DQ_Element", specification=ISO_19115)
@@ -72,11 +69,11 @@ public interface Element {
 
     /**
      * Date or range of dates on which a data quality measure was applied.
-     * The array length is 1 for a single date, or 2 for a range. Returns
-     * {@code null} if this information is not available.
+     * The collection size is 1 for a single date, or 2 for a range. Returns
+     * an empty collection if this information is not available.
      */
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115)
-    Date[] getDate();
+    Collection<Date> getDate();
 
     /**
      * Value (or set of values) obtained from applying a data quality measure or the out
@@ -84,5 +81,5 @@ public interface Element {
      * acceptable conformance quality level.
      */
     @UML(identifier="result", obligation=MANDATORY, specification=ISO_19115)
-    Result getResult();
+    Collection<? extends Result> getResult();
 }

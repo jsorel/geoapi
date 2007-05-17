@@ -10,9 +10,8 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid.quadrilateral;
 
-// Annotations
 import org.opengis.annotation.UML;
-import org.opengis.spatialschema.geometry.geometry.Position;
+import org.opengis.geometry.coordinate.Position;
 import org.opengis.util.Cloneable;
 
 import static org.opengis.annotation.Obligation.*;
@@ -36,11 +35,11 @@ public interface GridEnvelope extends Cloneable {
      * Returns the minimal coordinate values for all grid points within the {@linkplain Grid grid}.
      */
     @UML(identifier="low", obligation=MANDATORY, specification=ISO_19123)
-	GridCoordinates getLow();
+    GridCoordinates getLow();
 
     /**
      * Returns the maximal coordinate values for all grid points within the {@linkplain Grid grid}.
      */
     @UML(identifier="high", obligation=MANDATORY, specification=ISO_19123)
-	GridCoordinates getHigh();
+    GridCoordinates getHigh();
 }

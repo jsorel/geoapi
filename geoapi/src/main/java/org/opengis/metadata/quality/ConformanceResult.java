@@ -10,12 +10,10 @@
  *************************************************************************************************/
 package org.opengis.metadata.quality;
 
-// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -24,8 +22,9 @@ import static org.opengis.annotation.Specification.*;
  * Information about the outcome of evaluating the obtained value (or set of values) against
  * a specified acceptable conformance quality level.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  */
 @UML(identifier="DQ_ConformanceResult", specification=ISO_19115)

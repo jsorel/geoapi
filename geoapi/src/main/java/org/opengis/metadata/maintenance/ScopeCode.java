@@ -10,15 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.maintenance;
 
-// J2SE directdependencies
 import java.util.List;
 import java.util.ArrayList;
-
-// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -26,8 +22,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Class of information to which the referencing entity applies.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
+ * @author Cory Horner (Refractions Research)
  * @since GeoAPI 2.0
  *
  * @see org.opengis.metadata.quality.Scope
@@ -43,12 +40,10 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<ScopeCode> VALUES = new ArrayList<ScopeCode>(15);
+    private static final List<ScopeCode> VALUES = new ArrayList<ScopeCode>(16);
 
     /**
-     * Information applies to the attribute class.
-     *
-     * @todo Should we said "... to the attribute object"?
+     * Information applies to the attribute value.
      */
     @UML(identifier="attribute", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode ATTRIBUTE = new ScopeCode("ATTRIBUTE");
@@ -78,7 +73,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     public static final ScopeCode DATASET = new ScopeCode("DATASET");
 
     /**
-     * Information applies to the series.
+     * Information applies to the series.  Note: "series" applies to any {@code DS_Aggregate}.
      */
     @UML(identifier="series", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode SERIES = new ScopeCode("SERIES");
@@ -138,6 +133,12 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      */
     @UML(identifier="model", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode MODEL = new ScopeCode("MODEL");
+
+    /**
+     * Information applies to a copy or imitation of an existing or hypothetical object.
+     */
+    @UML(identifier="tile", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode TILE = new ScopeCode("TILE");
 
     /**
      * Constructs an enum with the given name. The new enum is

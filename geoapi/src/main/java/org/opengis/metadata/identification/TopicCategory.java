@@ -10,15 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.identification;
 
-// J2SE directdependencies
 import java.util.List;
 import java.util.ArrayList;
-
-// OpenGIS direct dependencies
 import org.opengis.util.CodeList;
-
-// Annotations
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -31,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * NOTE: It is understood there are overlaps between general categories and the user
  *       is encouraged to select the one most appropriate.
  *
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
@@ -126,9 +122,16 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      *
      * Examples: disease and illness, factors affecting health, hygiene, substance abuse,
      *           mental and physical health, health services.
+     *
+     * @since GeoAPI 2.1
      */
-    @UML(identifier="healt", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory HEALT = new TopicCategory("HEALT");
+    @UML(identifier="health", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final TopicCategory HEALTH = new TopicCategory("HEALTH");
+
+    /**
+     * @deprecated Renamed as {@link #HEALTH}.
+     */
+    public static final TopicCategory HEALT = HEALTH;
 
     /**
      * Base maps.
@@ -166,7 +169,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     public static final TopicCategory LOCATION = new TopicCategory("LOCATION");
 
     /**
-     * Geatures and characteristics of salt water bodies (excluding inland waters).
+     * Features and characteristics of salt water bodies (excluding inland waters).
      *
      * Examples: tides, tidal waves, coastal information, reefs.
      */

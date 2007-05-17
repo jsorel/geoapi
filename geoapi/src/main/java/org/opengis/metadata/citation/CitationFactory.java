@@ -10,14 +10,9 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
-// J2SE direct dependencies
 import java.net.URI;
 import java.util.Collection;
-
-// OpenGIS direct dependencies
 import org.opengis.util.InternationalString;
-
-// Annotations
 import org.opengis.annotation.Obligation;
 
 
@@ -26,7 +21,7 @@ import org.opengis.annotation.Obligation;
  * All factory methods accept null value for {@linkplain Obligation#OPTIONAL optional} arguments.
  * The value must be non-null for {@linkplain Obligation#MANDATORY mandatory} arguments.
  * 
- * @version <A HREF="http://www.opengis.org/docs/01-111.pdf">Abstract specification 5.0</A>
+ * @version <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Jesse Crossley (SYS Technologies)
  * @since GeoAPI 2.0
  */

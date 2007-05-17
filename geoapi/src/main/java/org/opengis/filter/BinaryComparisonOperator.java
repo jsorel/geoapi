@@ -31,27 +31,18 @@ public interface BinaryComparisonOperator extends Filter {
     @XmlElement("expression")
     Expression getExpression1();
     
-    /**
-     * The first of two expression to be compared by this operator.
-     * <p>
-     * When parsing the BNF form of Expression this is the "left hand side".
-     * </p>
-     * @param expression first of two expressions compared 
-     */
-    void setExpression1( Expression expression);
-
-    /**
+   /**
      * Returns the second of the two expressions to be compared by this operator.
      */
     @XmlElement("expression")
     Expression getExpression2();
     
     /**
-     * The second of two expression to be compared by this operator.
-     * <p>
-     * When parsing the BNF form of Expression this is the "right hand side".
-     * </p>
-     * @param expression second of two expressions compared 
+     * Flag controlling wither comparisons are case sensitive.
+     * 
+     * @return <code>true</code> if the comparison is case sensetive, otherwise <code>false</code>.
      */
-    void setExpression2( Expression expression);
+    @XmlElement("matchCase")
+    boolean isMatchingCase();
+    
 }
