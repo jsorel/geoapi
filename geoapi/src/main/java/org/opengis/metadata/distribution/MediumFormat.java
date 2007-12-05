@@ -93,14 +93,14 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      */
     public static MediumFormat[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new MediumFormat[VALUES.size()]);
+            return (MediumFormat[]) VALUES.toArray(new MediumFormat[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public MediumFormat[] family() {
+    public /*{MediumFormat}*/ CodeList[] family() {
         return values();
     }
 

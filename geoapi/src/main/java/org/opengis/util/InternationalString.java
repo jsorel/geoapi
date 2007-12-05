@@ -30,7 +30,7 @@ import org.opengis.annotation.Extension;
  * @see NameFactory#createInternationalString
  */
 @Extension
-public interface InternationalString extends CharSequence, Comparable<InternationalString> {
+public interface InternationalString extends CharSequence, Comparable {
     /**
      * Returns this string in the given locale. If no string is available in the given locale,
      * then some default locale is used. The default locale is implementation-dependent. It
@@ -54,6 +54,5 @@ public interface InternationalString extends CharSequence, Comparable<Internatio
      *
      * @return The string in the default locale.
      */
-    @Override
     String toString();
 }

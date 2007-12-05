@@ -35,6 +35,5 @@ public interface Identifier<T,O> {
     /**
      * Returns a string representation of the identifier.
      */
-    @Override
     String toString();
 }

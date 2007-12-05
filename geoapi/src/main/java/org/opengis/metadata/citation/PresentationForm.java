@@ -150,14 +150,14 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      */
     public static PresentationForm[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new PresentationForm[VALUES.size()]);
+            return (PresentationForm[]) VALUES.toArray(new PresentationForm[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public PresentationForm[] family() {
+    public /*{PresentationForm}*/ CodeList[] family() {
         return values();
     }
 

@@ -99,14 +99,14 @@ public final class Progress extends CodeList<Progress> {
      */
     public static Progress[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Progress[VALUES.size()]);
+            return (Progress[]) VALUES.toArray(new Progress[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public Progress[] family() {
+    public /*{Progress}*/ CodeList[] family() {
         return values();
     }
 

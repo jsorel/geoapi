@@ -150,10 +150,9 @@ public interface FeatureCollection {
      * <p>
      * XPath Mapping:
      * <ul>
-     * <li>Preferred: {@code featureMember}
-     * <li>Legal: {@code featureMembers}
+     * <li>Preferred:<code>featureMember/*</code>
+     * <li>Legal:<code>featureMembers</code>
      * </ul>
-     *
      * @return Iterator over the contents of this feature collection.
      */
     Iterator<Feature> iterator();

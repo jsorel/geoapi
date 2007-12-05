@@ -174,14 +174,14 @@ public class SequenceType extends CodeList<SequenceType> {
      */
     public static SequenceType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new SequenceType[VALUES.size()]);
+            return (SequenceType[]) VALUES.toArray(new SequenceType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public SequenceType[] family() {
+    public /*{SequenceType}*/ CodeList[] family() {
         return values();
     }
 

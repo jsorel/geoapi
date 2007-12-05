@@ -119,7 +119,6 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
     /**
      * Returns a string representation of this code list.
      */
-    @Override
     public String toString() {
         String classname = getClass().getName();
         final int i = classname.lastIndexOf('.');

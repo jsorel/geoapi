@@ -163,14 +163,14 @@ public final class MediumName extends CodeList<MediumName> {
      */
     public static MediumName[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new MediumName[VALUES.size()]);
+            return (MediumName[]) VALUES.toArray(new MediumName[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public MediumName[] family() {
+    public /*{MediumName}*/ CodeList[] family() {
         return values();
     }
 

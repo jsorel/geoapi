@@ -14,7 +14,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
-import org.opengis.webservice.MetadataType;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -73,14 +72,14 @@ public final class Obligation extends CodeList<Obligation> {
      */
     public static Obligation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Obligation[VALUES.size()]);
+            return (Obligation[]) VALUES.toArray(new Obligation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public Obligation[] family() {
+    public /*{Obligation}*/ CodeList[] family() {
         return values();
     }
 

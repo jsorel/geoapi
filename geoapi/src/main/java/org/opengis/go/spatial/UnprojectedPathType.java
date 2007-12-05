@@ -73,7 +73,7 @@ public final class UnprojectedPathType extends PathType {
     /**
      * Returns the list of {@code UnprojectedPathType}s.
      */
-    public static UnprojectedPathType[] values() {
+    public static /*{UnprojectedPathType}*/ PathType[] values() {
         synchronized (VALUES) {
             return values(UnprojectedPathType.class, count);
         }
@@ -83,7 +83,7 @@ public final class UnprojectedPathType extends PathType {
      * Returns the list of enumerations of the same kind than this enum.
      */
     @Override
-    public UnprojectedPathType[] family() {
+    public /*{UnprojectedPathType}*/ org.opengis.util.CodeList[] family() {
         return values();
     }
 }

@@ -14,7 +14,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
-import org.opengis.webservice.ExceptionCode;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -116,14 +115,14 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      */
     public static GeometricObjectType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new GeometricObjectType[VALUES.size()]);
+            return (GeometricObjectType[]) VALUES.toArray(new GeometricObjectType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public GeometricObjectType[] family() {
+    public /*{GeometricObjectType}*/ CodeList[] family() {
         return values();
     }
 

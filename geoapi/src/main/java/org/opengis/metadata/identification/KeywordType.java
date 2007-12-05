@@ -86,14 +86,14 @@ public final class KeywordType extends CodeList<KeywordType> {
      */
     public static KeywordType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new KeywordType[VALUES.size()]);
+            return (KeywordType[]) VALUES.toArray(new KeywordType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public KeywordType[] family() {
+    public /*{KeywordType}*/ CodeList[] family() {
         return values();
     }
 

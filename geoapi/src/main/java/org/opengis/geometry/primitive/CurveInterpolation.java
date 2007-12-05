@@ -152,14 +152,14 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      */
     public static CurveInterpolation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new CurveInterpolation[VALUES.size()]);
+            return (CurveInterpolation[]) VALUES.toArray(new CurveInterpolation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CurveInterpolation[] family() {
+    public /*{CurveInterpolation}*/ CodeList[] family() {
         return values();
     }
 

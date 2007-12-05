@@ -188,14 +188,14 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      */
     public static InterpolationMethod[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new InterpolationMethod[VALUES.size()]);
+            return (InterpolationMethod[]) VALUES.toArray(new InterpolationMethod[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public InterpolationMethod[] family() {
+    public /*{InterpolationMethod}*/ CodeList[] family() {
         return values();
     }
 

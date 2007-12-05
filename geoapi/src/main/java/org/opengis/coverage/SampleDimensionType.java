@@ -194,14 +194,14 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
      */
     public static SampleDimensionType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new SampleDimensionType[VALUES.size()]);
+            return (SampleDimensionType[]) VALUES.toArray(new SampleDimensionType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public SampleDimensionType[] family() {
+    public /*{SampleDimensionType}*/ CodeList[] family() {
         return values();
     }
 

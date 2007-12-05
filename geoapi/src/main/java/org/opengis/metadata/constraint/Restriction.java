@@ -110,14 +110,14 @@ public final class Restriction extends CodeList<Restriction> {
      */
     public static Restriction[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Restriction[VALUES.size()]);
+            return (Restriction[]) VALUES.toArray(new Restriction[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public Restriction[] family() {
+    public /*{Restriction}*/ CodeList[] family() {
         return values();
     }
 

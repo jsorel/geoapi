@@ -75,14 +75,14 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      */
     public static CoverageContentType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new CoverageContentType[VALUES.size()]);
+            return (CoverageContentType[]) VALUES.toArray(new CoverageContentType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CoverageContentType[] family() {
+    public /*{CoverageContentType}*/ CodeList[] family() {
         return values();
     }
 

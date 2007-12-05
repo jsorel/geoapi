@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.feature;
 
+// J2SE direct dependencies
 import java.util.List;
 
 import org.opengis.annotation.Extension;

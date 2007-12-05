@@ -88,14 +88,14 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
      */
     public static PixelOrientation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new PixelOrientation[VALUES.size()]);
+            return (PixelOrientation[]) VALUES.toArray(new PixelOrientation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public PixelOrientation[] family() {
+    public /*{PixelOrientation}*/ CodeList[] family() {
         return values();
     }
 

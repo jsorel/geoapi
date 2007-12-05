@@ -129,14 +129,14 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
      */
     public static MaintenanceFrequency[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new MaintenanceFrequency[VALUES.size()]);
+            return (MaintenanceFrequency[]) VALUES.toArray(new MaintenanceFrequency[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public MaintenanceFrequency[] family() {
+    public /*{MaintenanceFrequency}*/ CodeList[] family() {
         return values();
     }
 

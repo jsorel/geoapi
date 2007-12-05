@@ -149,14 +149,14 @@ public final class Datatype extends CodeList<Datatype> {
      */
     public static Datatype[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Datatype[VALUES.size()]);
+            return (Datatype[]) VALUES.toArray(new Datatype[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public Datatype[] family() {
+    public /*{Datatype}*/ CodeList[] family() {
         return values();
     }
 

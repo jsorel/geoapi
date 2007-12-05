@@ -125,7 +125,6 @@ public abstract class SimpleEnumerationType<E extends SimpleEnumerationType<E>> 
      *
      * @return the string representation.
      */
-    @Override
     public String toString() {
         return name();
     }

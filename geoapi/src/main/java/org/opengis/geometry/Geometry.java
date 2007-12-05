@@ -435,5 +435,5 @@ public interface Geometry extends TransfiniteSet {
      * @see Cloneable
      * @see #isMutable
      */
-    Geometry clone() throws CloneNotSupportedException;
+    /*{Geometry}*/ Object clone() throws CloneNotSupportedException;
 }

@@ -204,14 +204,14 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
      */
     public static ColorInterpretation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ColorInterpretation[VALUES.size()]);
+            return (ColorInterpretation[]) VALUES.toArray(new ColorInterpretation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public ColorInterpretation[] family() {
+    public /*{ColorInterpretation}*/ CodeList[] family() {
         return values();
     }
 

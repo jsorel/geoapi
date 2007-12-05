@@ -107,14 +107,14 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
      */
     public static CommonPointRule[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new CommonPointRule[VALUES.size()]);
+            return (CommonPointRule[]) VALUES.toArray(new CommonPointRule[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CommonPointRule[] family() {
+    public /*{CommonPointRule}*/ CodeList[] family() {
         return values();
     }
 

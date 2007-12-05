@@ -93,14 +93,14 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
      */
     public static BSplineSurfaceForm[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new BSplineSurfaceForm[VALUES.size()]);
+            return (BSplineSurfaceForm[]) VALUES.toArray(new BSplineSurfaceForm[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public BSplineSurfaceForm[] family() {
+    public /*{BSplineSurfaceForm}*/ CodeList[] family() {
         return values();
     }
 
