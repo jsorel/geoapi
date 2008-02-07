@@ -88,14 +88,14 @@ public class LineJoin extends SimpleEnumerationType<LineJoin> {
      */
     public static LineJoin[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new LineJoin[VALUES.size()]);
+            return (LineJoin[]) VALUES.toArray(new LineJoin[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public LineJoin[] family() {
+    public /*{LineJoin}*/ CodeList[] family() {
         return values();
     }
 }

@@ -1,72 +1,48 @@
-/*$************************************************************************************************
- **
- ** $Id$
- **
- ** $URL$
- **
- ** Copyright (C) 2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
- **
- *************************************************************************************************/
 package org.opengis.filter;
 
-import java.io.ObjectStreamException;
 import java.io.Serializable;
 
-
 /**
- * Indicating "no filtering", evaluates to {@code true}.
- * This is a placeholder filter intended to be used in data structuring definition.
+ * Indicating "no filtering", evaultates to <code>true</code>.
  * <p>
+ * This is a placeholder filter intended to be used in data
+ * structuring definition.
  * <ul>
- *   <li>INCLUDE or  Filter ==> INCLUDE</li>
- *   <li>INCLUDE and Filter ==> Filter</li>
- *   <li>not INCLUDE ==> EXCLUDE</li>
+ * <li>
+ * <ul>INCLUDE or  Filter ==> INCLUDE
+ * <ul>INCLUDE and Filter ==> Filter
+ * <ul>       not INCLUDE ==> EXCLUDE
  * </ul>
- * <p>
- * The above does imply that the OR opperator can short circuit on encountering NONE.
+ * The above does imply that the OR opperator can short circuit on
+ * encountering NONE.
+ * </p>
  *
- * @author Jody Garnett (Refractions Research, Inc.)
- * @author Martin Desruisseaux (Geomatys)
+ * @author Jody Garnett, Refractions Research, Inc.
  */
 public final class IncludeFilter implements Filter, Serializable {
-    /**
-     * For cross-version compatibility.
-     */
     private static final long serialVersionUID = -8429407144421087160L;
 
-    /**
-     * Not extensible.
-     */
-    IncludeFilter() {
-    }
+    /** non extensible */
+    IncludeFilter(){}
 
-    /**
-     * Accepts a visitor.
-     */
     public Object accept(FilterVisitor visitor, Object extraData) {
         return visitor.visit( this, extraData );
     }
-
     /**
-     * Returns {@code true}, content is included.
+     * Returns <code>true</code>, content is included.
      */
     public boolean evaluate(Object object) {
         return true;
     }
-
-    /**
-     * Returns a string representation of this filter.
-     */
     @Override
+    public boolean equals(Object obj) {
+        return Filter.INCLUDE == obj;
+    }
+    @Override
+    public int hashCode() {
+        return 0;
+    }
     public String toString() {
         return "Filter.INCLUDE";
-    }
-
-    /**
-     * Returns the canonical instance on deserialization.
-     */
-    private Object readResolve() throws ObjectStreamException {
-        return Filter.INCLUDE;
     }
 }

@@ -11,8 +11,10 @@
 package org.opengis.filter.sort;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.opengis.annotation.UML;
+import org.opengis.coverage.grid.quadrilateral.SequenceType;
 import org.opengis.util.CodeList;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
@@ -76,14 +78,6 @@ public final class SortOrder extends CodeList<SortOrder> {
     }
 
     /**
-     * Constructs an enum with identical name and SQL keyword.
-     * This is needed for {@link CodeList#valueOf} reflection.
-     */
-    private SortOrder(final String name) {
-        this(name, name);
-    }
-
-    /**
      * Returns the element name for this sorting order as a SQL {@code "ASC"}
      * or {@code "DESC"} keyword.
      * <p>
@@ -100,22 +94,34 @@ public final class SortOrder extends CodeList<SortOrder> {
      */
     public static SortOrder[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new SortOrder[VALUES.size()]);
+            return (SortOrder[]) VALUES.toArray(new SortOrder[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public SortOrder[] family() {
+    public /*{SortOrder}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the sort order that matches the given string, or returns a
+     * Returns the SortOrder that matches the given string, or returns a
      * new one if none match it.
      */
     public static SortOrder valueOf(String code) {
-        return valueOf(SortOrder.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                SortOrder type = (SortOrder) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new SortOrder(code, code);
+        }
     }
 }

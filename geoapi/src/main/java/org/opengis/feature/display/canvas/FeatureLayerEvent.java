@@ -77,17 +77,15 @@ public class FeatureLayerEvent extends EventObject {
     /**
      * Returns the modified layer.
      */
-    @Override
-    public FeatureLayer getSource() {
+    public /*{FeatureLayer}*/ Object getSource() {
         return (FeatureLayer) super.getSource();
     }
 
     /**
      * Synonym for {@link #getSource}.
      *
-     * @deprecated To be replaced by {@link #getSource} in a J2SE 1.5 profile.
+     * @todo To be replaced by {@link #getSource} in a J2SE 1.5 profile.
      */
-    @Deprecated
     public FeatureLayer getLayer() {
         return (FeatureLayer) super.getSource();
     }

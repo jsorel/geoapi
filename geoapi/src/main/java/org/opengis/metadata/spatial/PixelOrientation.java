@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.referencing.datum.PixelInCell;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -86,22 +88,34 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
      */
     public static PixelOrientation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new PixelOrientation[VALUES.size()]);
+            return (PixelOrientation[]) VALUES.toArray(new PixelOrientation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public PixelOrientation[] family() {
+    public /*{PixelOrientation}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the pixel orientation that matches the given string, or returns a
+     * Returns the PixelOrientation that matches the given string, or returns a
      * new one if none match it.
      */
     public static PixelOrientation valueOf(String code) {
-        return valueOf(PixelOrientation.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                PixelOrientation type = (PixelOrientation) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new PixelOrientation(code);
+        }
     }
 }

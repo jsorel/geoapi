@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.geometry;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.spatial.PixelOrientation;
 import org.opengis.util.CodeList;
 
 
@@ -70,14 +72,6 @@ public final class PrecisionType extends CodeList<PrecisionType> {
     }
 
     /**
-     * Constructs an enum with a default {@code isFloating} value.
-     * This is needed for {@link CodeList#valueOf} reflection.
-     */
-    private PrecisionType(final String name) {
-        this(name, true);
-    }
-
-    /**
      * Returns {@code true} if {@code PrecisionModelType} is a represented using floating point
      * arithmatic (rather then a grid).
      *
@@ -92,22 +86,34 @@ public final class PrecisionType extends CodeList<PrecisionType> {
      */
     public static PrecisionType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new PrecisionType[VALUES.size()]);
+            return (PrecisionType[]) VALUES.toArray(new PrecisionType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public PrecisionType[] family() {
+    public /*{PrecisionModelType}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the precision type that matches the given string, or returns a
+     * Returns the PrecisionType that matches the given string, or returns a
      * new one if none match it.
      */
     public static PrecisionType valueOf(String code) {
-        return valueOf(PrecisionType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                PrecisionType type = (PrecisionType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new PrecisionType(code, true);
+        }
     }
 }

@@ -41,17 +41,17 @@ import org.opengis.feature.type.FeatureType;  // For javadoc
 @XmlElement("Filter")
 public interface Filter {
     /**
-     * Placeholder Filter that evaulates to {@code true}.
+     * Placeholder Filter that evaulates to <code>true</code>.
      * <p>
-     * Filtering a set with {@code Filter.INCLUDE} results in the origional set.
+     * Filtering a set with Filter.INCLUDE results in the origional set.
+     * </p>
      */
     IncludeFilter INCLUDE = new IncludeFilter();
 
-    /**
-     * Placeholder Filter that evaulates to {@code false}.
+    /**Placeholder Filter that evaulates to <code>false</code>.
      * <p>
-     * Filtering a set with {@code Filter.EXCLUDE} results in the empty Set.
-     */
+     * Filtering a set with Filter.EXCLUDE results in the Empty Set.
+     * */
     ExcludeFilter EXCLUDE = new ExcludeFilter();
 
     /**

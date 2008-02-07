@@ -68,7 +68,6 @@ public interface GenericName extends Comparable<GenericName> {
      *
      * @deprecated Replaced by {@link #scope}.
      */
-    @Deprecated
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19103)
     GenericName getScope();
 
@@ -102,7 +101,6 @@ public interface GenericName extends Comparable<GenericName> {
      *
      * @deprecated Renamed as {@link #name()}.
      */
-    @Deprecated
     @Extension
     LocalName asLocalName();
 
@@ -129,7 +127,6 @@ public interface GenericName extends Comparable<GenericName> {
      *
      * @deprecated Replaced by {@link #toFullyQualifiedName}.
      */
-    @Deprecated
     @Extension
     ScopedName asScopedName();
 
@@ -169,7 +166,6 @@ public interface GenericName extends Comparable<GenericName> {
      * separated by an arbitrary character (usually {@code :} or {@code /}).
      */
     @Extension
-    ///@Override    
     String toString();
 
     /**

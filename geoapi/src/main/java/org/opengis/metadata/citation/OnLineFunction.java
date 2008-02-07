@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.Obligation;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -85,22 +87,34 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      */
     public static OnLineFunction[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new OnLineFunction[VALUES.size()]);
+            return (OnLineFunction[]) VALUES.toArray(new OnLineFunction[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public OnLineFunction[] family() {
+    public /*{OnLineFunction}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the on line function that matches the given string, or returns a
+     * Returns the OnLineFunction that matches the given string, or returns a
      * new one if none match it.
      */
     public static OnLineFunction valueOf(String code) {
-        return valueOf(OnLineFunction.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                OnLineFunction type = (OnLineFunction) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new OnLineFunction(code);
+        }
     }
 }

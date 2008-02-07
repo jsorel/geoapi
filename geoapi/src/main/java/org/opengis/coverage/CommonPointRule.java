@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection; // For javadoc
@@ -106,22 +107,34 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
      */
     public static CommonPointRule[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new CommonPointRule[VALUES.size()]);
+            return (CommonPointRule[]) VALUES.toArray(new CommonPointRule[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CommonPointRule[] family() {
+    public /*{CommonPointRule}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the common point rule that matches the given string, or returns a
+     * Returns the CommonPointRule that matches the given string, or returns a
      * new one if none match it.
      */
     public static CommonPointRule valueOf(String code) {
-        return valueOf(CommonPointRule.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                CommonPointRule type = (CommonPointRule) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new CommonPointRule(code);
+        }
     }
 }

@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.geometry.coordinate;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -91,22 +93,34 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
      */
     public static BSplineSurfaceForm[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new BSplineSurfaceForm[VALUES.size()]);
+            return (BSplineSurfaceForm[]) VALUES.toArray(new BSplineSurfaceForm[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public BSplineSurfaceForm[] family() {
+    public /*{BSplineSurfaceForm}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the B-spline surface form that matches the given string, or returns a
+     * Returns the BSplineSurfaceForm that matches the given string, or returns a
      * new one if none match it.
      */
     public static BSplineSurfaceForm valueOf(String code) {
-        return valueOf(BSplineSurfaceForm.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                BSplineSurfaceForm type = (BSplineSurfaceForm) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new BSplineSurfaceForm(code);
+        }
     }
 }

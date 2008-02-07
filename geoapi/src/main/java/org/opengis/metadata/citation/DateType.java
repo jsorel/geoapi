@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.Datatype;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -73,22 +75,34 @@ public final class DateType extends CodeList<DateType> {
      */
     public static DateType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new DateType[VALUES.size()]);
+            return (DateType[]) VALUES.toArray(new DateType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public DateType[] family() {
+    public /*{DateType}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the date type that matches the given string, or returns a
+     * Returns the DateType that matches the given string, or returns a
      * new one if none match it.
      */
     public static DateType valueOf(String code) {
-        return valueOf(DateType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                DateType type = (DateType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new DateType(code);
+        }
     }
 }

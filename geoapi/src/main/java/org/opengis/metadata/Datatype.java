@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geometry.primitive.CurveInterpolation;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -147,22 +149,34 @@ public final class Datatype extends CodeList<Datatype> {
      */
     public static Datatype[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Datatype[VALUES.size()]);
+            return (Datatype[]) VALUES.toArray(new Datatype[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public Datatype[] family() {
+    public /*{Datatype}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the datatype that matches the given string, or returns a
+     * Returns the Datatype that matches the given string, or returns a
      * new one if none match it.
      */
     public static Datatype valueOf(String code) {
-        return valueOf(Datatype.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                Datatype type = (Datatype) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new Datatype(code);
+        }
     }
 }

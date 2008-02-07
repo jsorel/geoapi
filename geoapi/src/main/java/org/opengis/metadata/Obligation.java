@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -71,22 +72,34 @@ public final class Obligation extends CodeList<Obligation> {
      */
     public static Obligation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Obligation[VALUES.size()]);
+            return (Obligation[]) VALUES.toArray(new Obligation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public Obligation[] family() {
+    public /*{Obligation}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the obligation that matches the given string, or returns a
+     * Returns the Obligation that matches the given string, or returns a
      * new one if none match it.
      */
     public static Obligation valueOf(String code) {
-        return valueOf(Obligation.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                Obligation type = (Obligation) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new Obligation(code);
+        }
     }
 }

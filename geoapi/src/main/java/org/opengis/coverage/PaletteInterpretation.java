@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.color.ColorSpace; // For Javadoc
 
+import org.opengis.metadata.citation.OnLineFunction;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -93,22 +95,34 @@ public final class PaletteInterpretation extends CodeList<PaletteInterpretation>
      */
     public static PaletteInterpretation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new PaletteInterpretation[VALUES.size()]);
+            return (PaletteInterpretation[]) VALUES.toArray(new PaletteInterpretation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public PaletteInterpretation[] family() {
+    public /*{PaletteInterpretation}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the palette interpretation that matches the given string, or returns a
+     * Returns the PaletteInterpretation that matches the given string, or returns a
      * new one if none match it.
      */
     public static PaletteInterpretation valueOf(String code) {
-        return valueOf(PaletteInterpretation.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                PaletteInterpretation type = (PaletteInterpretation) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new PaletteInterpretation(code);
+        }
     }
 }

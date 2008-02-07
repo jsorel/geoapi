@@ -25,6 +25,4 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("Beyond")
 public interface Beyond extends DistanceBufferOperator {
-	/** Operator name used to check FilterCapabilities */
-	public static String NAME = "Beyond";
 }

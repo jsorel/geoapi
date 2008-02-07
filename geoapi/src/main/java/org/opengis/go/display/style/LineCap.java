@@ -83,14 +83,14 @@ public class LineCap extends SimpleEnumerationType<LineCap> {
      */
     public static LineCap[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new LineCap[VALUES.size()]);
+            return (LineCap[]) VALUES.toArray(new LineCap[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public LineCap[] family() {
+    public /*{LineCap}*/ CodeList[] family() {
         return values();
     }
 }

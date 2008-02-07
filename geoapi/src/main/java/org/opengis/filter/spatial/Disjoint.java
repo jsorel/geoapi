@@ -25,6 +25,4 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("Disjoint")
 public interface Disjoint extends BinarySpatialOperator {
-	/** Operator name used to check FilterCapabilities */
-	public static String NAME = "Disjoint";
 }

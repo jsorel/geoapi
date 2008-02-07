@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.referencing.datum;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.coverage.grid.ValueInBytePacking;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -107,22 +109,34 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      */
     public static VerticalDatumType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new VerticalDatumType[VALUES.size()]);
+            return (VerticalDatumType[]) VALUES.toArray(new VerticalDatumType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public VerticalDatumType[] family() {
+    public /*{VerticalDatumType}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the vertical datum type that matches the given string, or returns a
+     * Returns the VerticalDatumType that matches the given string, or returns a
      * new one if none match it.
      */
     public static VerticalDatumType valueOf(String code) {
-        return valueOf(VerticalDatumType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                VerticalDatumType type = (VerticalDatumType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new VerticalDatumType(code);
+        }
     }
 }

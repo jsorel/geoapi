@@ -12,7 +12,6 @@ package org.opengis.coverage;
 
 import java.util.Set;
 import java.util.Collection;
-import org.opengis.util.Record;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.coordinate.Tin;
 import org.opengis.annotation.UML;
@@ -83,5 +82,5 @@ public interface TinCoverage extends ContinuousCoverage {
      * @todo The return type should be Set<Record>.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
-    Set<Record> evaluate(DirectPosition p, Collection<String> list);
+    Set/*<Record>*/ evaluate(DirectPosition p, Collection<String> list);
 }

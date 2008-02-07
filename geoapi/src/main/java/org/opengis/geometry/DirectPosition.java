@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.geometry;
 
+import org.opengis.util.Cloneable;
 import org.opengis.geometry.coordinate.Position;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
@@ -28,18 +29,13 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case,
  * the cordinate reference system is implicitly assumed to take on the value of the containing
  * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
- * <p>
- * <b>Note:</b> this interface does not extends {@link org.opengis.util.Cloneable} on purpose,
- * since {@code DirectPosition} implementations are most likely to be backed by references to
- * internal structures of the geometry containing this position. A direct position may or may
- * not be cloneable at implementor choice.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
 @UML(identifier="DirectPosition", specification=ISO_19107)
-public interface DirectPosition extends Position {
+public interface DirectPosition extends Position, Cloneable {
     /**
      * The coordinate reference system in which the coordinate is given. May be {@code null} if this
      * particular {@code DirectPosition} is included in a larger object with such a reference to a
@@ -139,7 +135,6 @@ public interface DirectPosition extends Position {
      *
      * @since GeoAPI 2.1
      */
-    ///@Override
     boolean equals(Object object);
 
     /**
@@ -154,6 +149,13 @@ public interface DirectPosition extends Position {
      *
      * @since GeoAPI 2.1
      */
-    ///@Override
     int hashCode();
+
+    /**
+     * Makes an exact copy of this coordinate.
+     *
+     * @deprecated The {@linkplain Cloneable} status of {@code DirectPosition} should be left
+     *             to implementors.
+     */
+    /* {DirectPosition} */Object clone();
 }

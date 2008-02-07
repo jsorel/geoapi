@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.referencing.datum;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.coverage.PaletteInterpretation;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -68,22 +70,34 @@ public final class PixelInCell extends CodeList<PixelInCell> {
      */
     public static PixelInCell[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new PixelInCell[VALUES.size()]);
+            return (PixelInCell[]) VALUES.toArray(new PixelInCell[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public PixelInCell[] family() {
+    public /*{PixelInCell}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the pixel in cell that matches the given string, or returns a
+     * Returns the PixelInCell that matches the given string, or returns a
      * new one if none match it.
      */
     public static PixelInCell valueOf(String code) {
-        return valueOf(PixelInCell.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                PixelInCell type = (PixelInCell) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new PixelInCell(code);
+        }
     }
 }

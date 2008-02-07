@@ -70,7 +70,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @deprecated Renamed as {@link #COORDINATE_OPERATION_ACCURACY_KEY}.
      */
-    @Deprecated
     String POSITIONAL_ACCURACY_KEY = COORDINATE_OPERATION_ACCURACY_KEY;
 
     /**
@@ -91,7 +90,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @deprecated Renamed as {@link #DOMAIN_OF_VALIDITY_KEY}.
      */
-    @Deprecated
     String VALID_AREA_KEY = DOMAIN_OF_VALIDITY_KEY;
 
     /**
@@ -155,7 +153,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @deprecated Renamed as {@link #getCoordinateOperationAccuracy}.
      */
-    @Deprecated
     @UML(identifier="positionalAccuracy", obligation=OPTIONAL, specification=ISO_19111)
     Collection<PositionalAccuracy> getPositionalAccuracy();
 
@@ -176,7 +173,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @deprecated Renamed as {@link #getDomainOfValidity}.
      */
-    @Deprecated
     @UML(identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();
 

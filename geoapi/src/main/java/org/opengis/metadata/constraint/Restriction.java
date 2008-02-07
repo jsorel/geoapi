@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.constraint;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.temporal.RelativePosition;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -108,22 +110,34 @@ public final class Restriction extends CodeList<Restriction> {
      */
     public static Restriction[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Restriction[VALUES.size()]);
+            return (Restriction[]) VALUES.toArray(new Restriction[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public Restriction[] family() {
+    public /*{Restriction}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the restriction that matches the given string, or returns a
+     * Returns the Restriction that matches the given string, or returns a
      * new one if none match it.
      */
     public static Restriction valueOf(String code) {
-        return valueOf(Restriction.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                Restriction type = (Restriction) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new Restriction(code);
+        }
     }
 }

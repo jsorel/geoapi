@@ -80,7 +80,6 @@ public interface ApplicationSchemaInformation {
      *
      * @deprecated removed from ISO_19115
      */
-    @Deprecated
     @UML(identifier="featureCatalogueSupplement", obligation=OPTIONAL, specification=ISO_19115)
     SpatialAttributeSupplement getFeatureCatalogueSupplement();
 }

@@ -25,6 +25,4 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("Touches")
 public interface Touches extends BinarySpatialOperator, BoundedSpatialOperator {
-	/** Operator name used to check FilterCapabilities */
-	public static String NAME = "Touches";
 }

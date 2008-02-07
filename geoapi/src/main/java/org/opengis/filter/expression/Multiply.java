@@ -27,6 +27,4 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("Mul")
 public interface Multiply extends BinaryExpression {
-	/** Operator name used to check FilterCapabilities */
-	public static String NAME = "Mul";
 }

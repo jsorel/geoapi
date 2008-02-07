@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata.content;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.coverage.CommonPointRule;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -73,22 +75,34 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      */
     public static CoverageContentType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new CoverageContentType[VALUES.size()]);
+            return (CoverageContentType[]) VALUES.toArray(new CoverageContentType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CoverageContentType[] family() {
+    public /*{CoverageContentType}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the coverage content type that matches the given string, or returns a
+     * Returns the CoverageContentType that matches the given string, or returns a
      * new one if none match it.
      */
     public static CoverageContentType valueOf(String code) {
-        return valueOf(CoverageContentType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                CoverageContentType type = (CoverageContentType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new CoverageContentType(code);
+        }
     }
 }

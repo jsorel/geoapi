@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.geometry.primitive;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.geometry.DirectPosition; // For javadoc
+import org.opengis.metadata.content.CoverageContentType;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -150,22 +152,34 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      */
     public static CurveInterpolation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new CurveInterpolation[VALUES.size()]);
+            return (CurveInterpolation[]) VALUES.toArray(new CurveInterpolation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CurveInterpolation[] family() {
+    public /*{CurveInterpolation}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the curve interpolation that matches the given string, or returns a
+     * Returns the CoverageContentType that matches the given string, or returns a
      * new one if none match it.
      */
     public static CurveInterpolation valueOf(String code) {
-        return valueOf(CurveInterpolation.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                CurveInterpolation type = (CurveInterpolation) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new CurveInterpolation(code);
+        }
     }
 }

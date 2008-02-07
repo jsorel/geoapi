@@ -50,7 +50,6 @@ public class DashArray extends LinePattern {
      *
      * @deprecated Renamed as {@link #NO_DASH}.
      */
-    @Deprecated
     public static final DashArray NONE = NO_DASH;
 
     //*************************************************************************
@@ -90,9 +89,9 @@ public class DashArray extends LinePattern {
     /**
      * Returns the list of {@code DashArray}s.
      */
-    public static DashArray[] values() {
+    public static /*{DashArray}*/ LinePattern[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new DashArray[VALUES.size()]);
+            return (DashArray[]) VALUES.toArray(new DashArray[VALUES.size()]);
         }
     }
 
@@ -100,7 +99,7 @@ public class DashArray extends LinePattern {
      * Returns the list of enumerations of the same kind than this enum.
      */
     @Override
-    public DashArray[] family() {
+    public /*{DashArray}*/ CodeList[] family() {
         return values();
     }
 }

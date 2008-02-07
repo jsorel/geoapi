@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.content;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.spatial.GeometricObjectType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -124,22 +126,34 @@ public final class ImagingCondition extends CodeList<ImagingCondition> {
      */
     public static ImagingCondition[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ImagingCondition[VALUES.size()]);
+            return (ImagingCondition[]) VALUES.toArray(new ImagingCondition[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public ImagingCondition[] family() {
+    public /*{ImagingCondition}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the imaging condition that matches the given string, or returns a
+     * Returns the ImagingCondition that matches the given string, or returns a
      * new one if none match it.
      */
     public static ImagingCondition valueOf(String code) {
-        return valueOf(ImagingCondition.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                ImagingCondition type = (ImagingCondition) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new ImagingCondition(code);
+        }
     }
 }

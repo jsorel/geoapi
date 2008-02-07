@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geometry.coordinate.BSplineSurfaceForm;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -87,22 +89,34 @@ public final class ByteInValuePacking extends CodeList<ByteInValuePacking> {
      */
     public static ByteInValuePacking[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ByteInValuePacking[VALUES.size()]);
+            return (ByteInValuePacking[]) VALUES.toArray(new ByteInValuePacking[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public ByteInValuePacking[] family() {
+    public /*{ByteInValuePacking}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the byte in value packing that matches the given string, or returns a
+     * Returns the ByteInValuePacking that matches the given string, or returns a
      * new one if none match it.
      */
     public static ByteInValuePacking valueOf(String code) {
-        return valueOf(ByteInValuePacking.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                ByteInValuePacking type = (ByteInValuePacking) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new ByteInValuePacking(code);
+        }
     }
 }

@@ -53,7 +53,6 @@ public interface CoverageDescription extends ContentInformation {
      *
      * @deprecated Use {@link #getDimensions} instead.
      */
-    @Deprecated
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115)
     RangeDimension getDimension();
 }

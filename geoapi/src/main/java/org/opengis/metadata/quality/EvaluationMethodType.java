@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.quality;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.spatial.DimensionNameType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -75,22 +77,34 @@ public final class EvaluationMethodType extends CodeList<EvaluationMethodType> {
      */
     public static EvaluationMethodType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new EvaluationMethodType[VALUES.size()]);
+            return (EvaluationMethodType[]) VALUES.toArray(new EvaluationMethodType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public EvaluationMethodType[] family() {
+    public /*{EvaluationMethodType}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the evaluation method type that matches the given string, or returns a
+     * Returns the EvaluationMethodType that matches the given string, or returns a
      * new one if none match it.
      */
     public static EvaluationMethodType valueOf(String code) {
-        return valueOf(EvaluationMethodType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                EvaluationMethodType type = (EvaluationMethodType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new EvaluationMethodType(code);
+        }
     }
 }

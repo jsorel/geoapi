@@ -46,9 +46,6 @@
 package org.opengis.filter.capability;
 
 // Annotations
-import java.util.Collection;
-import java.util.List;
-
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -65,9 +62,10 @@ import static org.opengis.annotation.Specification.*;
  *  &lt;/xsd:complexType>
  * </pre>
  * </p>
- * 
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe </A>
  * @author Justin Deoliveira, The Open Planning Project
+ *
+ * TODO: rename this to FunctionName
  */
 public interface FunctionName extends Operator {
     /**
@@ -80,11 +78,4 @@ public interface FunctionName extends Operator {
      */
     @UML(identifier="argumentCount", specification=UNSPECIFIED)
     int getArgumentCount();
-    
-    /**
-     * Argument names for documentation purposes if known.
-     * 
-     * @return Argument names (for documentation purposes) if known
-     */
-    List<String> getArgumentNames();
 }

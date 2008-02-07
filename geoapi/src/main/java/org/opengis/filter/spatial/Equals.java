@@ -24,6 +24,4 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("Equals")
 public interface Equals extends BinarySpatialOperator, BoundedSpatialOperator {
-	/** Operator name used to check FilterCapabilities */
-	public static String NAME = "Equals";
 }

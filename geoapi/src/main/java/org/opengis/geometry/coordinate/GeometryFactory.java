@@ -51,14 +51,12 @@ public interface GeometryFactory {
      * Create a direct position with empty coordinates.
      * @deprecated Moved to PositionFactory
      */
-    @Deprecated
     DirectPosition createDirectPosition();
 
     /**
      * Create a direct position at the specified location specified by coordinates.
      * @deprecated Moved to PositionFactory
      */
-    @Deprecated
     DirectPosition createDirectPosition(double[] coordinates);
 
     /**

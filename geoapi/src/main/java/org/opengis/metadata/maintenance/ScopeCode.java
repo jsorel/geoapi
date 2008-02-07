@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata.maintenance;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.coverage.SampleDimensionType;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -157,22 +159,34 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      */
     public static ScopeCode[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ScopeCode[VALUES.size()]);
+            return (ScopeCode[]) VALUES.toArray(new ScopeCode[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public ScopeCode[] family() {
+    public /*{ScopeCode}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the scope code that matches the given string, or returns a
+     * Returns the scopecode that matches the given string, or returns a
      * new one if none match it.
      */
     public static ScopeCode valueOf(String code) {
-        return valueOf(ScopeCode.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                ScopeCode type = (ScopeCode) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new ScopeCode(code);
+        }
     }
 }

@@ -52,8 +52,8 @@ public class FeatureStoreException extends IOException {
      * @param cause the cause, saved for later retrieval by the {@link #getCause} method.
      */
     public FeatureStoreException(final Throwable cause) {
-        super(cause==null ? null : cause.toString());
-        initCause(cause); // TODO: inline when we will be allowed to target Java 6.
+        super(cause == null ? null : cause.toString());
+        initCause(cause);
     }
 
     /**
@@ -64,6 +64,6 @@ public class FeatureStoreException extends IOException {
      */
     public FeatureStoreException(final String message, final Throwable cause) {
         super(message);
-        initCause(cause); // TODO: inline when we will be allowed to target Java 6.
+        initCause(cause);
     }
 }

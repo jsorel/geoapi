@@ -80,7 +80,6 @@ public interface Citation {
      *
      * @deprecated removed from ISO_19115
      */
-    @Deprecated
     @UML(identifier="identifierType", obligation=OPTIONAL, specification=ISO_19115)
     Collection<String> getIdentifierTypes();
 

@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid.quadrilateral;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -170,22 +171,34 @@ public class SequenceType extends CodeList<SequenceType> {
      */
     public static SequenceType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new SequenceType[VALUES.size()]);
+            return (SequenceType[]) VALUES.toArray(new SequenceType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public SequenceType[] family() {
+    public /*{SequenceType}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the sequence type that matches the given string, or returns a
+     * Returns the SequenceType that matches the given string, or returns a
      * new one if none match it.
      */
     public static SequenceType valueOf(String code) {
-        return valueOf(SequenceType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                SequenceType type = (SequenceType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new SequenceType(code);
+        }
     }
 }

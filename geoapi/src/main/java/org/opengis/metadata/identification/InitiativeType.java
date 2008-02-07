@@ -11,8 +11,10 @@
 package org.opengis.metadata.identification;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import org.opengis.temporal.IndeterminateValue;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -145,22 +147,34 @@ public final class InitiativeType extends CodeList<InitiativeType>{
      */
     public static InitiativeType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new InitiativeType[VALUES.size()]);
+            return (InitiativeType[]) VALUES.toArray(new InitiativeType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public InitiativeType[] family() {
+    public /*{InitiativeType}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the initiative type that matches the given string, or returns a
+     * Returns the InitiativeType that matches the given string, or returns a
      * new one if none match it.
      */
     public static InitiativeType valueOf(String code) {
-        return valueOf(InitiativeType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                InitiativeType type = (InitiativeType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new InitiativeType(code);
+        }
     }
 }

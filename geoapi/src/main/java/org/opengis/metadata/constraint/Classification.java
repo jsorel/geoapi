@@ -10,9 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata.constraint;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.identification.CharacterSet;
+import org.opengis.metadata.spatial.CellGeometry;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -85,22 +88,34 @@ public final class Classification extends CodeList<Classification> {
      */
     public static Classification[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Classification[VALUES.size()]);
+            return (Classification[]) VALUES.toArray(new Classification[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public Classification[] family() {
+    public /*{Classification}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the classification that matches the given string, or returns a
+     * Returns the Classification that matches the given string, or returns a
      * new one if none match it.
      */
     public static Classification valueOf(String code) {
-        return valueOf(Classification.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                Classification type = (Classification) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new Classification(code);
+        }
     }
 }

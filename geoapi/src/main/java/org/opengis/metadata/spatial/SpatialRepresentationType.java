@@ -10,11 +10,14 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
+import org.opengis.coverage.grid.quadrilateral.SequenceType;
+import org.opengis.filter.sort.SortOrder;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -94,22 +97,34 @@ public final class SpatialRepresentationType extends CodeList<SpatialRepresentat
      */
     public static SpatialRepresentationType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new SpatialRepresentationType[VALUES.size()]);
+            return (SpatialRepresentationType[]) VALUES.toArray(new SpatialRepresentationType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public SpatialRepresentationType[] family() {
+    public /*{SpatialRepresentationType}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the spatial representation type that matches the given string, or returns a
+     * Returns the SpatialRepresentationType that matches the given string, or returns a
      * new one if none match it.
      */
     public static SpatialRepresentationType valueOf(String code) {
-        return valueOf(SpatialRepresentationType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                SpatialRepresentationType type = (SpatialRepresentationType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new SpatialRepresentationType(code);
+        }
     }
 }

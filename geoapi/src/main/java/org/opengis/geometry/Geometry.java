@@ -228,7 +228,6 @@ public interface Geometry extends TransfiniteSet {
      *
      * @deprecated use {@link #distance}.
      */
-    @Deprecated
     double getDistance(Geometry geometry);
 
     /**
@@ -436,5 +435,5 @@ public interface Geometry extends TransfiniteSet {
      * @see Cloneable
      * @see #isMutable
      */
-    Geometry clone() throws CloneNotSupportedException;
+    /*{Geometry}*/ Object clone() throws CloneNotSupportedException;
 }

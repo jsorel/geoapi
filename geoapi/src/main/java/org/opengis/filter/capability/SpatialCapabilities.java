@@ -45,8 +45,6 @@
  ---------------------------------------------------------------------------*/
 package org.opengis.filter.capability;
 
-import java.util.Collection;
-
 // OpenGIS direct dependencies
 
 
@@ -77,7 +75,7 @@ public interface SpatialCapabilities {
      * </pre>
      * </p>
      */
-    Collection<GeometryOperand> getGeometryOperands();
+    GeometryOperand[] getGeometryOperands();
 
     /**
      * Supported spatial operators.
