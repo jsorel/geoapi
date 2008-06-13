@@ -22,7 +22,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.opengis.ClassScanner;
-import org.opengis.metadata.identification.CharacterSet;
 
 
 /**
@@ -47,25 +46,6 @@ public class CodeListTest extends TestCase {
      */
     public CodeListTest(final String testName) {
         super(testName);
-    }
-
-    /**
-     * Tests the {@link CharacterSet} code list. At the difference of other code lists,
-     * its {@link CodeList#matches} method is overriden.
-     */
-    public void testCharacterSet() {
-        final CodeList code = CharacterSet.UTF_8;
-        assertEquals ("UTF_8", code.name());
-        assertEquals ("utf8",  code.identifier());
-        assertTrue   (code.matches("UTF8"));
-        assertTrue   (code.matches("UTF_8"));
-        assertTrue   (code.matches("UTF-8"));
-        assertFalse  (code.matches("UTF 8"));
-        assertSame   (code, CharacterSet.valueOf("UTF_8"));
-        assertSame   (code, CharacterSet.valueOf("UTF-8"));
-        assertSame   (code, CharacterSet.valueOf("UTF8"));
-        assertSame   (code, CharacterSet.valueOf("utf8"));
-        assertNotSame(code, CharacterSet.valueOf("UTF_7"));
     }
 
     /**
@@ -189,7 +169,7 @@ public class CodeListTest extends TestCase {
             assertTrue(className + ".family() mismatch.", Arrays.equals(values, family));
         }
         /*
-         * Gets the private VALUES field only if CodeList is the direct parent.
+         * Get the private VALUES field only if CodeList is the direct parent.
          */
         if (classe.getSuperclass().equals(CodeList.class)) {
             fullName = className + ".VALUES";
@@ -240,26 +220,6 @@ public class CodeListTest extends TestCase {
                 assertEquals(fullName + " not properly sized.", asList.size(), capacity);
             }
         }
-        /*
-         * Tries to create a new element.
-         */
-        try {
-            method = classe.getMethod("valueOf", String.class);
-        } catch (NoSuchMethodException e) {
-            return;
-        }
-        final CodeList value;
-        try {
-            value = classe.cast(method.invoke(null, "Dummy"));
-        } catch (IllegalAccessException e) {
-            fail(e.toString());
-            return;
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-            fail(e.getTargetException().toString());
-            return;
-        }
-        assertEquals("Dummy", value.name());
     }
 
     /**

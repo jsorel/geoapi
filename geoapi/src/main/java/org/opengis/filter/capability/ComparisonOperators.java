@@ -1,7 +1,5 @@
 package org.opengis.filter.capability;
 
-import java.util.Collection;
-
 /**
  * Supported comparison operators in a filter capabilities document.
  * <p>
@@ -26,7 +24,7 @@ public interface ComparisonOperators {
      *  </pre>
      * </p>
      */
-    Collection<Operator> getOperators();
+    Operator[] getOperators();
 
     /**
      * Looks up an operator by name, returning null if no such operator found.

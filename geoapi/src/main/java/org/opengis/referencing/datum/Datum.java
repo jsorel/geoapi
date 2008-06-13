@@ -75,7 +75,6 @@ public interface Datum extends IdentifiedObject {
      *
      * @deprecated Renamed as {@link #DOMAIN_OF_VALIDITY_KEY}.
      */
-    @Deprecated
     String VALID_AREA_KEY = DOMAIN_OF_VALIDITY_KEY;
 
     /**
@@ -107,8 +106,6 @@ public interface Datum extends IdentifiedObject {
      *   <li>For a temporal datum, this attribute is not defined. Instead of the anchor point,
      *       a temporal datum carries a separate time origin of type {@link Date}.</li>
      * </ul>
-     *
-     * @return A description of the anchor point, or {@code null} if none.
      */
     @UML(identifier="anchorPoint", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getAnchorPoint();
@@ -144,15 +141,12 @@ public interface Datum extends IdentifiedObject {
      *
      * @deprecated Renamed as {@link #getDomainOfValidity}.
      */
-    @Deprecated
     @UML(identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this
      * datum object is valid.
-     *
-     * @return A description of domain of usage, or {@code null} if none.
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();

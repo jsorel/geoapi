@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata.maintenance;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geometry.coordinate.KnotType;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -124,30 +126,37 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
 
     /**
      * Returns the list of {@code MaintenanceFrequency}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static MaintenanceFrequency[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new MaintenanceFrequency[VALUES.size()]);
+            return (MaintenanceFrequency[]) VALUES.toArray(new MaintenanceFrequency[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public MaintenanceFrequency[] family() {
+    public /*{MaintenanceFrequency}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the maintenance frequency that matches the given string, or returns a
+     * Returns the MaintenanceFrequency that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static MaintenanceFrequency valueOf(String code) {
-        return valueOf(MaintenanceFrequency.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                MaintenanceFrequency type = (MaintenanceFrequency) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new MaintenanceFrequency(code);
+        }
     }
 }

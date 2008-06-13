@@ -56,7 +56,6 @@ public interface ReferenceSystem extends IdentifiedObject {
      *
      * @deprecated Renamed as {@link #DOMAIN_OF_VALIDITY_KEY}.
      */
-    @Deprecated
     String VALID_AREA_KEY = DOMAIN_OF_VALIDITY_KEY;
 
     /**
@@ -85,15 +84,12 @@ public interface ReferenceSystem extends IdentifiedObject {
      *
      * @deprecated Renamed as {@link #getDomainOfValidity}.
      */
-    @Deprecated
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19115)
     Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this
      * (coordinate) reference system object is valid.
-     *
-     * @return The domain of usage, or {@code null} if none.
      */
     @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();

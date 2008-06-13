@@ -1,13 +1,3 @@
-/*$************************************************************************************************
- **
- ** $Id$
- **
- ** $URL$
- **
- ** Copyright (C) 2004-2007 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
- **
- *************************************************************************************************/
 package org.opengis.feature.simple;
 
 import org.opengis.feature.Attribute;
@@ -26,18 +16,18 @@ import org.opengis.geometry.BoundingBox;
  */
 public interface BoundingBoxAttribute extends Attribute
 {
-      BoundingBox getValue();
-      void setValue(BoundingBox newValue);
+    BoundingBox getValue();
+    void setValue(BoundingBox newValue);
 
-      /**
-       * Java 1.4 type safe access to getValue
-       * @return (BoundingBox) getValue()
-       */
-      BoundingBox getBoundingBox();
+    /**
+     * Java 1.4 type safe access to getValue
+     * @return (BoundingBox) getValue()
+     */
+    BoundingBox getBoundingBox();
 
-      /**
-       * Java 1.4 type safe access to setValue
-       * @param newValue
-       */
-      void setBoundingBox(BoundingBox newValue);
+    /**
+     * Java 1.4 type safe access to setValue
+     * @param newValue
+     */
+    void setBoundingBox(BoundingBox newValue);
 }

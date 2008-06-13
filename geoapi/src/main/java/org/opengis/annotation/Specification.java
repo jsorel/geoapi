@@ -29,6 +29,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.geometry} and sub-packages.
      *
      * @see <A HREF="http://www.opengeospatial.org/standards/as">Buy from ISO</A>
+     * @note no longer publically available
      */
     ISO_19107,
 
@@ -52,16 +53,9 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *
      * @see <A HREF="http://www.opengeospatial.org/standards/as#01-111">Buy from ISO</A>
+     * @note no longer publically available
      */
     ISO_19115,
-
-    /**
-     * ISO 19117, Portrayal.
-     * This is an abstract specification for portraying features.
-     *
-     * @see <A HREF="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=40395">Buy from ISO</A>
-     */
-    ISO_19117,
 
     /**
      * ISO 19123, Schema for coverage geometry and functions.

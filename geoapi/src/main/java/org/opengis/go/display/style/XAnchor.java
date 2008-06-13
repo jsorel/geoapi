@@ -76,20 +76,18 @@ public class XAnchor extends SimpleEnumerationType<XAnchor> {
     //*************************************************************************
 
     /**
-     * Returns the list of {@code XAnchor}s.
-     *
-     * @return The list of codes declared in the current JVM.
+     * Returns the list of <code>XAnchor</code>s.
      */
     public static XAnchor[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new XAnchor[VALUES.size()]);
+            return (XAnchor[]) VALUES.toArray(new XAnchor[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public XAnchor[] family() {
+    public /*{XAnchor}*/ CodeList[] family() {
         return values();
     }
 }

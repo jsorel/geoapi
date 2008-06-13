@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.geometry.coordinate;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.identification.KeywordType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -76,30 +78,37 @@ public class KnotType extends CodeList<KnotType> {
 
     /**
      * Returns the list of {@code KnotType}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static KnotType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new KnotType[VALUES.size()]);
+            return (KnotType[]) VALUES.toArray(new KnotType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public KnotType[] family() {
+    public /*{KnotType}*/ CodeList[] family() {
         return values();
     }
 
     /**
      * Returns the KnotType that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static KnotType valueOf(String code) {
-        return valueOf(KnotType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                KnotType type = (KnotType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new KnotType(code);
+        }
     }
 }

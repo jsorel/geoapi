@@ -69,8 +69,6 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      * {@linkplain CoordinateSystem#getDimension dimension} and
      * {@linkplain CoordinateSystem#getAxis axis} are commonly requested information and shall be
      * available, directly or indirectly, in all cases (including {@linkplain CompoundCRS compound CRS}).
-     *
-     * @return The coordinate system.
      */
     @Extension
     CoordinateSystem getCoordinateSystem();

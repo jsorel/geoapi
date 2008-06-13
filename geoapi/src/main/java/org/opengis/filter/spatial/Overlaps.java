@@ -25,6 +25,4 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("Overlaps")
 public interface Overlaps extends BinarySpatialOperator, BoundedSpatialOperator {
-	/** Operator name used to check FilterCapabilities */
-	public static String NAME = "Overlaps";
 }

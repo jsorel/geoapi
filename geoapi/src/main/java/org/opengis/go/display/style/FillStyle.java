@@ -105,20 +105,18 @@ public class FillStyle extends SimpleEnumerationType<FillStyle> {
     }
 
     /**
-     * Returns the list of {@code FillStyle}s.
-     *
-     * @return The list of codes declared in the current JVM.
+     * Returns the list of <code>FillStyle</code>s.
      */
     public static FillStyle[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new FillStyle[VALUES.size()]);
+            return (FillStyle[]) VALUES.toArray(new FillStyle[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public FillStyle[] family() {
+    public /*{FillStyle}*/ CodeList[] family() {
         return values();
     }
 }

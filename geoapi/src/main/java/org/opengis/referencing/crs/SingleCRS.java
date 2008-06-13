@@ -55,8 +55,6 @@ public interface SingleCRS extends CoordinateReferenceSystem {
 
     /**
      * Returns the datum.
-     *
-     * @return The datum.
      */
     @UML(identifier="usesDatum", obligation=MANDATORY, specification=ISO_19111)
     Datum getDatum();

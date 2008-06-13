@@ -149,20 +149,18 @@ public class FillPattern extends SimpleEnumerationType<FillPattern> {
     //*************************************************************************
 
     /**
-     * Returns the list of {@code FillPattern}s.
-     *
-     * @return The list of codes declared in the current JVM.
+     * Returns the list of <code>FillPattern</code>s.
      */
     public static FillPattern[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new FillPattern[VALUES.size()]);
+            return (FillPattern[]) VALUES.toArray(new FillPattern[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public FillPattern[] family() {
+    public /*{FillPattern}*/ CodeList[] family() {
         return values();
     }
 }

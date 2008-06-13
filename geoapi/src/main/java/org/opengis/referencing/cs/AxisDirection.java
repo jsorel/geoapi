@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.identification.AssociationType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
@@ -336,19 +338,17 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Returns the list of {@code AxisDirection}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static AxisDirection[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new AxisDirection[VALUES.size()]);
+            return (AxisDirection[]) VALUES.toArray(new AxisDirection[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public AxisDirection[] family() {
+    public /*{AxisDirection}*/ CodeList[] family() {
         return values();
     }
 
@@ -360,8 +360,6 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * {@linkplain #UP Up}-{@linkplain #DOWN Down} and
      * {@linkplain #FUTURE Future}-{@linkplain #PAST Past}, <cite>etc.</cite>
      * If this axis direction has no opposite, then this method returns {@code null}.
-     *
-     * @return The opposite direction, or {@code null} if none or unknown.
      */
     @Extension
     public AxisDirection opposite() {
@@ -403,8 +401,6 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * </table></td></tr>
      *   <tr align="center"><td width='50%'>{@link #OTHER}</td><td width='50%'>{@link #OTHER}</td></tr>
      * </table>
-     *
-     * @return The direction from the above table.
      */
     @Extension
     public AxisDirection absolute() {
@@ -418,13 +414,22 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     }
 
     /**
-     * Returns the axis direction that matches the given string, or returns a
+     * Returns the AxisDirection that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static AxisDirection valueOf(String code) {
-        return valueOf(AxisDirection.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                AxisDirection type = (AxisDirection) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new AxisDirection(code);
+        }
     }
 }

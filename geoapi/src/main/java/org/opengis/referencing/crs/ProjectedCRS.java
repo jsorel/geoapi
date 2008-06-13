@@ -11,7 +11,6 @@
 package org.opengis.referencing.crs;
 
 import org.opengis.referencing.cs.CartesianCS;
-import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.operation.Projection;
 import org.opengis.annotation.UML;
 
@@ -41,21 +40,16 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
     /**
      * Returns the base coordinate reference system, which must be geographic.
      */
-    GeographicCRS getBaseCRS();
+/// GeographicCRS getBaseCRS();
 
     /**
      * Returns the map projection from the {@linkplain #getBaseCRS base CRS} to this CRS.
      */
-    Projection getConversionFromBase();
+/// Projection getConversionFromBase();
 
     /**
      * Returns the coordinate system, which must be cartesian.
      */
-    @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
-    CartesianCS getCoordinateSystem();
-
-    /**
-     * Returns the datum.
-     */
-    GeodeticDatum getDatum();
+/// @UML(identifier="usesCS", obligation=MANDATORY, specification=ISO_19111)
+/// CartesianCS getCoordinateSystem();
 }

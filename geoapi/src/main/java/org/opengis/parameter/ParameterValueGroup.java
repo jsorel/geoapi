@@ -45,8 +45,8 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *         Java extensions (e.g.
      *         {@link javax.media.jai.ParameterList.html#getParameterListDescriptor ParameterList}).
      */
-    @UML(identifier="valuesOfGroup", obligation=MANDATORY, specification=ISO_19111)
-    ParameterDescriptorGroup getDescriptor();
+/// @UML(identifier="valuesOfGroup", obligation=MANDATORY, specification=ISO_19111)
+/// ParameterDescriptorGroup getDescriptor();
 
     /**
      * Returns the values in this group. The returned list may or may not be unmodifiable;
@@ -63,8 +63,6 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *   <LI><P>The list may also supports the {@link List#remove(Object) remove} operation as a
      *       way to remove parameter created by the {@link #parameter} method.</P></LI>
      * </UL>
-     *
-     * @return The values in this group.
      */
     @UML(identifier="includesValue", obligation=MANDATORY, specification=ISO_19111)
     List<GeneralParameterValue> values();
@@ -97,7 +95,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
      */
     @Extension
-    ParameterValue<?> parameter(String name) throws ParameterNotFoundException;
+    ParameterValue parameter(String name) throws ParameterNotFoundException;
 
     /**
      * Returns all subgroups with the specified name. This method do not create new groups.
@@ -137,5 +135,5 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *
      * @return A copy of this group of parameter values.
      */
-    ParameterValueGroup clone();
+    /*{ParameterValueGroup}*/ Object clone();
 }

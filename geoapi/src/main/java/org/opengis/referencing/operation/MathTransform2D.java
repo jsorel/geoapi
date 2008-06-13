@@ -51,13 +51,14 @@ public interface MathTransform2D extends MathTransform {
     Point2D transform(final Point2D ptSrc, final Point2D ptDst) throws TransformException;
 
     /**
-     * Transforms the specified shape. This method may replace straight lines by quadratic curves
-     * when applicable. It may also do the opposite (replace curves by straight lines). The returned
-     * shape doesn't need to have the same number of points than the original shape.
+     * Transform the specified shape. This method may replace straight lines by
+     * quadratic curves when applicable. It may also do the opposite (replace
+     * curves by straight lines). The returned shape doesn't need to have the
+     * same number of points than the original shape.
      *
-     * @param  shape The Shape to transform.
-     * @return The transformed shape. Some implementations may returns
-     *         {@code shape} unmodified if this transform is identity.
+     * @param  shape Shape to transform.
+     * @return Transformed shape, or {@code shape} if
+     *         this transform is the identity transform.
      * @throws TransformException if a transform failed.
      */
     @Extension
@@ -82,14 +83,4 @@ public interface MathTransform2D extends MathTransform {
      *         specified point.
      */
     Matrix derivative(final Point2D point) throws TransformException;
-
-    /**
-     * Creates the inverse transform of this object.
-     *
-     * @return The inverse transform.
-     * @throws NoninvertibleTransformException if the transform can't be inversed.
-     *
-     * @since GeoAPI 2.2
-     */
-    MathTransform2D inverse() throws NoninvertibleTransformException;
 }

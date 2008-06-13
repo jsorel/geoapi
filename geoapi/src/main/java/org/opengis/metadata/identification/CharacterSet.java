@@ -12,9 +12,11 @@ package org.opengis.metadata.identification;
 
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.spatial.CellGeometry;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -249,14 +251,6 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     }
 
     /**
-     * Constructs an enum with identical name and charset.
-     * This is needed for {@link CodeList#valueOf} reflection.
-     */
-    private CharacterSet(final String name) {
-        this(name, name);
-    }
-
-    /**
      * Converts the Character Set to a java Charset, if it can.
      *
      * @return The Java Charset.
@@ -270,41 +264,37 @@ public final class CharacterSet extends CodeList<CharacterSet> {
 
     /**
      * Returns the list of {@code CharacterSet}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static CharacterSet[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new CharacterSet[VALUES.size()]);
+            return (CharacterSet[]) VALUES.toArray(new CharacterSet[VALUES.size()]);
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean matches(final String name) {
-        if (super.matches(name)) {
-            return true;
-        }
-        return (name != null) && name.equalsIgnoreCase(charset);
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public CharacterSet[] family() {
-        return values();
+    public /*{CharacterSet}*/ CodeList[] family() {
+        return (CodeList[]) VALUES.toArray(new CodeList[VALUES.size()]);
     }
 
     /**
-     * Returns the character set that matches the given string, or returns a
+     * Returns the CharacterSet that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static CharacterSet valueOf(String code) {
-        return valueOf(CharacterSet.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                CharacterSet type = (CharacterSet) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new CharacterSet(code, code);
+        }
     }
 }

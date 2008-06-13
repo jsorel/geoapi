@@ -74,7 +74,6 @@ public interface Element {
      *
      * @deprecated Replaced by {@link #getDates}.
      */
-    @Deprecated
     Date[] getDate();
 
     /**
@@ -94,7 +93,6 @@ public interface Element {
      *
      * @deprecated Replaced by {@link #getResults}.
      */
-    @Deprecated
     Result getResult();
 
     /**

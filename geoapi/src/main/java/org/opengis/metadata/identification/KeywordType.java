@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata.identification;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.coverage.InterpolationMethod;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -81,30 +83,37 @@ public final class KeywordType extends CodeList<KeywordType> {
 
     /**
      * Returns the list of {@code KeywordType}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static KeywordType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new KeywordType[VALUES.size()]);
+            return (KeywordType[]) VALUES.toArray(new KeywordType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public KeywordType[] family() {
+    public /*{KeywordType}*/ CodeList[] family() {
         return values();
     }
 
     /**
      * Returns the KeywordType that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static KeywordType valueOf(String code) {
-        return valueOf(KeywordType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                KeywordType type = (KeywordType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new KeywordType(code);
+        }
     }
 }

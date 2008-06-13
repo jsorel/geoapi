@@ -14,6 +14,7 @@ import org.opengis.util.Cloneable;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
+import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -91,8 +92,6 @@ public interface Matrix extends Cloneable {
 
     /**
      * Returns a clone of this matrix.
-     *
-     * @return A clone of this matrix.
      */
-    Matrix clone();
+    /*{Matrix}*/ Object clone();
 }

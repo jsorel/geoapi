@@ -93,20 +93,18 @@ public class LineStyle extends SimpleEnumerationType<LineStyle> {
     //*************************************************************************
 
     /**
-     * Returns the list of {@code LineStyle}s.
-     *
-     * @return The list of codes declared in the current JVM.
+     * Returns the list of <code>LineStyle</code>s.
      */
     public static LineStyle[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new LineStyle[VALUES.size()]);
+            return (LineStyle[]) VALUES.toArray(new LineStyle[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public LineStyle[] family() {
+    public /*{LineStyle}*/ CodeList[] family() {
         return values();
     }
 }

@@ -11,6 +11,8 @@
 package org.opengis.util;
 
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -26,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.1
  */
 @UML(identifier="UnlimitedInteger", specification=ISO_19103)
-public final class UnlimitedInteger extends Number implements Comparable<UnlimitedInteger> {
+public final class UnlimitedInteger extends Number implements Comparable/*<UnlimitedInteger>*/ {
     /**
      * For compatibility with different versions.
      */
@@ -128,7 +130,7 @@ public final class UnlimitedInteger extends Number implements Comparable<Unlimit
         switch (value) {
             case Integer.MAX_VALUE: return  "\u221E"; // Infinity symbol.
             case Integer.MIN_VALUE: return "-\u221E";
-            default: return Integer.toString(value);
+            default:                return Integer.toString(value);
         }
     }
 
@@ -156,9 +158,10 @@ public final class UnlimitedInteger extends Number implements Comparable<Unlimit
      *          {@code -1} if this {@code UnlimitedInteger} is numerically less than the given value, and
      *          {@code +1} if this {@code UnlimitedInteger} is numerically greater than the given value,
      */
-    public int compareTo(final UnlimitedInteger other) {
-        if (value < other.value) return -1;
-        if (value > other.value) return +1;
+    public int compareTo(final Object /*UnlimitedInteger*/ other) {
+        final UnlimitedInteger o = (UnlimitedInteger) other;
+        if (value < o.value) return -1;
+        if (value > o.value) return +1;
         return 0;
     }
 }

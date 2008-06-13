@@ -10,6 +10,7 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
@@ -90,7 +91,6 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      *
      * @deprecated Renamed as {@link #COMPLEX}.
      */
-    @Deprecated
     public static final GeometricObjectType COMPLEXES = COMPLEX;
 
     /**
@@ -98,7 +98,6 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      *
      * @deprecated Renamed as {@link #COMPOSITE}.
      */
-    @Deprecated
     public static final GeometricObjectType COMPOSITES = COMPOSITE;
 
     /**
@@ -113,30 +112,37 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
 
     /**
      * Returns the list of {@code GeometricObjectType}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static GeometricObjectType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new GeometricObjectType[VALUES.size()]);
+            return (GeometricObjectType[]) VALUES.toArray(new GeometricObjectType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public GeometricObjectType[] family() {
+    public /*{GeometricObjectType}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the geometric object type that matches the given string, or returns a
+     * Returns the GeometricObjectType that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static GeometricObjectType valueOf(String code) {
-        return valueOf(GeometricObjectType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                GeometricObjectType type = (GeometricObjectType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new GeometricObjectType(code);
+        }
     }
 }

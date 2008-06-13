@@ -12,7 +12,6 @@ package org.opengis.coverage.grid;
 
 import java.util.Set;
 import org.opengis.coverage.DomainObject;
-import org.opengis.geometry.Geometry;
 import org.opengis.geometry.primitive.Point;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
@@ -30,20 +29,16 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux
  */
 @UML(identifier="CV_GridPoint", specification=ISO_19123)
-public interface GridPoint extends DomainObject<Geometry> {
+public interface GridPoint extends DomainObject {
     /**
      * Returns the set of grid coordinates that specifies the location of the
      * grid point within the {@linkplain Grid grid}.
-     *
-     * @return The coordinates that specifieds the location of the grid point.
      */
     @UML(identifier="gridCoord", obligation=MANDATORY, specification=ISO_19123)
     GridCoordinates getGridCoordinates();
 
     /**
-     * Returns the {@linkplain Grid grid} of which this grid point is an element.
-     *
-     * @return The grid of which this grid point is an element.
+     * Returns the {@linkplain Grid grid} of which it is an element.
      *
      * @see Grid#getIntersections
      */
@@ -53,8 +48,6 @@ public interface GridPoint extends DomainObject<Geometry> {
     /**
      * Returns the set of {@linkplain GridCell grid cells} for which this grid point is a corner.
      *
-     * @return The grid cells for which this grid point is a corner.
-     *
      * @see GridCell#getCorners
      */
     @UML(identifier="cell", obligation=MANDATORY, specification=ISO_19123)
@@ -63,8 +56,6 @@ public interface GridPoint extends DomainObject<Geometry> {
     /**
      * Returns the representation of the grid point in an external
      * {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     *
-     * @return The representation of this grid point in an external CRS.
      */
     @UML(identifier="groundPoint", obligation=OPTIONAL, specification=ISO_19123)
     Point getGroundPoint();
@@ -75,10 +66,8 @@ public interface GridPoint extends DomainObject<Geometry> {
      * point. The multiplicity of the association allows for multiple external coordinate reference
      * systems for foot print.
      *
-     * @return The foot prints that represents the sample space in an external CRS.
-     *
      * @see FootPrint#getCenter
      */
     @UML(identifier="footprint", obligation=OPTIONAL, specification=ISO_19123)
-    Set<FootPrint> getFootPrints();
+    Set<FootPrint> getFootPrint();
 }

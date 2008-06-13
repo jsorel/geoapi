@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.Datatype;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -27,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
-@UML(identifier="CI_DateTypeCode", specification=ISO_19115)
+@UML(identifier="CI_DateType", specification=ISO_19115)
 public final class DateType extends CodeList<DateType> {
     /**
      * Serial number for compatibility with different versions.
@@ -70,30 +72,37 @@ public final class DateType extends CodeList<DateType> {
 
     /**
      * Returns the list of {@code DateType}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static DateType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new DateType[VALUES.size()]);
+            return (DateType[]) VALUES.toArray(new DateType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public DateType[] family() {
+    public /*{DateType}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the date type that matches the given string, or returns a
+     * Returns the DateType that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static DateType valueOf(String code) {
-        return valueOf(DateType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                DateType type = (DateType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new DateType(code);
+        }
     }
 }

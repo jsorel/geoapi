@@ -80,19 +80,17 @@ public class LineCap extends SimpleEnumerationType<LineCap> {
 
     /**
      * Returns the list of <code>LineCap</code>s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static LineCap[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new LineCap[VALUES.size()]);
+            return (LineCap[]) VALUES.toArray(new LineCap[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public LineCap[] family() {
+    public /*{LineCap}*/ CodeList[] family() {
         return values();
     }
 }

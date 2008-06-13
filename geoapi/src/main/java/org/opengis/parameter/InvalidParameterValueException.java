@@ -68,7 +68,7 @@ public class InvalidParameterValueException extends IllegalArgumentException {
      * @param  value The invalid parameter value.
      */
     public InvalidParameterValueException(String message, String parameterName, double value) {
-        this(message, parameterName, Double.valueOf(value));
+        this(message, parameterName, new Double(value));
     }
 
     /**
@@ -80,7 +80,7 @@ public class InvalidParameterValueException extends IllegalArgumentException {
      * @param  value The invalid parameter value.
      */
     public InvalidParameterValueException(String message, String parameterName, int value) {
-        this(message, parameterName, Integer.valueOf(value));
+        this(message, parameterName, new Integer(value));
     }
 
     /**

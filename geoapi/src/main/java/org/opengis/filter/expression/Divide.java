@@ -28,6 +28,4 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("Div")
 public interface Divide extends BinaryExpression {
-	/** Operator name used to check FilterCapabilities */
-	public static String NAME = "Div";
 }

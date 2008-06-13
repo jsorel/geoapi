@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.constraint.Classification;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -199,30 +201,37 @@ public final class ColorInterpretation extends CodeList<ColorInterpretation> {
 
     /**
      * Returns the list of {@code ColorInterpretation}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static ColorInterpretation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ColorInterpretation[VALUES.size()]);
+            return (ColorInterpretation[]) VALUES.toArray(new ColorInterpretation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public ColorInterpretation[] family() {
+    public /*{ColorInterpretation}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the color interpretation that matches the given string, or returns a
+     * Returns the ColorInterpretation that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static ColorInterpretation valueOf(String code) {
-        return valueOf(ColorInterpretation.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                ColorInterpretation type = (ColorInterpretation) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new ColorInterpretation(code);
+        }
     }
 }

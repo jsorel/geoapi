@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.image.DataBuffer; // For Javadoc
 
+import org.opengis.metadata.citation.Role;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -189,30 +191,37 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
 
     /**
      * Returns the list of {@code SampleDimensionType}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static SampleDimensionType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new SampleDimensionType[VALUES.size()]);
+            return (SampleDimensionType[]) VALUES.toArray(new SampleDimensionType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public SampleDimensionType[] family() {
+    public /*{SampleDimensionType}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the sample dimension type that matches the given string, or returns a
+     * Returns the SampleDimensionType that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static SampleDimensionType valueOf(String code) {
-        return valueOf(SampleDimensionType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                SampleDimensionType type = (SampleDimensionType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new SampleDimensionType(code);
+        }
     }
 }

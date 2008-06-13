@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.geometry.primitive;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geometry.coordinate.SplineCurveForm;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -127,30 +129,37 @@ public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
 
     /**
      * Returns the list of {@code SurfaceInterpolation}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static SurfaceInterpolation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new SurfaceInterpolation[VALUES.size()]);
+            return (SurfaceInterpolation[]) VALUES.toArray(new SurfaceInterpolation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public SurfaceInterpolation[] family() {
+    public /*{SurfaceInterpolation}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the surface interpolation that matches the given string, or returns a
+     * Returns the SurfaceInterpolation that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static SurfaceInterpolation valueOf(String code) {
-        return valueOf(SurfaceInterpolation.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                SurfaceInterpolation type = (SurfaceInterpolation) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new SurfaceInterpolation(code);
+        }
     }
 }

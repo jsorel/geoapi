@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata.identification;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geometry.primitive.SurfaceInterpolation;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -131,7 +133,6 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * @deprecated Renamed as {@link #HEALTH}.
      */
-    @Deprecated
     public static final TopicCategory HEALT = HEALTH;
 
     /**
@@ -235,30 +236,37 @@ public final class TopicCategory extends CodeList<TopicCategory> {
 
     /**
      * Returns the list of {@code TopicCategory}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static TopicCategory[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new TopicCategory[VALUES.size()]);
+            return (TopicCategory[]) VALUES.toArray(new TopicCategory[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public TopicCategory[] family() {
+    public /*{TopicCategory}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the topic category that matches the given string, or returns a
+     * Returns the TopicCategory that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static TopicCategory valueOf(String code) {
-        return valueOf(TopicCategory.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                TopicCategory type = (TopicCategory) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new TopicCategory(code);
+        }
     }
 }

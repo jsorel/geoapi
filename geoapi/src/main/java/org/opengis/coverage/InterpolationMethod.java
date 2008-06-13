@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.identification.InitiativeType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -183,30 +185,37 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
 
     /**
      * Returns the list of {@code InterpolationMethod}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static InterpolationMethod[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new InterpolationMethod[VALUES.size()]);
+            return (InterpolationMethod[]) VALUES.toArray(new InterpolationMethod[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public InterpolationMethod[] family() {
+    public /*{InterpolationMethod}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the interpolation method that matches the given string, or returns a
+     * Returns the InterpolationMethod that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static InterpolationMethod valueOf(String code) {
-        return valueOf(InterpolationMethod.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                InterpolationMethod type = (InterpolationMethod) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new InterpolationMethod(code);
+        }
     }
 }

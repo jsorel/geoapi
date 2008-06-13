@@ -70,7 +70,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @deprecated Renamed as {@link #COORDINATE_OPERATION_ACCURACY_KEY}.
      */
-    @Deprecated
     String POSITIONAL_ACCURACY_KEY = COORDINATE_OPERATION_ACCURACY_KEY;
 
     /**
@@ -91,7 +90,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @deprecated Renamed as {@link #DOMAIN_OF_VALIDITY_KEY}.
      */
-    @Deprecated
     String VALID_AREA_KEY = DOMAIN_OF_VALIDITY_KEY;
 
     /**
@@ -155,7 +153,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @deprecated Renamed as {@link #getCoordinateOperationAccuracy}.
      */
-    @Deprecated
     @UML(identifier="positionalAccuracy", obligation=OPTIONAL, specification=ISO_19111)
     Collection<PositionalAccuracy> getPositionalAccuracy();
 
@@ -176,14 +173,11 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @deprecated Renamed as {@link #getDomainOfValidity}.
      */
-    @Deprecated
     @UML(identifier="validArea", obligation=OPTIONAL, specification=ISO_19111)
     Extent getValidArea();
 
     /**
      * Description of domain of usage, or limitations of usage, for which this operation is valid.
-     *
-     * @return A description of domain of usage, or {@code null} if none.
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();
@@ -194,8 +188,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      * {@linkplain #getTargetCRS target coordinate reference system}. It may be {@code null}
      * in the case of {@linkplain CoordinateOperationFactory#createDefiningConversion
      * defining conversions}.
-     *
-     * @return The transform from source to target CRS, or {@code null} if not applicable.
      */
     @UML(identifier="CT_CoordinateTransformation.getMathTransform", specification=OGC_01009)
     MathTransform getMathTransform();

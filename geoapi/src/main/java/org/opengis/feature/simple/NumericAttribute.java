@@ -1,13 +1,3 @@
-/*$************************************************************************************************
- **
- ** $Id$
- **
- ** $URL$
- **
- ** Copyright (C) 2004-2007 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
- **
- *************************************************************************************************/
 package org.opengis.feature.simple;
 
 import org.opengis.feature.Attribute;

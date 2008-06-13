@@ -49,7 +49,7 @@ public interface Point extends Primitive, Position {
      * @return The direct position.
      */
     @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
-    DirectPosition getDirectPosition();
+    DirectPosition getPosition();
 
     /**
      * Sets the direct position of this point. {@code Point} is the only subclass
@@ -62,19 +62,7 @@ public interface Point extends Primitive, Position {
      *
      * @param  position The direct position.
      * @throws UnmodifiableGeometryException if this geometry is not modifiable.
-     *
-     * @since GeoAPI 2.2
      */
-    @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
-    void setDirectPosition(DirectPosition position) throws UnmodifiableGeometryException;
-
-    /**
-     * @deprecated Renamed as {@link #setDirectPosition} for consistency with {@link #getDirectPosition}.
-     *
-     * @param  position The direct position.
-     * @throws UnmodifiableGeometryException if this geometry is not modifiable.
-     */
-    @Deprecated
     @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
     void setPosition(DirectPosition position) throws UnmodifiableGeometryException;
 
@@ -83,8 +71,8 @@ public interface Point extends Primitive, Position {
      *
      * @return Always {@code null}.
      */
-    @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
-    PrimitiveBoundary getBoundary();
+/// @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
+/// public PrimitiveBoundary getBoundary();
 
     /**
      * Returns the bearing, as a unit vector, of the tangent (at this {@code Point}) to

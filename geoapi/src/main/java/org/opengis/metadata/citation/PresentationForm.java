@@ -10,9 +10,12 @@
  *************************************************************************************************/
 package org.opengis.metadata.citation;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.geometry.PrecisionType;
+import org.opengis.metadata.spatial.PixelOrientation;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -144,30 +147,37 @@ public final class PresentationForm extends CodeList<PresentationForm> {
 
     /**
      * Returns the list of {@code PresentationForm}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static PresentationForm[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new PresentationForm[VALUES.size()]);
+            return (PresentationForm[]) VALUES.toArray(new PresentationForm[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public PresentationForm[] family() {
+    public /*{PresentationForm}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the presentation form that matches the given string, or returns a
+     * Returns the PresentationForm that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static PresentationForm valueOf(String code) {
-        return valueOf(PresentationForm.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                PresentationForm type = (PresentationForm) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new PresentationForm(code);
+        }
     }
 }

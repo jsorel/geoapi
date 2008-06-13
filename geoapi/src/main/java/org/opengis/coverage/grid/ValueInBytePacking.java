@@ -10,11 +10,13 @@
  *************************************************************************************************/
 package org.opengis.coverage.grid;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.spatial.TopologyLevel;
 import org.opengis.util.CodeList;
-import org.opengis.coverage.SampleDimensionType;
+import org.opengis.coverage.SampleDimensionType; // For Javadoc
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -85,30 +87,37 @@ public final class ValueInBytePacking extends CodeList<ValueInBytePacking> {
 
     /**
      * Returns the list of {@code ValueInBytePacking}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static ValueInBytePacking[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ValueInBytePacking[VALUES.size()]);
+            return (ValueInBytePacking[]) VALUES.toArray(new ValueInBytePacking[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public ValueInBytePacking[] family() {
+    public /*{ValueInBytePacking}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the value in byte packing that matches the given string, or returns a
+     * Returns the ValueInBytePacking that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static ValueInBytePacking valueOf(String code) {
-        return valueOf(ValueInBytePacking.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                ValueInBytePacking type = (ValueInBytePacking) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new ValueInBytePacking(code);
+        }
     }
 }

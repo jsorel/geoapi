@@ -98,20 +98,18 @@ public class ArrowStyle extends SimpleEnumerationType<ArrowStyle> {
     //*************************************************************************
 
     /**
-     * Returns the list of {@code ArrowStyle}s.
-     *
-     * @return The list of codes declared in the current JVM.
+     * Returns the list of <code>ArrowStyle</code>s.
      */
     public static ArrowStyle[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ArrowStyle[VALUES.size()]);
+            return (ArrowStyle[]) VALUES.toArray(new ArrowStyle[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public ArrowStyle[] family() {
+    public /*{ArrowStyle}*/ CodeList[] family() {
         return values();
     }
 }

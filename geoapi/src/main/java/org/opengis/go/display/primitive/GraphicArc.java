@@ -353,19 +353,17 @@ public interface GraphicArc extends Graphic {
 
         /**
          * Returns the list of <code>ArcClosure</code>s.
-         *
-         * @return The list of codes declared in the current JVM.
          */
         public static ArcClosure[] values() {
             synchronized (VALUES) {
-                return VALUES.toArray(new ArcClosure[VALUES.size()]);
+                return (ArcClosure[]) VALUES.toArray(new ArcClosure[VALUES.size()]);
             }
         }
 
         /**
          * Returns the list of enumerations of the same kind than this enum.
          */
-        public ArcClosure[] family() {
+        public /*{ArcClosure}*/ CodeList[] family() {
             return values();
         }
     }  // end class ArcClosure

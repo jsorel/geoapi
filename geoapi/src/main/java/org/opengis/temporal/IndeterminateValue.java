@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.temporal;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.content.ImagingCondition;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -59,30 +61,37 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
 
     /**
      * Returns the list of {@code IndeterminateValue}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static IndeterminateValue[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new IndeterminateValue[VALUES.size()]);
+            return (IndeterminateValue[]) VALUES.toArray(new IndeterminateValue[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public IndeterminateValue[] family() {
+    public /*IndeterminateValue[]*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the indeterminate value that matches the given string, or returns a
+     * Returns the IndeterminateValue that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static IndeterminateValue valueOf(String code) {
-        return valueOf(IndeterminateValue.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                IndeterminateValue type = (IndeterminateValue) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new IndeterminateValue(code);
+        }
     }
 }

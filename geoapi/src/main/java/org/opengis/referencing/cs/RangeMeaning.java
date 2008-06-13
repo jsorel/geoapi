@@ -10,11 +10,14 @@
  *************************************************************************************************/
 package org.opengis.referencing.cs;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.identification.Progress;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -73,30 +76,37 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
 
     /**
      * Returns the list of {@code RangeMeaning}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static RangeMeaning[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new RangeMeaning[VALUES.size()]);
+            return (RangeMeaning[]) VALUES.toArray(new RangeMeaning[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public RangeMeaning[] family() {
+    public /*{RangeMeaning}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the range meaning that matches the given string, or returns a
+     * Returns the RangeMeaning that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static RangeMeaning valueOf(String code) {
-        return valueOf(RangeMeaning.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                RangeMeaning type = (RangeMeaning) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new RangeMeaning(code);
+        }
     }
 }

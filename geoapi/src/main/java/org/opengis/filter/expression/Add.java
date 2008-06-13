@@ -28,6 +28,4 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("Add")
 public interface Add extends BinaryExpression {
-	/** Operator name used to check FilterCapabilities */
-	public static String NAME = "Add";
 }

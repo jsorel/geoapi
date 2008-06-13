@@ -98,19 +98,17 @@ public class LinePattern extends SimpleEnumerationType<LinePattern> {
 
     /**
      * Returns the list of {@code LinePattern}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static LinePattern[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new LinePattern[VALUES.size()]);
+            return (LinePattern[]) VALUES.toArray(new LinePattern[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public LinePattern[] family() {
+    public /*{LinePattern}*/ CodeList[] family() {
         return values();
     }
 }

@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.metadata.citation.DateType;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -100,30 +102,37 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
 
     /**
      * Returns the list of {@code DimensionNameType}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static DimensionNameType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new DimensionNameType[VALUES.size()]);
+            return (DimensionNameType[]) VALUES.toArray(new DimensionNameType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public DimensionNameType[] family() {
+    public /*{DimensionNameType}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the dimension name type that matches the given string, or returns a
+     * Returns the DimensionNameType that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static DimensionNameType valueOf(String code) {
-        return valueOf(DimensionNameType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                DimensionNameType type = (DimensionNameType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new DimensionNameType(code);
+        }
     }
 }

@@ -11,6 +11,7 @@
 package org.opengis.coverage.grid;
 
 import org.opengis.util.Cloneable;
+import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Extension;
 
@@ -33,8 +34,6 @@ public interface GridCoordinates extends Cloneable {
      * Returns the number of dimensions. This method is equivalent to
      * <code>{@linkplain #getCoordinateValues()}.length</code>. It is
      * provided for efficienty.
-     *
-     * @return The number of dimensions.
      */
     @Extension
     int getDimension();
@@ -55,9 +54,6 @@ public interface GridCoordinates extends Cloneable {
      * Returns the coordinate value at the specified dimension. This method is equivalent to
      * <code>{@linkplain #getCoordinateValues()}[<var>i</var>]</code>. It is provided for
      * efficienty.
-     *
-     * @param  i The dimension for which to obtain the coordinate value.
-     * @return The coordinate value at the given dimension.
      */
     @Extension
     int getCoordinateValue(int i);
@@ -65,7 +61,7 @@ public interface GridCoordinates extends Cloneable {
     /**
      * Sets the coordinate value at the specified dimension (optional operation).
      *
-     * @param  i The dimension for which to set the coordinate value.
+     * @param  i The index of the value to set.
      * @param  value The new value.
      * @throws UnsupportedOperationException if this grid coordinates is not modifiable.
      */

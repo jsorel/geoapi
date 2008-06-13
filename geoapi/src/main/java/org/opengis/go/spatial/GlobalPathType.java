@@ -84,10 +84,8 @@ public final class GlobalPathType extends PathType {
 
     /**
      * Returns the list of {@code GlobalPathType}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
-    public static GlobalPathType[] values() {
+    public static /*{GlobalPathType}*/ PathType[] values() {
         synchronized (VALUES) {
             return values(GlobalPathType.class, count);
         }
@@ -97,7 +95,7 @@ public final class GlobalPathType extends PathType {
      * Returns the list of enumerations of the same kind than this enum.
      */
     @Override
-    public GlobalPathType[] family() {
+    public /*{GlobalPathType}*/ org.opengis.util.CodeList[] family() {
         return values();
     }
 }

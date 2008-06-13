@@ -10,11 +10,12 @@
  *************************************************************************************************/
 package org.opengis.coverage;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection; // For javadoc
 import org.opengis.util.CodeList;
-import org.opengis.geometry.DirectPosition;
+import org.opengis.geometry.DirectPosition;  // For javadoc
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -103,32 +104,37 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
 
     /**
      * Returns the list of {@code CommonPointRule}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static CommonPointRule[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new CommonPointRule[VALUES.size()]);
+            return (CommonPointRule[]) VALUES.toArray(new CommonPointRule[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
-     *
-     * @return All common point rules defined.
      */
-    public CommonPointRule[] family() {
+    public /*{CommonPointRule}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the common point rule that matches the given string, or returns a
+     * Returns the CommonPointRule that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static CommonPointRule valueOf(String code) {
-        return valueOf(CommonPointRule.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                CommonPointRule type = (CommonPointRule) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new CommonPointRule(code);
+        }
     }
 }

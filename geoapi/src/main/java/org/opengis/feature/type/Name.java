@@ -1,19 +1,10 @@
-/*$************************************************************************************************
- **
- ** $Id$
- **
- ** $URL$
- **
- ** Copyright (C) 2004-2007 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
- **
- *************************************************************************************************/
 package org.opengis.feature.type;
 
 import static org.opengis.annotation.Obligation.MANDATORY;
 import static org.opengis.annotation.Specification.ISO_19103;
 
 import org.opengis.annotation.UML;
+
 
 /**
  * Represents a Name, with respect to a Namespace.
@@ -101,7 +92,6 @@ import org.opengis.annotation.UML;
  * @author Jody Garnett, Refractions Research
  */
 public interface Name {
-
     /**
      * Returns <code>true</code> if getNamespaceURI is <code>null</code>
      *
@@ -124,7 +114,7 @@ public interface Name {
      * @since GeoAPI 2.1
      */
     @UML(identifier = "scope", obligation = MANDATORY, specification = ISO_19103)
-    String getNamespaceURI();
+    public String getNamespaceURI();
 
     /**
      * Retrieve the Local name.
@@ -139,7 +129,7 @@ public interface Name {
      * </ul>
      * @return local name (can be used in namespace lookup)
      */
-    String getLocalPart();
+    public String getLocalPart();
 
     /**
      * Convert this name to a complete URI.
@@ -164,15 +154,14 @@ public interface Name {
      * @return a complete URI constructed of namespace URI and the local part.
      */
     @UML(identifier = "parsedName", obligation = MANDATORY, specification = ISO_19103)
-    String getURI();
+    public String getURI();
 
     /**
      * Must be based on getURI().
      *
      * @return a hascode based on getURI()
      */
-    ///@Override
-    int hashCode();
+    public int hashCode();
 
     /**
      * <code>true</code> if getURI is equal.
@@ -180,12 +169,10 @@ public interface Name {
      * @param other
      * @return <code>true</code> if getURI is equal.
      */
-    ///@Override
-    boolean equals(Object obj);
+    public boolean equals(Object obj);
 
     /**
      * A local-independant representation of this name, see getURI().
      */
-    ///@Override
-    String toString();
+    public String toString();
 }

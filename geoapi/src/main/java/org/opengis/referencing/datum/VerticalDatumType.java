@@ -10,10 +10,12 @@
  *************************************************************************************************/
 package org.opengis.referencing.datum;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.coverage.grid.ValueInBytePacking;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -60,26 +62,6 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     /**
      * A vertical datum for ellipsoidal heights that are measured along the
      * normal to the ellipsoid used in the definition of horizontal datum.
-     *
-     * @departure
-     *   This code is a violation of ISO 19111 specification, which does not allow instantation of
-     *   {@linkplain org.opengis.referencing.crs.VerticalCRS Vertical CRS} for ellipsoidal height.
-     *   More specifically {@linkplain org.opengis.referencing.crs.GeographicCRS Geographic CRS}
-     *   with ellipsoidal height shall be backed by a three-dimensional
-     *   {@linkplain org.opengis.referencing.cs.EllipsoidalCS Ellipsoidal CS}; they should never
-     *   be built as {@linkplain org.opengis.referencing.crs.CompoundCRS Compound CRS}.
-     *   <p>
-     *   However some API need to express the ellipsoidal height alone, e.g. for type safety
-     *   in methods like {@link org.opengis.metadata.extent.VerticalExtent#getVerticalCRS}.
-     *   The alternative would be to pass an arbitrary
-     *   {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate Reference System}
-     *   and let the user extracts the vertical component himself.
-     *
-     *   Furthermore the <A HREF="../doc-files/WKT.html">WKT format</A> still in wide use, and this
-     *   format (defined before ISO 19111) does not treat ellipsoidal height in a special way. A WKT
-     *   parser needs to get the vertical CRS separatly before to merge it with the geographic CRS.
-     *
-     * @issue http://jira.codehaus.org/browse/GEO-133
      */
     @UML(identifier="CS_DatumType.CS_VD_Ellipsoidal", obligation=CONDITIONAL, specification=OGC_01009)
     public static final VerticalDatumType ELLIPSOIDAL = new VerticalDatumType("ELLIPSOIDAL");
@@ -124,30 +106,37 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
 
     /**
      * Returns the list of {@code VerticalDatumType}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static VerticalDatumType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new VerticalDatumType[VALUES.size()]);
+            return (VerticalDatumType[]) VALUES.toArray(new VerticalDatumType[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public VerticalDatumType[] family() {
+    public /*{VerticalDatumType}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the vertical datum type that matches the given string, or returns a
+     * Returns the VerticalDatumType that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static VerticalDatumType valueOf(String code) {
-        return valueOf(VerticalDatumType.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                VerticalDatumType type = (VerticalDatumType) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new VerticalDatumType(code);
+        }
     }
 }

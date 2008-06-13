@@ -10,9 +10,11 @@
  *************************************************************************************************/
 package org.opengis.metadata.spatial;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.opengis.referencing.datum.PixelInCell;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -22,10 +24,6 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Point in a pixel corresponding to the Earth location of the pixel.
- * <p>
- * This code list is restricted to the two-dimensional case. A similar code
- * list, {@link org.opengis.referencing.datum.PixelInCell}, can be used for
- * <var>n</var>-dimensional grid cell.
  *
  * @author <A HREF="http://www.opengeospatial.org/standards/as#01-111">ISO 19115</A>
  * @author Martin Desruisseaux (IRD)
@@ -46,8 +44,6 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
 
     /**
      * Point in a pixel corresponding to the Earth location of the pixel.
-     *
-     * @see org.opengis.referencing.datum.PixelInCell#CELL_CENTER
      */
     @UML(identifier="center", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation CENTER = new PixelOrientation("CENTER");
@@ -55,31 +51,24 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
     /**
      * The corner in the pixel closest to the origin of the SRS; if two are at the same
      * distance from the origin, the one with the smallest x-value.
-     *
-     * @todo The sentence "<cite>closest to the origin of the SRS</cite> probably applies to
-     *       positive coordinates only. For the general case including both positive and negative
-     *       coordinates, we should probably read "in the direction of negative infinity". This
-     *       interpretation should be clarified with ISO.
-     *
-     * @see org.opengis.referencing.datum.PixelInCell#CELL_CORNER
      */
     @UML(identifier="lowerLeft", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation LOWER_LEFT = new PixelOrientation("LOWER_LEFT");
 
     /**
-     * Next corner counterclockwise from the {@linkplain #LOWER_LEFT lower left}.
+     * Next corner counterclockwise from the lower left.
      */
     @UML(identifier="lowerRight", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation LOWER_RIGHT = new PixelOrientation("LOWER_RIGHT");
 
     /**
-     * Next corner counterclockwise from the {@linkplain #LOWER_RIGHT lower right}.
+     * Next corner counterclockwise from the lower right.
      */
     @UML(identifier="upperRight", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation UPPER_RIGHT = new PixelOrientation("UPPER_RIGHT");
 
     /**
-     * Next corner counterclockwise from the {@linkplain #UPPER_RIGHT upper right}.
+     * Next corner counterclockwise from the upper right.
      */
     @UML(identifier="upperLeft", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation UPPER_LEFT = new PixelOrientation("UPPER_LEFT");
@@ -96,30 +85,37 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
 
     /**
      * Returns the list of {@code PixelOrientation}s.
-     *
-     * @return The list of codes declared in the current JVM.
      */
     public static PixelOrientation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new PixelOrientation[VALUES.size()]);
+            return (PixelOrientation[]) VALUES.toArray(new PixelOrientation[VALUES.size()]);
         }
     }
 
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
-    public PixelOrientation[] family() {
+    public /*{PixelOrientation}*/ CodeList[] family() {
         return values();
     }
 
     /**
-     * Returns the pixel orientation that matches the given string, or returns a
+     * Returns the PixelOrientation that matches the given string, or returns a
      * new one if none match it.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
      */
     public static PixelOrientation valueOf(String code) {
-        return valueOf(PixelOrientation.class, code);
+        if (code == null) {
+            return null;
+        }
+        synchronized (VALUES) {
+            Iterator iter = VALUES.iterator();
+            while (iter.hasNext()) {
+                PixelOrientation type = (PixelOrientation) iter.next();
+                if (code.equalsIgnoreCase(type.name())) {
+                    return type;
+                }
+            }
+            return new PixelOrientation(code);
+        }
     }
 }

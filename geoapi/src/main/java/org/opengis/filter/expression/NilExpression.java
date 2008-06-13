@@ -1,73 +1,54 @@
-/*$************************************************************************************************
- **
- ** $Id$
- **
- ** $URL$
- **
- ** Copyright (C) 2005 Open GIS Consortium, Inc.
- ** All Rights Reserved. http://www.opengis.org/legal/
- **
- *************************************************************************************************/
 package org.opengis.filter.expression;
 
-import java.io.ObjectStreamException;
 import java.io.Serializable;
 
-
 /**
- * Placeholder class used to represent a NIL expression, evaluates to {@code null}.
- * This placeholder class allows data structures to avoid the use of {@code null}.
- * Please note that {@link Expression#NIL} is not considered a Literal with value
- * {@code null} (since the literal may have its value changed).
- *
- * @author Jody Garnett (Refractions Research, Inc.)
- * @author Martin Desruisseaux (Geomatys)
+ * Placeholder class used to represent a NIL expression, evaultates to <code>null</code>.
+ * <p>
+ * This placeholder class is allows data structures to avoid
+ * the use of <code>null</code>. Please note that Expression.NIL is
+ * not considered a Literal with value <code>null</code> (since the literal may have its
+ * value changed).
+ * </p>
+ * @author Jody Garnett, Refractions Research, Inc.
  */
 public final class NilExpression implements Expression, Serializable {
-    /**
-     * For cross-version compatibility.
-     */
     private static final long serialVersionUID = 4999313240542653655L;
 
-    /**
-     * Not extensible.
-     */
-    NilExpression() {
-    }
+    /** Not extensible */
+    NilExpression(){}
 
-    /**
-     * Accepts a visitor.
-     */
     public Object accept(ExpressionVisitor visitor, Object extraData) {
-        return visitor.visit(this, extraData);
+        return visitor.visit( this, extraData);
     }
 
-    /**
-     * Returns {@code null}.
-     */
+    /** Returns <code>null</code> */
     public Object evaluate(Object object) {
         return null;
     }
 
-    /**
-     * Returns {@code null}.
-     */
+    /** Returns <code>null</code> */
     public <T> T evaluate(Object object, Class<T> context) {
         return null;
     }
 
     /**
-     * Returns a string representation of this expression.
+     * Equals is defined only against <code>Expression.NIL</code>.
+     * @param other
+     * @return <code>true</code> for Expression.NIL
      */
+    public boolean equals(Object other) {
+        return other == Expression.NIL;
+    }
+    /**
+     * Returns <code>0</code> in order to agree with hashcode of <code>null</code>.
+     */
+    public int hashCode() {
+        return 0;
+    }
+
     @Override
     public String toString() {
         return "Expression.NIL";
-    }
-
-    /**
-     * Returns the canonical instance on deserialization.
-     */
-    private Object readResolve() throws ObjectStreamException {
-        return Expression.NIL;
     }
 }

@@ -1,7 +1,5 @@
 package org.opengis.filter.capability;
 
-import java.util.Collection;
-
 /**
  * Supported functions in a capabilities document.
  * <p>
@@ -14,6 +12,7 @@ import java.util.Collection;
  * </pre>
  * </p>
  * @author Justin Deoliveira, The Open Planning Project
+ *
  */
 public interface Functions {
 
@@ -25,7 +24,7 @@ public interface Functions {
      * </pre>
      * </p>
      */
-    Collection<FunctionName> getFunctionNames();
+    FunctionName[] getFunctionNames();
 
     /**
      * Looks up a function by name, returning null if no such function is found.

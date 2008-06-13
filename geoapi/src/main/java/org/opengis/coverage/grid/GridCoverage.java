@@ -160,7 +160,7 @@ public interface GridCoverage extends Coverage {
      *
      * @return The sources data for a grid coverage.
      */
-    List<GridCoverage> getSources();
+/// List<GridCoverage> getSources();
 
     /**
      * Return a sequence of boolean values for a block.
@@ -288,14 +288,14 @@ public interface GridCoverage extends Coverage {
      * (sample dimension, column, row).
      *
      * The index values will be based from 0. The indices in the returned <VAR>N</VAR> dimensional
-     * safe array will need to be offset by {@code gridRange} {@linkplain GridRange#getLower()
+     * safe array will need to be offset by {@code gridRange} {@linkplain GridRange#getLowers()
      * minimum coordinates} to get equivalent grid coordinates.
      * <p>
      * The requested grid range must satisfy the following rules for each dimension of the grid
      * coverage:
      * <center>
-     * minimum grid coordinate <= {@linkplain GridRange#getLower() grid range mimimun} <=
-     * {@linkplain GridRange#getUpper() grid range maximum} <= maximum grid coordinate
+     * minimum grid coordinate <= {@linkplain GridRange#getLowers() grid range mimimun} <=
+     * {@linkplain GridRange#getUppers() grid range maximum} <= maximum grid coordinate
      * </center>
      *
      * The number of values returned will equal:
@@ -346,8 +346,8 @@ public interface GridCoverage extends Coverage {
      * of the grid coverage:
      *
      * <center>
-     * minimum grid coordinate <= {@linkplain GridRange#getLower() grid range mimimun} <=
-     * {@linkplain GridRange#getUpper() grid range maximum} <= maximum grid coordinate
+     * minimum grid coordinate <= {@linkplain GridRange#getLowers() grid range mimimun} <=
+     * {@linkplain GridRange#getUppers() grid range maximum} <= maximum grid coordinate
      * </center>
      *
      * The sequence of bytes returned will match the data type of
@@ -482,8 +482,8 @@ public interface GridCoverage extends Coverage {
      * dimension of the grid coverage:
      *
      * <center>
-     * minimum grid coordinate <= {@linkplain GridRange#getLower() grid range mimimun} <=
-     * {@linkplain GridRange#getUpper() grid range maximum} <= maximum grid coordinate
+     * minimum grid coordinate <= {@linkplain GridRange#getLowers() grid range mimimun} <=
+     * {@linkplain GridRange#getUppers() grid range maximum} <= maximum grid coordinate
      * </center>
      *
      * The number of values must equal:
@@ -511,5 +511,23 @@ public interface GridCoverage extends Coverage {
      */
     @UML(identifier="setDataBlockAsDouble", obligation=MANDATORY, specification=OGC_01004)
     void setDataBlock(GridRange gridRange, double[] values)
+            throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
+
+    /**
+     * Set a block of grid coverage data for all sample dimensions.
+     * See {@link #getPackedDataBlock} for details on how to pack the values.
+     *
+     * @param gridRange Grid range for block of data to be accessed.
+     * @param values Sequence of grid values for the given region.
+     * @throws InvalidRangeException if {@code gridRange} is out of this grid range bounds.
+     * @throws GridNotEditableException if the grid coverage is not {@linkplain #isDataEditable editable}.
+     * @throws ArrayIndexOutOfBoundsException if the {@code values} array is too small.
+     *
+     * @deprecated This operation can hardly be implemented efficiently in Java with a
+     *             {@code byte[]} argument type, since we can't easily cast an array
+     *             of {@code byte[]} to an array of arbitrary type.
+     */
+    @UML(identifier="setPackedDataBlock", obligation=MANDATORY, specification=OGC_01004)
+    void setPackedDataBlock(GridRange gridRange, byte[] values)
             throws InvalidRangeException, GridNotEditableException, ArrayIndexOutOfBoundsException;
 }
