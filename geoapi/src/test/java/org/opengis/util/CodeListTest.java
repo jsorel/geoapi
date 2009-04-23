@@ -74,15 +74,12 @@ public final class CodeListTest {
             final Class<?> candidate = scanner.next();
             if (!base.equals(candidate) && base.isAssignableFrom(candidate)) {
                 // SimpleEnumeratioType is a special case to avoid for now.
-                final String name = candidate.getName();
-                if (name.equals("org.opengis.util.SimpleEnumerationType")) {
-                    continue;
+                if (!SimpleEnumerationType.class.equals(candidate) &&
+                    !org.opengis.filter.sort.SortOrder.class.equals(candidate))
+                {
+                    assertValid(candidate.asSubclass(CodeList.class));
+                    count++;
                 }
-                if (name.equals("org.opengis.filter.sort.SortOrder")) {
-                    continue;
-                }
-                assertValid(candidate.asSubclass(CodeList.class));
-                count++;
             }
         }
         LOGGER.fine("Found " + count + " code lists.");
@@ -232,7 +229,6 @@ public final class CodeListTest {
                     capacityFailed = true;
                     final LogRecord record = new LogRecord(Level.WARNING, e.toString());
                     record.setThrown(e);
-                    record.setLoggerName(LOGGER.getName());
                     LOGGER.log(record);
                     return;
                 }

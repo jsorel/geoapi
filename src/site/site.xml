@@ -5,7 +5,7 @@
   <!-- ========================================================= -->
   <bannerLeft>
     <name>GeoAPI</name>
-    <src>http://geoapi.sourceforge.net/images/geoapi.png</src>
+    <src>http://geoapi.sourceforge.net/resources/logo.png</src>
     <href>http://geoapi.sourceforge.net/</href>
   </bannerLeft>
 
@@ -28,27 +28,26 @@
     <!-- ==================================================== -->
     <!--     Menus to appears on the left side of each page   -->
     <!-- ==================================================== -->
-    <menu name="GeoAPI 2.3-SNAPSHOT" inherit="none">
+    <menu name="GeoAPI 2.2-SNAPSHOT">
       <item name="Javadoc"    href="snapshot/javadoc/index.html"/>
-      <item name="Pending"    href="snapshot/pending/index.html"/>
       <item name="Reports"    href="geoapi/index.html"/>
       <item name="Examples"   href="examples/index.html"/>
       <item name="Wiki pages" href="http://docs.codehaus.org/display/GEO/Home"/>
     </menu>
 
-    <menu name="GeoAPI 2.0.0" inherit="none">
+    <menu name="GeoAPI 2.0.0">
       <item name="Javadoc"  href="2.0/javadoc/index.html"/>
       <item name="Download" href="http://sourceforge.net/project/showfiles.php?group_id=70002&amp;package_id=69096&amp;release_id=333419"/>
       <item name="Charter"  href="charter.html"/>
       <item name="FAQ"      href="faq.html"/>
     </menu>
 
-    <menu name="Releases" inherit="none">
+    <menu name="Releases">
       <item name="GeoAPI 2.1" href="2.1/index.html"/>
       <item name="GeoAPI 2.0" href="2.0/index.html"/>
     </menu>
 
-    <menu ref="reports"/>  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
+    ${reports}  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
 
   </body>
 </project>
