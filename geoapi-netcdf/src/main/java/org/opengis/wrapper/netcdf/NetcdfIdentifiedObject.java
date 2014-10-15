@@ -27,6 +27,7 @@ import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.ReferenceIdentifier;
 
 
 /**
@@ -45,7 +46,7 @@ import org.opengis.referencing.IdentifiedObject;
  * @version 3.1
  * @since   3.1
  */
-public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identifier, Serializable {
+public abstract class NetcdfIdentifiedObject implements IdentifiedObject, ReferenceIdentifier, Serializable {
     /**
      * For cross-version compatibility.
      */
@@ -104,7 +105,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
      * the {@link #getCode()} method.
      */
     @Override
-    public Identifier getName() {
+    public ReferenceIdentifier getName() {
         return this;
     }
 
@@ -121,7 +122,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
      * Returns an empty set, since NetCDF objects don't provide other identifiers than the name.
      */
     @Override
-    public Set<Identifier> getIdentifiers() {
+    public Set<ReferenceIdentifier> getIdentifiers() {
         return Collections.emptySet();
     }
 

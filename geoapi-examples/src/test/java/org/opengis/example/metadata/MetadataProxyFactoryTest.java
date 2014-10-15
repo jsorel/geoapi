@@ -16,7 +16,7 @@ import org.junit.Test;
 
 import org.opengis.metadata.Metadata;
 import org.opengis.metadata.citation.Party;
-import org.opengis.metadata.citation.Responsibility;
+import org.opengis.metadata.citation.ResponsibleParty;
 
 import static org.junit.Assert.*;
 
@@ -43,7 +43,7 @@ public strictfp class MetadataProxyFactoryTest {
 
         attributes = new HashMap<String,Object>();
         assertNull(attributes.put("party", Collections.singleton(party)));
-        final Responsibility responsibility = factory.create(Responsibility.class, attributes);
+        final ResponsibleParty responsibility = factory.create(ResponsibleParty.class, attributes);
         assertEquals("Aristotle", getSingleton(responsibility.getParties()).getName().toString());
 
         attributes = new HashMap<String,Object>();
@@ -54,7 +54,7 @@ public strictfp class MetadataProxyFactoryTest {
         assertTrue("Null value should have been replaced by empty collection.",
                 md.getSpatialRepresentationInfo().isEmpty());
 
-        assertEquals("MD_Metadata{contact=[CI_Responsibility{party=[CI_Party{name=Aristotle}]}]}", md.toString());
+        assertEquals("MD_Metadata{contact=[CI_ResponsibleParty{party=[CI_Party{name=Aristotle}]}]}", md.toString());
     }
 
     /**

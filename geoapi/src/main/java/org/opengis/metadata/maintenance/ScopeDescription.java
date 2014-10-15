@@ -35,6 +35,8 @@ import java.util.Set;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.feature.type.AttributeType;
+import org.opengis.feature.type.FeatureType;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -84,6 +86,11 @@ public interface ScopeDescription {
      * “<cite>Administrative area A — Road network</cite>” description.
      * </font></blockquote>
      *
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * As of ISO 19115:2014, the type become {@link Set<? extends CharSequence>}.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return Feature types to which the information applies.
      *
      * @condition {@code attributes}, {@code featureInstances}, {@code attributeInstances},
@@ -92,7 +99,7 @@ public interface ScopeDescription {
      * @see ScopeCode#FEATURE_TYPE
      */
     @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getFeatures();
+    Set<? extends FeatureType> getFeatures();
 
     /**
      * Attribute types to which the information applies.
@@ -103,6 +110,11 @@ public interface ScopeDescription {
      * “<cite>Administrative area A — Overhead clearance</cite>” description.
      * </font></blockquote>
      *
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * As of ISO 19115:2014, the type become {@link Set<? extends CharSequence>}.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return Attribute types to which the information applies.
      *
      * @condition {@code features}, {@code featureInstances}, {@code attributeInstances},
@@ -111,7 +123,7 @@ public interface ScopeDescription {
      * @see ScopeCode#ATTRIBUTE_TYPE
      */
     @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getAttributes();
+    Set<? extends AttributeType> getAttributes();
 
     /**
      * Feature instances to which the information applies.
@@ -122,6 +134,11 @@ public interface ScopeDescription {
      * “<cite>Administrative area A — New bridge</cite>” description.
      * </font></blockquote>
      *
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * As of ISO 19115:2014, the type become {@link Set<? extends CharSequence>}.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return Feature instances to which the information applies.
      *
      * @condition {@code features}, {@code attributes}, {@code attributeInstances},
@@ -130,7 +147,7 @@ public interface ScopeDescription {
      * @see ScopeCode#FEATURE
      */
     @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getFeatureInstances();
+    Set<? extends FeatureType> getFeatureInstances();
 
     /**
      * Attribute instances to which the information applies.
@@ -140,6 +157,11 @@ public interface ScopeDescription {
      * the correction can be recorded at {@link ScopeCode#ATTRIBUTE} level with a
      * “<cite>Administrative area A — New bridge — Overhead clearance</cite>” description.
      * </font></blockquote>
+     *
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * As of ISO 19115:2014, the type become {@link Set<? extends CharSequence>}.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
      *
      * @return Attribute instances to which the information applies.
      *
@@ -151,7 +173,7 @@ public interface ScopeDescription {
      * @see ScopeCode#ATTRIBUTE
      */
     @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getAttributeInstances();
+    Set<? extends AttributeType> getAttributeInstances();
 
     /**
      * Class of information that does not fall into the other categories to which the information applies.

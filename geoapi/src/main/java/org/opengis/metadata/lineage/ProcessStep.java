@@ -36,6 +36,7 @@ import java.util.Date;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.Responsibility;
+import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.metadata.maintenance.Scope;
 import org.opengis.annotation.UML;
 
@@ -88,11 +89,16 @@ public interface ProcessStep {
      * Identification of, and means of communication with, person(s) and
      * organization(s) associated with the process step.
      *
+     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * As of ISO 19115:2014, {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return Means of communication with person(s) and organization(s) associated
      *         with the process step.
      */
     @UML(identifier="processor", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Responsibility> getProcessors();
+    Collection<? extends ResponsibleParty> getProcessors();
 
     /**
      * Process step documentation.

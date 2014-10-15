@@ -29,6 +29,7 @@ import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.Identifier;
@@ -105,12 +106,16 @@ public class PJFactory implements Factory {
      * @return A reference identifier for the given code space and code, or {@code null}.
      * @throws IllegalArgumentException If any of the requested value is an empty string.
      */
-    public static Identifier createIdentifier(final Map<String,?> properties) {
+    public static ReferenceIdentifier createIdentifier(final Map<String,?> properties) {
         if (properties != null) {
             final Object name = properties.get(IdentifiedObject.NAME_KEY);
             if (name != null) {
+                if (name instanceof ReferenceIdentifier) {
+                    return (ReferenceIdentifier) name;
+                }
                 if (name instanceof Identifier) {
-                    return (Identifier) name;
+                    return createIdentifier(((Identifier) name).getCode(),
+                            ((Identifier) name).getCodeSpace());
                 }
                 final Object cs = properties.get(Identifier.CODESPACE_KEY);
                 return createIdentifier(cs != null ? cs.toString() : null, name.toString());
@@ -135,7 +140,7 @@ public class PJFactory implements Factory {
      * @throws NullPointerException If the code argument is {@code null}.
      * @throws IllegalArgumentException If any of the given argument is an empty string.
      */
-    public static Identifier createIdentifier(String codespace, String code) {
+    public static ReferenceIdentifier createIdentifier(String codespace, String code) {
         if ((code = code.trim()).isEmpty() || (codespace != null && (codespace = codespace.trim()).isEmpty())) {
             throw new IllegalArgumentException("Codespace and code must be non-empty.");
         }
@@ -156,8 +161,8 @@ public class PJFactory implements Factory {
      * @throws NullPointerException If the definition string is {@code null}.
      * @throws IllegalArgumentException If one of the given argument has an invalid value.
      */
-    public static CoordinateReferenceSystem createCRS(final Identifier crsId,
-            final Identifier datumId, String definition, final int dimension)
+    public static CoordinateReferenceSystem createCRS(final ReferenceIdentifier crsId,
+            final ReferenceIdentifier datumId, String definition, final int dimension)
             throws IllegalArgumentException
     {
         if ((definition = definition.trim()).isEmpty()) {
@@ -218,7 +223,7 @@ public class PJFactory implements Factory {
      *         to the given target CRS.
      * @throws ClassCastException If the given CRS are not instances created by this class.
      */
-    public static CoordinateOperation createOperation(final Identifier identifier,
+    public static CoordinateOperation createOperation(final ReferenceIdentifier identifier,
             final CoordinateReferenceSystem sourceCRS, final CoordinateReferenceSystem targetCRS)
             throws ClassCastException
     {
@@ -314,7 +319,7 @@ public class PJFactory implements Factory {
                 final GeodeticDatum datum, final CoordinateSystem cs) throws FactoryException
         {
             final int           dimension  = cs.getDimension();
-            final Identifier    name       = createIdentifier(properties);
+            final ReferenceIdentifier name = createIdentifier(properties);
             final Ellipsoid     ellipsoid  = datum.getEllipsoid();
             final StringBuilder definition = new StringBuilder(100);
             definition.append("+proj=").append(type)
@@ -383,7 +388,7 @@ public class PJFactory implements Factory {
                 final Conversion conversionFromBase, final CartesianCS derivedCS) throws FactoryException
         {
             final int                 dimension  = derivedCS.getDimension();
-            final Identifier          name       = createIdentifier(properties);
+            final ReferenceIdentifier name       = createIdentifier(properties);
             final EllipsoidalCS       baseCS     = baseCRS.getCoordinateSystem();
             final GeodeticDatum       datum      = baseCRS.getDatum();
             final Ellipsoid           ellipsoid  = datum.getEllipsoid();
@@ -584,8 +589,8 @@ public class PJFactory implements Factory {
             }
             final String crsName   = getName(code, code,   false);
             final String datumName = getName(code, crsName, true);
-            final Identifier crsId = createIdentifier(codespace, crsName);
-            final Identifier datumId = datumName.equals(crsName) ? crsId : createIdentifier(codespace, datumName);
+            final ReferenceIdentifier crsId = createIdentifier(codespace, crsName);
+            final ReferenceIdentifier datumId = datumName.equals(crsName) ? crsId : createIdentifier(codespace, datumName);
             try {
                 return createCRS(crsId, datumId, definition.toString(), dimension);
             } catch (IllegalArgumentException e) {
@@ -658,7 +663,7 @@ public class PJFactory implements Factory {
                                                    final CoordinateReferenceSystem targetCRS)
                 throws FactoryException
         {
-            Identifier id;
+            ReferenceIdentifier id;
             String src=null, tgt=null, space=null;
             if ((id = sourceCRS.getName()) != null) {
                 src = id.getCode();
@@ -832,7 +837,7 @@ public class PJFactory implements Factory {
                     }
                 }
             }
-            final Identifier id = parameters.getDescriptor().getName();
+            final ReferenceIdentifier id = parameters.getDescriptor().getName();
             final CoordinateReferenceSystem targetCRS = createCRS(id, id, definition.toString(), 2);
             final CoordinateReferenceSystem sourceCRS = (targetCRS instanceof ProjectedCRS)
                     ? ((ProjectedCRS) targetCRS).getBaseCRS()

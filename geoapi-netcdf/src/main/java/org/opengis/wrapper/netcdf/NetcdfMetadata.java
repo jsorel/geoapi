@@ -378,8 +378,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Returns the NetCDF "{@code acknowledgment}" attribute value, or an empty set if none.
      */
     @Override
-    public Collection<InternationalString> getCredits() {
-        return singleton(getInternationalString("acknowledgment"));
+    public Collection<String> getCredits() {
+        return singleton(getString("acknowledgment"));
     }
 
     /**
@@ -607,30 +607,30 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * </ul>
      */
     private final class Creator implements Citation, CitationDate, OnlineResource {
-        @Override public InternationalString                  getTitle()                   {return NetcdfMetadata.this.getTitle();}
-        @Override public InternationalString                  getDescription()             {return NetcdfMetadata.this.getDescription();}
-        @Override public Date                                 getDate()                    {return NetcdfMetadata.this.getDatasetDate();}
-        @Override public DateType                             getDateType()                {return NetcdfMetadata.this.getDateType();}
-        @Override public URI                                  getLinkage()                 {return NetcdfMetadata.this.getLinkage();}
-        @Override public Collection<? extends Responsibility> getCitedResponsibleParties() {return NetcdfMetadata.this.getPointOfContacts();}
-        @Override public Collection<? extends Identifier>     getIdentifiers()             {return self;}
-        @Override public Collection<? extends CitationDate>   getDates()                   {return Collections.singleton(this);}
-        @Override public Collection<? extends OnlineResource> getOnlineResources()         {return Collections.singleton(this);}
-        @Override public Collection<InternationalString>      getAlternateTitles()         {return Collections.emptySet();}
-        @Override public Collection<PresentationForm>         getPresentationForms()       {return Collections.emptySet();}
-        @Override public Collection<BrowseGraphic>            getGraphics()                {return Collections.emptySet();}
-        @Override public Collection<InternationalString>      getOtherCitationDetails()    {return Collections.emptySet();}
-        @Override public InternationalString                  getCollectiveTitle()         {return null;}
-        @Override public Series                               getSeries()                  {return null;}
-        @Override public InternationalString                  getEdition()                 {return null;}
-        @Override public Date                                 getEditionDate()             {return null;}
-        @Override public String                               getISBN()                    {return null;}
-        @Override public String                               getISSN()                    {return null;}
-        @Override public InternationalString                  getName()                    {return null;}
-        @Override public OnLineFunction                       getFunction()                {return null;}
-        @Override public String                               getProtocol()                {return null;}
-        @Override public String                               getProtocolRequest()         {return null;}
-        @Override public String                               getApplicationProfile()      {return null;}
+        @Override public InternationalString                    getTitle()                   {return NetcdfMetadata.this.getTitle();}
+        @Override public InternationalString                    getDescription()             {return NetcdfMetadata.this.getDescription();}
+        @Override public Date                                   getDate()                    {return NetcdfMetadata.this.getDatasetDate();}
+        @Override public DateType                               getDateType()                {return NetcdfMetadata.this.getDateType();}
+        @Override public URI                                    getLinkage()                 {return NetcdfMetadata.this.getLinkage();}
+        @Override public Collection<? extends ResponsibleParty> getCitedResponsibleParties() {return NetcdfMetadata.this.getPointOfContacts();}
+        @Override public Collection<? extends Identifier>       getIdentifiers()             {return self;}
+        @Override public Collection<? extends CitationDate>     getDates()                   {return Collections.singleton(this);}
+        @Override public Collection<? extends OnlineResource>   getOnlineResources()         {return Collections.singleton(this);}
+        @Override public Collection<InternationalString>        getAlternateTitles()         {return Collections.emptySet();}
+        @Override public Collection<PresentationForm>           getPresentationForms()       {return Collections.emptySet();}
+        @Override public Collection<BrowseGraphic>              getGraphics()                {return Collections.emptySet();}
+        @Override public InternationalString                    getOtherCitationDetails()    {return null;}
+        @Override public InternationalString                    getCollectiveTitle()         {return null;}
+        @Override public Series                                 getSeries()                  {return null;}
+        @Override public InternationalString                    getEdition()                 {return null;}
+        @Override public Date                                   getEditionDate()             {return null;}
+        @Override public String                                 getISBN()                    {return null;}
+        @Override public String                                 getISSN()                    {return null;}
+        @Override public String                                 getName()                    {return null;}
+        @Override public OnLineFunction                         getFunction()                {return null;}
+        @Override public String                                 getProtocol()                {return null;}
+        @Override public String                                 getProtocolRequest()         {return null;}
+        @Override public String                                 getApplicationProfile()      {return null;}
     }
 
     /**
@@ -641,8 +641,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * one responsible party. However library vendors are encouraged to provide more accurate implementations.
      */
     @Override
-    public Collection<? extends Responsibility> getPointOfContacts() {
-        return self;
+    public Collection<? extends ResponsibleParty> getPointOfContacts() {
+        return singleton(new ResponsiblePartyAdapter(this));
     }
 
     /**
@@ -653,7 +653,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * However the attributes in NetCDF files usually don't make this distinction.
      */
     @Override
-    public Collection<? extends Responsibility> getContacts() {
+    public Collection<? extends ResponsibleParty> getContacts() {
         return getPointOfContacts();
     }
 
@@ -695,7 +695,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     /** Defaults to an empty set. */ @Override public Collection<Resolution>                   getSpatialResolutions()            {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Duration>                     getTemporalResolutions()           {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Locale>                       getLanguages()                     {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<Charset>                      getCharacterSets()                 {return Collections.emptySet();}
+    /** Defaults to an empty set. */ @Override public Collection                               getCharacterSets()                 {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<OnlineResource>               getOnlineResources()               {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Format>                       getResourceFormats()               {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Usage>                        getResourceSpecificUsages()        {return Collections.emptySet();}
@@ -715,13 +715,13 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     /** Defaults to an empty set. */ @Override public Collection<Citation>                     getAdditionalDocumentations()      {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Citation>                     getAlternativeMetadataReferences() {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<PortrayalCatalogueReference>  getPortrayalCatalogueInfo()        {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<Distribution>                 getDistributionInfo()              {return Collections.emptySet();}
+    /** Defaults to an empty set. */ @Override public Distribution                             getDistributionInfo()              {return null;}
     /** Defaults to an empty set. */ @Override public Collection<MetadataScope>                getMetadataScopes()                {return Collections.emptySet();}
     /** Defaults to {@code null}. */ @Override public InternationalString                      getPositionName()                  {return null;}
     /** Defaults to {@code null}. */ @Override public InternationalString                      getContactType()                   {return null;}
     /** Defaults to {@code null}. */ @Override public InternationalString                      getContactInstructions()           {return null;}
     /** Defaults to an empty set. */ @Override public Collection<Telephone>                    getPhones()                        {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<InternationalString>          getDeliveryPoints()                {return Collections.emptySet();}
+    /** Defaults to an empty set. */ @Override public Collection<String>                       getDeliveryPoints()                {return Collections.emptySet();}
     /** Defaults to {@code null}. */ @Override public InternationalString                      getCity()                          {return null;}
     /** Defaults to {@code null}. */ @Override public InternationalString                      getAdministrativeArea()            {return null;}
     /** Defaults to {@code null}. */ @Override public String                                   getPostalCode()                    {return null;}
@@ -796,7 +796,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     @Override
     @Deprecated
     public Charset getCharacterSet() {
-        return first(getCharacterSets());
+        return null;
     }
 
     /**

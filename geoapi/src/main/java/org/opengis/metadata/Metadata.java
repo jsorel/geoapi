@@ -47,8 +47,10 @@ import org.opengis.metadata.citation.CitationDate;
 import org.opengis.metadata.citation.DateType;
 import org.opengis.metadata.citation.Responsibility;
 import org.opengis.metadata.citation.OnlineResource;
+import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.metadata.content.ContentInformation;
 import org.opengis.metadata.spatial.SpatialRepresentation;
+import org.opengis.metadata.identification.CharacterSet;
 import org.opengis.metadata.identification.Identification;
 import org.opengis.metadata.maintenance.MaintenanceInformation;
 import org.opengis.metadata.lineage.Lineage;
@@ -152,6 +154,13 @@ public interface Metadata {
     /**
      * The character coding standard used for the metadata set.
      * Instances can be obtained by a call to {@link Charset#forName(String)}.
+     *
+     * <div class="warning"><b>Upcoming API change — JDK integration</b><br>
+     * As of ISO 19115:2014, {@code CharacterSet} is replaced by a reference to the
+     * <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>,
+     * which is represented in Java by {@link java.nio.charset.Charset}.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
      *
      * <blockquote><font size="-1"><b>Examples:</b>
      * {@code UCS-2}, {@code UCS-4}, {@code UTF-7}, {@code UTF-8}, {@code UTF-16},
@@ -260,6 +269,11 @@ public interface Metadata {
     /**
      * Parties responsible for the metadata information.
      *
+     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * As of ISO 19115:2014, {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return Parties responsible for the metadata information.
      *
      * @see Identification#getPointOfContacts()
@@ -268,7 +282,7 @@ public interface Metadata {
      */
     @Profile(level=CORE)
     @UML(identifier="contact", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends Responsibility> getContacts();
+    Collection<? extends ResponsibleParty> getContacts();
 
     /**
      * Date(s) associated with the metadata.
@@ -429,11 +443,16 @@ public interface Metadata {
     /**
      * Information about the distributor of and options for obtaining the resource(s).
      *
+     * <div class="warning"><b>Upcoming API change — multiplicity</b><br>
+     * As of ISO 19115:2014, this singleton has been replaced by a collection.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return The distributor of and options for obtaining the resource(s), or {@code null}.
      */
     @Profile(level=CORE)
     @UML(identifier="distributionInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Distribution> getDistributionInfo();
+    Distribution getDistributionInfo();
 
     /**
      * Overall assessment of quality of a resource(s).

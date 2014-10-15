@@ -33,6 +33,7 @@ package org.opengis.temporal;
 
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
+import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.ReferenceSystem;
 import org.opengis.annotation.UML;
 
@@ -64,7 +65,7 @@ public interface TemporalReferenceSystem extends ReferenceSystem {
      */
     @Override
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19108)
-    Identifier getName();
+    ReferenceIdentifier getName();
 
     /**
      * Identifies the space and time within which the reference system is applicable.
