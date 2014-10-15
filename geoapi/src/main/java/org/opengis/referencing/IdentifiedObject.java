@@ -125,10 +125,15 @@ public interface IdentifiedObject {
     /**
      * The primary name by which this object is identified.
      *
+     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * As of ISO 19115:2014, {@code ReferenceIdentifier} has been merged with its {@link Identifier} parent interface.
+     * Consequently this method return type will be changed to {@code Identifier} in GeoAPI 4.0.
+     * </div>
+     *
      * @return The primary name.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19111)
-    Identifier getName();
+    ReferenceIdentifier getName();
 
     /**
      * Alternative names by which this object is identified.
@@ -142,10 +147,15 @@ public interface IdentifiedObject {
      * An identifier which references elsewhere the object's defining information.
      * Alternatively an identifier by which this object can be referenced.
      *
+     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * As of ISO 19115:2014, {@code ReferenceIdentifier} has been merged with its {@link Identifier} parent interface.
+     * Consequently the element type will be changed to {@code Identifier} in GeoAPI 4.0.
+     * </div>
+     *
      * @return This object identifiers, or an empty collection if there is none.
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19111)
-    Set<Identifier> getIdentifiers();
+    Set<ReferenceIdentifier> getIdentifiers();
 
     /**
      * Comments on or information about this object, including data source information.

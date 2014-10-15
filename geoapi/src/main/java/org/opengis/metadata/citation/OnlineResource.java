@@ -92,12 +92,16 @@ public interface OnlineResource {
     /**
      * Name of the online resource.
      *
+     * <div class="warning"><b>Upcoming API change — internationalization</b><br>
+     * The return type will be changed from {@code String} to {@code InternationalString} in GeoAPI 4.0.
+     * </div>
+     *
      * @return Name of the online resource, or {@code null}.
      *
      * @since 2.1
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getName();
+    String getName();
 
     /**
      * Detailed text description of what the online resource is/does.

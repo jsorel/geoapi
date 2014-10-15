@@ -40,13 +40,16 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Identifier used for reference systems.
  *
+ * <div class="warning"><b>Upcoming API change — deprecation</b><br>
+ * As of ISO 19115:2014, the {@code RS_Identifier} type has been merged with its {@code MD_Identifier} parent type.
+ * Consequently in GeoAPI 4.0, all usage of this {@code ReferenceIdentifier} interface will be replaced by usage of
+ * {@link Identifier}, and this {@code ReferenceIdentifier} interface will be deprecated.
+ * </div>
+ *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @version 3.1
  * @since   2.1
- *
- * @deprecated As of ISO 19115:2014, merged with its {@link Identifier} parent interface.
  */
-@Deprecated
 @UML(identifier="RS_Identifier", specification=ISO_19115)
 public interface ReferenceIdentifier extends Identifier {
 }

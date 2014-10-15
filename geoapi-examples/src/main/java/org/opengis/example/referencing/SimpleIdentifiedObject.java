@@ -17,6 +17,7 @@ import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.ReferenceIdentifier;
 
 
 /**
@@ -31,7 +32,7 @@ import org.opengis.referencing.IdentifiedObject;
  * @version 3.1
  * @since   3.1
  */
-public class SimpleIdentifiedObject implements IdentifiedObject, Identifier, Serializable {
+public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdentifier, Serializable {
     /**
      * For cross-version compatibility.
      */
@@ -72,7 +73,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, Identifier, Ser
      * returning a non-null and non-empty value.
      */
     @Override
-    public Identifier getName() {
+    public ReferenceIdentifier getName() {
         return this;
     }
 
@@ -137,7 +138,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, Identifier, Ser
      * @return This object identifiers, or an empty set if there is none.
      */
     @Override
-    public Set<Identifier> getIdentifiers() {
+    public Set<ReferenceIdentifier> getIdentifiers() {
         return Collections.emptySet();
     }
 

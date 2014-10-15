@@ -39,6 +39,7 @@ import org.opengis.util.MemberName; // For javadoc
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.ReferenceIdentifier;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -147,11 +148,16 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * Alternatively, the member type can also be specified in the {@linkplain #getAlias() aliases} list.
      * </font></blockquote>
      *
+     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * As of ISO 19115:2014, {@code ReferenceIdentifier} has been merged with its {@link Identifier} parent interface.
+     * Consequently this method return type will be changed to {@code Identifier} in GeoAPI 4.0.
+     * </div>
+     *
      * @return The name, as used by the service or operation for this parameter.
      */
     @Override
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19111)
-    Identifier getName();
+    ReferenceIdentifier getName();
 
     /**
      * Indication if the parameter is an input to the service, an output or both.
