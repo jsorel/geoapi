@@ -63,7 +63,7 @@ final class CompoundCS implements CoordinateSystem, ReferenceIdentifier, Seriali
     }
 
     /**
-     * {@return a synthetic name for this coordinate system}.
+     * Returns a synthetic name for this coordinate system.
      * The returned identifier implements only {@link #getCode()}.
      */
     @Override
@@ -72,7 +72,7 @@ final class CompoundCS implements CoordinateSystem, ReferenceIdentifier, Seriali
     }
 
     /**
-     * {@return a synthetic code for this coordinate system}.
+     * Returns a synthetic code for this coordinate system.
      */
     @Override
     public String getCode() {
@@ -81,7 +81,7 @@ final class CompoundCS implements CoordinateSystem, ReferenceIdentifier, Seriali
     }
 
     /**
-     * {@return the total number of dimensions of all components}.
+     * Returns the total number of dimensions of all components.
      */
     @Override
     public int getDimension() {
